@@ -118,3 +118,57 @@ Install these extensions for a better development experience:
     npm run dev
     ```
     Click the link shown in the terminal (usually `http://localhost:5173`) to open the app.
+
+## Deployment (Continuous Delivery)
+
+We use **Vercel** for automatic deployments. This is how the CD (Continuous Delivery) pipeline works:
+
+### 1. Automatic Production Deploys
+- **Trigger**: When code is merged into the `main` branch.
+- **Action**: Vercel automatically builds and deploys the new version to the live URL.
+- **Result**: Users see the latest changes immediately.
+
+### 2. Preview Deployments
+- **Trigger**: When a Pull Request (PR) is opened or updated.
+- **Action**: Vercel creates a unique "Preview URL" for that specific branch.
+- **Result**: You can share this URL with the team to test features *before* merging them.
+
+### 3. Setup Instructions (For Admins)
+1.  Go to [Vercel.com](https://vercel.com) and sign up/login.
+2.  Click **"Add New..."** -> **"Project"**.
+3.  Select the **Kalamna-Dashboard** repository from GitHub.
+4.  **Framework Preset**: Vercel will auto-detect "Vite".
+5.  **Build Command**: `npm run build` (default).
+6.  **Output Directory**: `dist` (default).
+7.  Click **Deploy**.
+
+## 🔄 Continuous Integration (CI)
+
+We use **GitHub Actions** to ensure code quality on every Pull Request.
+
+### 1. Required Setup
+To make the CI pipeline work, you need to add the following tools and scripts to your project:
+
+1.  **Install Dev Dependencies**:
+    ```bash
+    npm install --save-dev prettier ts-prune
+    ```
+
+2.  **Update `package.json` Scripts**:
+    Add these lines to your `scripts` section:
+    ```json
+    "prettier": "prettier --write .",
+    "tsc": "tsc --noEmit",
+    "find-dead-code": "ts-prune"
+    ```
+
+### 2. CI Workflow (`.github/workflows/ci.yml`)
+Create this file to automatically run checks. The workflow you provided is **valid and recommended**. It performs:
+- **Linting**: Checks for code errors.
+- **Formatting**: Ensures consistent style (Prettier).
+- **Type Checking**: Verifies TypeScript types.
+- **Build**: Ensures the app compiles.
+- **Dead Code**: Finds unused exports.
+
+> **Note**: The `dead-code` job uses `npx ts-prune`, which is fine, but installing it as a dev dependency is faster and more stable.
+
