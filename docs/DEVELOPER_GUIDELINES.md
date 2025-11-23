@@ -167,20 +167,20 @@ Every Pull Request **must pass all CI checks** before it can be merged into `mai
 
 This ensures:
 
-* No broken builds
-* No TypeScript errors
-* No formatting violations
-* No lint issues
-* No unused/dead exports sneaking into the codebase
+- No broken builds
+- No TypeScript errors
+- No formatting violations
+- No lint issues
+- No unused/dead exports sneaking into the codebase
 
 ---
 
-##  What the CI Pipeline Does
+## What the CI Pipeline Does
 
 Our CI pipeline runs automatically on:
 
-* **Every Pull Request → main**
-* **Every push → main**
+- **Every Pull Request → main**
+- **Every push → main**
 
 The pipeline performs the following checks:
 
@@ -188,8 +188,8 @@ The pipeline performs the following checks:
 
 Ensures that all code follows our standard formatting rules.
 
-* Detects formatting issues
-* Prevents inconsistent styling across the team
+- Detects formatting issues
+- Prevents inconsistent styling across the team
 
 > Run locally before pushing:
 
@@ -204,10 +204,10 @@ npm run prettier:write   # if you want to auto-fix issues
 
 Validates code quality and catches common mistakes using:
 
-* React rules
-* Accessibility rules
-* Hooks rules
-* TypeScript rules
+- React rules
+- Accessibility rules
+- Hooks rules
+- TypeScript rules
 
 > Run locally:
 
@@ -223,10 +223,10 @@ This step **does not build**, it only verifies types.
 
 It catches:
 
-* Wrong prop types
-* Incorrect function signatures
-* “any” where it's not allowed
-* Mismatched interface usage
+- Wrong prop types
+- Incorrect function signatures
+- “any” where it's not allowed
+- Mismatched interface usage
 
 > Run locally:
 
@@ -242,10 +242,10 @@ Ensures the application compiles successfully using Vite.
 
 A failing build means:
 
-* Invalid imports
-* Incorrect component exports
-* Missing files
-* Unused variables removed incorrectly
+- Invalid imports
+- Incorrect component exports
+- Missing files
+- Unused variables removed incorrectly
 
 > Run locally:
 
@@ -255,8 +255,7 @@ npm run build
 
 ---
 
-
-##  How Developers Should Validate Locally Before Pushing
+## How Developers Should Validate Locally Before Pushing
 
 Before opening a Pull Request, **you must run all checks locally**:
 
@@ -300,15 +299,15 @@ We use **Vercel** for deployment.
 
 ### **Production Deployment**
 
-* Trigger: merge into `main`
-* Action: Vercel automatically builds and deploys
-* Users get the latest version instantly
+- Trigger: merge into `main`
+- Action: Vercel automatically builds and deploys
+- Users get the latest version instantly
 
 ### **PR Preview Deployments**
 
-* Trigger: Pull Request is opened/updated
-* Vercel creates a shareable preview URL
-* Team can test UI & logic before merging
+- Trigger: Pull Request is opened/updated
+- Vercel creates a shareable preview URL
+- Team can test UI & logic before merging
 
 ---
 
@@ -316,11 +315,11 @@ We use **Vercel** for deployment.
 
 By requiring every PR to pass these checks:
 
-* We avoid broken builds
-* We maintain consistent formatting
-* We enforce React + TS best practices
-* We prevent regressions
-* We guarantee that everything deployed to production is stable
+- We avoid broken builds
+- We maintain consistent formatting
+- We enforce React + TS best practices
+- We prevent regressions
+- We guarantee that everything deployed to production is stable
 
 This keeps the dashboard codebase **clean, predictable, and production-ready**.
 
