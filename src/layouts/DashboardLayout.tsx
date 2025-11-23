@@ -1,4 +1,10 @@
-import { Outlet } from 'react-router-dom';
-import { Sidebar } from '../components/layout/Sidebar';
-import { Header } from '../components/layout/Header';
-export const MainLayout = () => <div><Sidebar /><Header /><Outlet /></div>;
+import { Outlet } from "react-router-dom";
+import { Sidebar } from "../components/layout/Sidebar";
+import { Header } from "../components/layout/Header";
+export const MainLayout = () => (
+  <div>
+    <Sidebar />
+    <Header />
+    <Outlet />
+  </div>
+);

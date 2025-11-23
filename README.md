@@ -40,6 +40,7 @@ The UI/UX design is available on Figma:
 ### Running the Project
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
