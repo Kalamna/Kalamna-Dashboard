@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { AuthLayout } from "./layouts/AuthLayout";
 import { MainLayout } from "./layouts/DashboardLayout";
-import { LoginPage } from "./pages/auth/LoginPage";
 import { RegisterPage } from "./pages/auth/RegisterPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { EmployeesPage } from "./pages/employees/EmployeesPage";
@@ -12,6 +11,7 @@ import { FeedbackPage } from "./pages/feedback/FeedbackPage";
 import { AnalyticsPage } from "./pages/analytics/AnalyticsPage";
 import { WidgetPage } from "./pages/widget/WidgetPage";
 import { SettingsPage } from "./pages/settings/SettingsPage";
+import LoginPage from "./pages/auth/LoginPage";
 
 function App() {
   return (
