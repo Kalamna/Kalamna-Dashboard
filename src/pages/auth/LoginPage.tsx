@@ -4,7 +4,7 @@ import { BsMoon } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
-import Kalamna from "../../assets/kalamna.png";
+import Kalamna from "../../assets/images/Kalamna.png";
 import "./Login.css";
 
 const LoginPage = () => {
