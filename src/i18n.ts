@@ -5,7 +5,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-    //   logo: "",
+      //   logo: "",
       welcome: "Welcome Back!",
       subtitle: "Please sign in to continue",
       email: "Email Address",
@@ -38,15 +38,13 @@ const resources = {
   },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: localStorage.getItem("app-language") || "en",
-    fallbackLng: "en",
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: localStorage.getItem("app-language") || "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

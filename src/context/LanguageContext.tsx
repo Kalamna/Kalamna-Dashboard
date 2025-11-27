@@ -8,7 +8,7 @@ interface LanguageContextType {
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 interface LanguageProviderProps {
@@ -17,7 +17,7 @@ interface LanguageProviderProps {
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguage] = useState<string>(
-    localStorage.getItem("app-language") || "en"
+    localStorage.getItem("app-language") || "en",
   );
 
   const changeLanguage = (lng: string) => {

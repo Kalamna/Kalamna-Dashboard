@@ -12,7 +12,7 @@
 .rtl textarea::placeholder {
   direction: rtl;
   text-align: right;
-}   
+}
 /* Input Wrapper Styling */
 .input-wrapper {
   display: flex;

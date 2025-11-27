@@ -65,9 +65,7 @@ const LoginPage = () => {
           {t("welcome")}
         </h2>
 
-        <p className="text-center text-gray-500 mb-6">
-          {t("subtitle")}
-        </p>
+        <p className="text-center text-gray-500 mb-6">{t("subtitle")}</p>
 
         {/* Email Label */}
         <label
@@ -117,9 +115,15 @@ const LoginPage = () => {
           />
 
           {showPassword ? (
-            <FiEyeOff onClick={() => setShowPassword(false)} className="cursor-pointer" />
+            <FiEyeOff
+              onClick={() => setShowPassword(false)}
+              className="cursor-pointer"
+            />
           ) : (
-            <FiEye onClick={() => setShowPassword(true)} className="cursor-pointer" />
+            <FiEye
+              onClick={() => setShowPassword(true)}
+              className="cursor-pointer"
+            />
           )}
         </div>
 
@@ -139,7 +143,9 @@ const LoginPage = () => {
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
-          <span className="text-blue-500 cursor-pointer">{t("createAccount")}</span>
+          <span className="text-blue-500 cursor-pointer">
+            {t("createAccount")}
+          </span>
         </p>
       </div>
     </div>
