@@ -6,7 +6,6 @@ export const MainLayout = () => (
     <Sidebar />
     <Header />
     <Outlet />
-    <Link to="/auth/login" > Login</Link>
-
+    <Link to="/auth/login"> Login</Link>
   </div>
 );
