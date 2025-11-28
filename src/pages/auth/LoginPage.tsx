@@ -6,6 +6,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import Kalamna from "../../assets/images/Kalamna.png";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -143,9 +144,9 @@ const LoginPage = () => {
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
-          <span className="text-blue-500 cursor-pointer">
+          <Link to="/auth/register" className="text-blue-500 cursor-pointer">
             {t("createAccount")}
-          </span>
+          </Link>
         </p>
       </div>
     </div>
