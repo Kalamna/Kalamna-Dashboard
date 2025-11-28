@@ -22,7 +22,7 @@ const resources = {
 
   ar: {
     translation: {
-      logo: "تطبيق العيادة",
+      // logo: "",
       welcome: "مرحباً بعودتك!",
       subtitle: "من فضلك سجل الدخول للمتابعة",
       email: "البريد الإلكتروني",
