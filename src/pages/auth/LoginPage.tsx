@@ -61,7 +61,11 @@ const LoginPage = () => {
         }}
       >
         {/* Logo */}
-        <img src={darkMode ? KalamnaDark : KalamnaLight} alt="Kalamna" className="mb-7 mx-auto" />
+        <img
+          src={darkMode ? KalamnaDark : KalamnaLight}
+          alt="Kalamna"
+          className="mb-7 mx-auto"
+        />
 
         <h2 className="text-center text-xl font-semibold mt-2 mb-3">
           {t("welcome")}
