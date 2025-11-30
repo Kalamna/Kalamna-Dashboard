@@ -8,6 +8,7 @@ import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import "../../styles.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,10 +31,7 @@ const LoginPage = () => {
       className={`min-h-screen flex items-center justify-center relative ${
         language === "ar" ? "rtl" : ""
       } ${darkMode ? "dark-mode" : ""}`}
-      style={{
-        backgroundColor: darkMode ? "#06131D" : "#FAFAFA",
-        color: darkMode ? "white" : "black",
-      }}
+      style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
       <div className="absolute top-5 right-5 flex gap-3">
@@ -56,8 +54,8 @@ const LoginPage = () => {
       <div
         className="w-[430px] shadow-lg rounded-lg p-8"
         style={{
-          backgroundColor: darkMode ? "#11243b" : "#FFFFFF",
-          color: darkMode ? "white" : "black",
+          backgroundColor: "var(--card-bg)",
+          color: "var(--card-text)",
         }}
       >
         {/* Logo */}
@@ -108,8 +106,8 @@ const LoginPage = () => {
         <div
           className="input-wrapper"
           style={{
-            backgroundColor: darkMode ? "#0d1a2b" : "",
-            borderColor: darkMode ? "#1e3a5f" : "",
+            backgroundColor: "var(--input-bg)",
+            borderColor: "var(--input-border)",
           }}
         >
           <FiLock className="text-gray-500" />
