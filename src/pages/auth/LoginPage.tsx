@@ -52,7 +52,7 @@ const LoginPage = () => {
 
       {/* Card */}
       <div
-        className="w-[430px] shadow-lg rounded-lg p-8"
+        className="w-[90%] max-w-[430px] shadow-lg rounded-lg p-6 md:p-8"
         style={{
           backgroundColor: "var(--card-bg)",
           color: "var(--card-text)",
