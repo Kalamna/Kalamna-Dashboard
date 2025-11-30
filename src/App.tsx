@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthLayout } from './layouts/AuthLayout';
-import { MainLayout } from './layouts/DashboardLayout';
+import { DashboardLayout } from './layouts/DashboardLayout';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
@@ -21,7 +21,7 @@ function App() {
         <Route path="register" element={<RegisterPage />} />
       </Route>
 
-      <Route path="/" element={<MainLayout />}>
+      <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="employees" element={<EmployeesPage />} />
