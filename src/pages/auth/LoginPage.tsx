@@ -4,7 +4,8 @@ import { BsMoon } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
-import Kalamna from "../../assets/images/Kalamna.png";
+import KalamnaLight from "../../assets/images/KalamnaLight.png";
+import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
 import { Link } from "react-router-dom";
 
@@ -30,7 +31,7 @@ const LoginPage = () => {
         language === "ar" ? "rtl" : ""
       } ${darkMode ? "dark-mode" : ""}`}
       style={{
-        backgroundColor: darkMode ? "#0A1929" : "#f5f7fa",
+        backgroundColor: darkMode ? "#06131D" : "#FAFAFA",
         color: darkMode ? "white" : "black",
       }}
     >
@@ -55,12 +56,12 @@ const LoginPage = () => {
       <div
         className="w-[430px] shadow-lg rounded-lg p-8"
         style={{
-          backgroundColor: darkMode ? "#11243b" : "white",
+          backgroundColor: darkMode ? "#11243b" : "#FFFFFF",
           color: darkMode ? "white" : "black",
         }}
       >
         {/* Logo */}
-        <img src={Kalamna} alt="Kalamna" className="mb-7 mx-auto" />
+        <img src={darkMode ? KalamnaDark : KalamnaLight} alt="Kalamna" className="mb-7 mx-auto" />
 
         <h2 className="text-center text-xl font-semibold mt-2 mb-3">
           {t("welcome")}
