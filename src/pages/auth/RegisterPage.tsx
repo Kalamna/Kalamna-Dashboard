@@ -22,18 +22,18 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const [formData, setFormData] = useState<FormData>({
-    organizationName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    ownerFullName: '',
-    industry: '',
-    description: '',
-    domainUrl: ''
+    organizationName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    ownerFullName: "",
+    industry: "",
+    description: "",
+    domainUrl: "",
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [step, setStep] = useState(1);
 
@@ -44,37 +44,45 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
     changeLanguage(newLang);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-    setError('');
+    setError("");
   };
 
   const validateStep1 = () => {
     if (!formData.organizationName || !formData.email || !formData.industry) {
-      setError('Please fill in all required fields');
+      setError("Please fill in all required fields");
       return false;
     }
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError('Please enter a valid email address');
+      setError("Please enter a valid email address");
       return false;
     }
     return true;
   };
 
   const validateStep2 = () => {
-    if (!formData.ownerFullName || !formData.password || !formData.confirmPassword) {
-      setError('Please fill in all required fields');
+    if (
+      !formData.ownerFullName ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      setError("Please fill in all required fields");
       return false;
     }
     if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters long');
+      setError("Password must be at least 8 characters long");
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return false;
     }
     return true;
@@ -92,16 +100,16 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
     if (!validateStep2()) return;
 
     setLoading(true);
-    setError('');
+    setError("");
 
     setTimeout(() => {
       try {
         const existingUser = localStorage.getItem(`user_${formData.email}`);
-        console.log('Checking registration for:', formData.email);
-        console.log('Found existing user:', existingUser);
+        console.log("Checking registration for:", formData.email);
+        console.log("Found existing user:", existingUser);
 
         if (existingUser) {
-          throw new Error('Email already registered');
+          throw new Error("Email already registered");
         }
 
         const userData = {
@@ -113,14 +121,17 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           description: formData.description,
           domainUrl: formData.domainUrl,
           verified: false,
-          role: 'owner',
-          createdAt: new Date().toISOString()
+          role: "owner",
+          createdAt: new Date().toISOString(),
         };
 
-        localStorage.setItem(`user_${formData.email}`, JSON.stringify(userData));
+        localStorage.setItem(
+          `user_${formData.email}`,
+          JSON.stringify(userData),
+        );
         setSuccess(true);
       } catch (err: any) {
-        setError(err.message || 'An error occurred during registration');
+        setError(err.message || "An error occurred during registration");
       } finally {
         setLoading(false);
       }
@@ -144,11 +155,13 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)"
+            color: "var(--card-text)",
           }}
         >
           <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="text-xs sm:text-sm font-medium">{language === 'en' ? 'عربي' : 'EN'}</span>
+          <span className="text-xs sm:text-sm font-medium">
+            {language === "en" ? "عربي" : "EN"}
+          </span>
         </button>
         <button
           onClick={toggleDarkMode}
@@ -156,10 +169,14 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)"
+            color: "var(--card-text)",
           }}
         >
-          {darkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
+          {darkMode ? (
+            <Sun className="w-4 h-4 sm:w-5 sm:h-5" />
+          ) : (
+            <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
+          )}
         </button>
       </div>
 
@@ -174,7 +191,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)"
+            color: "var(--card-text)",
           }}
         >
           <div className="flex justify-center mb-4">
@@ -184,8 +201,18 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
               className="h-12 sm:h-16 object-contain"
             />
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold text-center mb-2" style={{ color: "var(--card-text)" }}>{t.createAccount}</h1>
-          <p className="text-sm sm:text-base text-center" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.registerDesc}</p>
+          <h1
+            className="text-xl sm:text-2xl font-bold text-center mb-2"
+            style={{ color: "var(--card-text)" }}
+          >
+            {t.createAccount}
+          </h1>
+          <p
+            className="text-sm sm:text-base text-center"
+            style={{ color: "var(--text-main)", opacity: 0.7 }}
+          >
+            {t.registerDesc}
+          </p>
           {/* Progress Steps */}
           <div className="flex items-center mt-6 space-x-2 sm:space-x-4 rtl:space-x-reverse">
             {/* Step 1 */}
@@ -193,13 +220,16 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300"
                 style={{
-                  backgroundColor: '#2196F3',
-                  color: '#ffffff'
+                  backgroundColor: "#2196F3",
+                  color: "#ffffff",
                 }}
               >
                 1
               </div>
-              <span className={`${language === 'ar' ? 'mr-2' : 'ml-2'} text-sm font-medium`} style={{ color: "var(--card-text)" }}>
+              <span
+                className={`${language === "ar" ? "mr-2" : "ml-2"} text-sm font-medium`}
+                style={{ color: "var(--card-text)" }}
+              >
                 {t.organization}
               </span>
             </div>
@@ -208,7 +238,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
             <div
               className="flex-1 h-0.5 mx-2 transition-colors duration-300"
               style={{
-                backgroundColor: step >= 2 ? '#2196F3' : 'var(--input-border)'
+                backgroundColor: step >= 2 ? "#2196F3" : "var(--input-border)",
               }}
             ></div>
 
@@ -217,19 +247,19 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 border-2"
                 style={{
-                  backgroundColor: step >= 2 ? '#2196F3' : 'transparent',
-                  borderColor: step >= 2 ? '#2196F3' : 'var(--input-border)',
-                  color: step >= 2 ? '#ffffff' : 'var(--text-main)',
-                  opacity: step >= 2 ? 1 : 0.5
+                  backgroundColor: step >= 2 ? "#2196F3" : "transparent",
+                  borderColor: step >= 2 ? "#2196F3" : "var(--input-border)",
+                  color: step >= 2 ? "#ffffff" : "var(--text-main)",
+                  opacity: step >= 2 ? 1 : 0.5,
                 }}
               >
                 2
               </div>
               <span
-                className={`${language === 'ar' ? 'mr-2' : 'ml-2'} text-sm font-medium transition-colors duration-300`}
+                className={`${language === "ar" ? "mr-2" : "ml-2"} text-sm font-medium transition-colors duration-300`}
                 style={{
                   color: step >= 2 ? "var(--card-text)" : "var(--text-main)",
-                  opacity: step >= 2 ? 1 : 0.5
+                  opacity: step >= 2 ? 1 : 0.5,
                 }}
               >
                 {t.ownerDetails}
@@ -239,7 +269,10 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
         </div>
 
         {/* Form Section */}
-        <div className="p-6 sm:p-8" style={{ backgroundColor: "var(--card-bg)" }}>
+        <div
+          className="p-6 sm:p-8"
+          style={{ backgroundColor: "var(--card-bg)" }}
+        >
           {error && (
             <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-3 sm:px-4 py-3 rounded-lg text-sm">
               {error}
@@ -270,9 +303,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
             )}
           </form>
 
-          <p className="text-center text-sm mt-4 sm:mt-6" style={{ color: "var(--text-main)", opacity: 0.8 }}>
-            {t.alreadyHaveAccount}{' '}
-            <button onClick={() => navigate('/auth/login')} className="text-blue-500 cursor-pointer">
+          <p
+            className="text-center text-sm mt-4 sm:mt-6"
+            style={{ color: "var(--text-main)", opacity: 0.8 }}
+          >
+            {t.alreadyHaveAccount}{" "}
+            <button
+              onClick={() => navigate("/auth/login")}
+              className="text-blue-500 cursor-pointer"
+            >
               {t.signIn}
             </button>
           </p>

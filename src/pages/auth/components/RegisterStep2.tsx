@@ -1,115 +1,150 @@
-import React from 'react';
+import React from "react";
 import { User, Lock, Loader } from "lucide-react";
 import type { Step2Props } from "../types";
 
-const RegisterStep2: React.FC<Step2Props> = ({ formData, handleChange, setStep, loading, t, language, darkMode }) => {
-    return (
-        <div className="space-y-4 sm:space-y-6">
-            <h3 className="text-lg sm:text-xl font-semibold mb-4" style={{ color: "var(--card-text)" }}>{t.ownerAccountDetails}</h3>
+const RegisterStep2: React.FC<Step2Props> = ({
+  formData,
+  handleChange,
+  setStep,
+  loading,
+  t,
+  language,
+  darkMode,
+}) => {
+  return (
+    <div className="space-y-4 sm:space-y-6">
+      <h3
+        className="text-lg sm:text-xl font-semibold mb-4"
+        style={{ color: "var(--card-text)" }}
+      >
+        {t.ownerAccountDetails}
+      </h3>
 
-            <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
-                    {t.fullName} <span className="text-red-500">{t.required}</span>
-                </label>
-                <div className="relative">
-                    <User className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
-                    <input
-                        type="text"
-                        name="ownerFullName"
-                        value={formData.ownerFullName}
-                        onChange={handleChange}
-                        className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
-                        style={{
-                            backgroundColor: "var(--input-bg)",
-                            borderColor: "var(--input-border)",
-                            color: "var(--text-main)"
-                        }}
-                        placeholder="John Doe"
-                        required
-                    />
-                </div>
-            </div>
-
-            <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
-                    {t.password} <span className="text-red-500">{t.required}</span>
-                </label>
-                <div className="relative">
-                    <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
-                        style={{
-                            backgroundColor: "var(--input-bg)",
-                            borderColor: "var(--input-border)",
-                            color: "var(--text-main)"
-                        }}
-                        placeholder="Min. 8 characters"
-                        required
-                        minLength={8}
-                    />
-                </div>
-                <p className="text-xs mt-1" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.passwordHint}</p>
-            </div>
-
-            <div>
-                <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
-                    {t.confirmPassword} <span className="text-red-500">{t.required}</span>
-                </label>
-                <div className="relative">
-                    <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
-                        style={{
-                            backgroundColor: "var(--input-bg)",
-                            borderColor: "var(--input-border)",
-                            color: "var(--text-main)"
-                        }}
-                        placeholder="Re-enter password"
-                        required
-                    />
-                </div>
-            </div>
-
-            <div className="flex space-x-3 sm:space-x-4 rtl:space-x-reverse">
-                <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="flex-1 py-3.5 sm:py-4 rounded-xl hover:opacity-80 transition-all font-semibold text-sm sm:text-base"
-                    style={{
-                        backgroundColor: darkMode ? "#374151" : "#E5E7EB",
-                        color: darkMode ? "#D1D5DB" : "#4B5563"
-                    }}
-                >
-                    {t.back}
-                </button>
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex-1 text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl"
-                    style={{
-                        backgroundColor: '#2196F3'
-                    }}
-                >
-                    {loading ? (
-                        <>
-                            <Loader className={`w-5 h-5 sm:w-6 sm:h-6 ${language === 'ar' ? 'ml-2' : 'mr-2'} animate-spin`} />
-                            {t.creatingAccount}
-                        </>
-                    ) : (
-                        t.createAccountBtn
-                    )}
-                </button>
-            </div>
+      <div>
+        <label
+          className="block text-xs sm:text-sm font-medium mb-2"
+          style={{ color: "var(--card-text)" }}
+        >
+          {t.fullName} <span className="text-red-500">{t.required}</span>
+        </label>
+        <div className="relative">
+          <User
+            className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
+          />
+          <input
+            type="text"
+            name="ownerFullName"
+            value={formData.ownerFullName}
+            onChange={handleChange}
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            style={{
+              backgroundColor: "var(--input-bg)",
+              borderColor: "var(--input-border)",
+              color: "var(--text-main)",
+            }}
+            placeholder="John Doe"
+            required
+          />
         </div>
-    );
+      </div>
+
+      <div>
+        <label
+          className="block text-xs sm:text-sm font-medium mb-2"
+          style={{ color: "var(--card-text)" }}
+        >
+          {t.password} <span className="text-red-500">{t.required}</span>
+        </label>
+        <div className="relative">
+          <Lock
+            className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
+          />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            style={{
+              backgroundColor: "var(--input-bg)",
+              borderColor: "var(--input-border)",
+              color: "var(--text-main)",
+            }}
+            placeholder="Min. 8 characters"
+            required
+            minLength={8}
+          />
+        </div>
+        <p
+          className="text-xs mt-1"
+          style={{ color: "var(--text-main)", opacity: 0.7 }}
+        >
+          {t.passwordHint}
+        </p>
+      </div>
+
+      <div>
+        <label
+          className="block text-xs sm:text-sm font-medium mb-2"
+          style={{ color: "var(--card-text)" }}
+        >
+          {t.confirmPassword} <span className="text-red-500">{t.required}</span>
+        </label>
+        <div className="relative">
+          <Lock
+            className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            style={{
+              backgroundColor: "var(--input-bg)",
+              borderColor: "var(--input-border)",
+              color: "var(--text-main)",
+            }}
+            placeholder="Re-enter password"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="flex space-x-3 sm:space-x-4 rtl:space-x-reverse">
+        <button
+          type="button"
+          onClick={() => setStep(1)}
+          className="flex-1 py-3.5 sm:py-4 rounded-xl hover:opacity-80 transition-all font-semibold text-sm sm:text-base"
+          style={{
+            backgroundColor: darkMode ? "#374151" : "#E5E7EB",
+            color: darkMode ? "#D1D5DB" : "#4B5563",
+          }}
+        >
+          {t.back}
+        </button>
+        <button
+          type="submit"
+          disabled={loading}
+          className="flex-1 text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl"
+          style={{
+            backgroundColor: "#2196F3",
+          }}
+        >
+          {loading ? (
+            <>
+              <Loader
+                className={`w-5 h-5 sm:w-6 sm:h-6 ${language === "ar" ? "ml-2" : "mr-2"} animate-spin`}
+              />
+              {t.creatingAccount}
+            </>
+          ) : (
+            t.createAccountBtn
+          )}
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default RegisterStep2;

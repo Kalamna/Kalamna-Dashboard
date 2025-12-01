@@ -18,7 +18,10 @@ function App() {
     <Routes>
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage onRegisterSuccess={() => {}} />} />
+        <Route
+          path="register"
+          element={<RegisterPage onRegisterSuccess={() => {}} />}
+        />
       </Route>
 
       <Route path="/" element={<MainLayout />}>
