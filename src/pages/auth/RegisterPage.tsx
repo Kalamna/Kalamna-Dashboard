@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Mail, User, Lock, Globe, FileText, Building2,
   ArrowRight, Loader, Sun, Moon
@@ -14,6 +15,7 @@ import "../../styles.css";
 // REGISTER COMPONENT
 // ============================================
 function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
+  const navigate = useNavigate();
   const { language, changeLanguage } = useLanguage();
   const { darkMode, toggleDarkMode } = useDarkMode();
 
@@ -471,12 +473,12 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
             )}
           </form>
 
-          <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm" style={{ color: "var(--text-main)", opacity: 0.8 }}>
+          <p className="text-center text-sm mt-4 sm:mt-6" style={{ color: "var(--text-main)", opacity: 0.8 }}>
             {t.alreadyHaveAccount}{' '}
-            <button onClick={() => window.location.hash = '#login'} className="text-primary hover:text-primary-dark font-semibold">
+            <button onClick={() => navigate('/auth/login')} className="text-blue-500 cursor-pointer">
               {t.signIn}
             </button>
-          </div>
+          </p>
         </div>
       </div>
     </div>
