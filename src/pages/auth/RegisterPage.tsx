@@ -16,7 +16,7 @@ import "../../styles.css";
 function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   const { language } = useLanguage();
   const { darkMode, toggleDarkMode } = useDarkMode();
-  
+
   const [formData, setFormData] = useState({
     organizationName: '',
     email: '',
@@ -117,11 +117,11 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
 
   if (success) {
     return (
-      <div 
+      <div
         className="min-h-screen flex items-center justify-center p-4"
         style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
       >
-        <div 
+        <div
           className="max-w-md w-full rounded-lg shadow-lg p-6 sm:p-8 text-center"
           style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}
         >
@@ -132,7 +132,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           <p className="text-sm sm:text-base mb-6">
             {t.registrationSuccessDesc}
           </p>
-          <button 
+          <button
             onClick={onRegisterSuccess}
             className="inline-block bg-primary text-white px-6 py-2.5 sm:py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-sm sm:text-base"
           >
@@ -144,7 +144,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   }
 
   return (
-    <div 
+    <div
       className={`min-h-screen flex items-center justify-center p-4 ${language === "ar" ? "rtl" : ""} ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
@@ -174,28 +174,23 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
         </button>
       </div>
 
-      <div 
+      <div
         className="max-w-2xl w-full rounded-lg shadow-lg overflow-hidden"
         style={{ backgroundColor: "var(--card-bg)" }}
       >
-        <div 
+        <div
           className="text-gray-900 dark:text-white p-6 sm:p-8 border-b"
-          style={{ 
+          style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
             color: "var(--card-text)"
           }}
         >
           <div className="flex justify-center mb-4">
-            <img 
-              src={kalamnaLight} 
-              alt="Kalamna" 
-              className="h-12 sm:h-16 object-contain dark:hidden"
-            />
-            <img 
-              src={kalamnaDark} 
-              alt="Kalamna" 
-              className="h-12 sm:h-16 object-contain hidden dark:block"
+            <img
+              src={darkMode ? kalamnaDark : kalamnaLight}
+              alt="Kalamna"
+              className="h-12 sm:h-16 object-contain"
             />
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-center mb-2" style={{ color: "var(--card-text)" }}>{t.createAccount}</h1>
