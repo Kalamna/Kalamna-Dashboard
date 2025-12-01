@@ -186,21 +186,54 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-center mb-2" style={{ color: "var(--card-text)" }}>{t.createAccount}</h1>
           <p className="text-sm sm:text-base text-center" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.registerDesc}</p>
-
           {/* Progress Steps */}
           <div className="flex items-center mt-6 space-x-2 sm:space-x-4 rtl:space-x-reverse">
-            <div className={`flex items-center ${step >= 1 ? '' : ''}`} style={{ color: step >= 1 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 1 ? 1 : 0.5 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 1 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 1 ? 'inherit' : 'var(--input-border)' }}>
+            {/* Step 1 */}
+            <div className="flex items-center">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300"
+                style={{
+                  backgroundColor: '#2196F3',
+                  color: '#ffffff'
+                }}
+              >
                 1
               </div>
-              <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.organization}</span>
+              <span className={`${language === 'ar' ? 'mr-2' : 'ml-2'} text-sm font-medium`} style={{ color: "var(--card-text)" }}>
+                {t.organization}
+              </span>
             </div>
-            <div className={`flex-1 h-0.5 ${step >= 2 ? 'bg-primary' : ''}`} style={{ backgroundColor: step >= 2 ? '#3b82f6' : 'var(--input-border)' }}></div>
-            <div className={`flex items-center ${step >= 2 ? '' : ''}`} style={{ color: step >= 2 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 2 ? 1 : 0.5 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 2 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 2 ? 'inherit' : 'var(--input-border)' }}>
+
+            {/* Connecting Line */}
+            <div
+              className="flex-1 h-0.5 mx-2 transition-colors duration-300"
+              style={{
+                backgroundColor: step >= 2 ? '#2196F3' : 'var(--input-border)'
+              }}
+            ></div>
+
+            {/* Step 2 */}
+            <div className="flex items-center">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 border-2"
+                style={{
+                  backgroundColor: step >= 2 ? '#2196F3' : 'transparent',
+                  borderColor: step >= 2 ? '#2196F3' : 'var(--input-border)',
+                  color: step >= 2 ? '#ffffff' : 'var(--text-main)',
+                  opacity: step >= 2 ? 1 : 0.5
+                }}
+              >
                 2
               </div>
-              <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.ownerDetails}</span>
+              <span
+                className={`${language === 'ar' ? 'mr-2' : 'ml-2'} text-sm font-medium transition-colors duration-300`}
+                style={{
+                  color: step >= 2 ? "var(--card-text)" : "var(--text-main)",
+                  opacity: step >= 2 ? 1 : 0.5
+                }}
+              >
+                {t.ownerDetails}
+              </span>
             </div>
           </div>
         </div>
