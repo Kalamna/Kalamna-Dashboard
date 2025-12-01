@@ -441,11 +441,10 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="flex-1 py-2.5 sm:py-3 rounded-lg hover:opacity-80 transition-opacity font-semibold text-sm sm:text-base"
+                    className="flex-1 py-3.5 sm:py-4 rounded-xl hover:opacity-80 transition-all font-semibold text-sm sm:text-base"
                     style={{
-                      backgroundColor: "var(--input-bg)",
-                      color: "var(--card-text)",
-                      border: `1px solid var(--input-border)`
+                      backgroundColor: darkMode ? "#374151" : "#E5E7EB",
+                      color: darkMode ? "#D1D5DB" : "#4B5563"
                     }}
                   >
                     {t.back}
@@ -453,11 +452,14 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex-1 bg-primary text-white py-2.5 sm:py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                    className="flex-1 text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl"
+                    style={{
+                      backgroundColor: '#2196F3'
+                    }}
                   >
                     {loading ? (
                       <>
-                        <Loader className={`w-4 h-4 sm:w-5 sm:h-5 ${language === 'ar' ? 'ml-2' : 'mr-2'} animate-spin`} />
+                        <Loader className={`w-5 h-5 sm:w-6 sm:h-6 ${language === 'ar' ? 'ml-2' : 'mr-2'} animate-spin`} />
                         {t.creatingAccount}
                       </>
                     ) : (
