@@ -351,10 +351,13 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="w-full bg-primary text-white py-2.5 sm:py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold flex items-center justify-center text-sm sm:text-base"
+                  className="w-full text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center text-sm sm:text-base shadow-lg hover:shadow-xl"
+                  style={{
+                    backgroundColor: '#2196F3'
+                  }}
                 >
                   {t.nextStep}
-                  <ArrowRight className={`w-4 h-4 sm:w-5 sm:h-5 ${language === 'ar' ? 'mr-2 rotate-180' : 'ml-2'}`} />
+                  <ArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 ${language === 'ar' ? 'mr-2 rotate-180' : 'ml-2'}`} />
                 </button>
               </div>
             )}
