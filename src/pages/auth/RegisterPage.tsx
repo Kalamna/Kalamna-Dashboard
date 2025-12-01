@@ -14,7 +14,7 @@ import "../../styles.css";
 // REGISTER COMPONENT
 // ============================================
 function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
-  const { language } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const [formData, setFormData] = useState({
@@ -34,6 +34,11 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   const [step, setStep] = useState(1);
 
   const t = translations[language as keyof typeof translations];
+
+  const toggleLanguage = () => {
+    const newLang = language === "en" ? "ar" : "en";
+    changeLanguage(newLang);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -150,7 +155,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
     >
       <div className="fixed top-4 right-4 flex items-center space-x-2 sm:space-x-3 z-50">
         <button
-          onClick={() => window.location.reload()}
+          onClick={toggleLanguage}
           className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border text-sm"
           style={{
             backgroundColor: "var(--card-bg)",
