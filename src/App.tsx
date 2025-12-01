@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { AuthLayout } from "./layouts/AuthLayout";
 import { MainLayout } from "./layouts/DashboardLayout";
-import { RegisterPage } from "./pages/auth/RegisterPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import { EmployeesPage } from "./pages/employees/EmployeesPage";
 import { KnowledgeBasePage } from "./pages/knowledge-base/KnowledgeBasePage";
@@ -12,13 +11,14 @@ import { AnalyticsPage } from "./pages/analytics/AnalyticsPage";
 import { WidgetPage } from "./pages/widget/WidgetPage";
 import { SettingsPage } from "./pages/settings/SettingsPage";
 import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+        <Route path="register" element={<RegisterPage onRegisterSuccess={() => {}} />} />
       </Route>
 
       <Route path="/" element={<MainLayout />}>
