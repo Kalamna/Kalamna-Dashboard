@@ -4,7 +4,7 @@ import i18next from "i18next";
 
 interface LanguageContextType {
   language: string;
-  changeLanguage: (lng: string) => void;
+  changeLanguage: (_value: string) => void;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -20,10 +20,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     localStorage.getItem("app-language") || "en",
   );
 
-  const changeLanguage = (lng: string) => {
-    setLanguage(lng);
-    i18next.changeLanguage(lng);
-    localStorage.setItem("app-language", lng);
+  const changeLanguage = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    i18next.changeLanguage(newLanguage);
+    localStorage.setItem("app-language", newLanguage);
   };
 
   useEffect(() => {

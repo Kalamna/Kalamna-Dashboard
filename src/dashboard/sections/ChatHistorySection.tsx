@@ -1,12 +1,11 @@
-import type { SectionProps } from '../types';
-import { translations } from '../translations';
+import { useTranslation } from "react-i18next";
 
-export function ChatHistorySection({ language }: SectionProps) {
-  const t = translations[language];
-  
+export function ChatHistorySection() {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{t.chatHistory}</h2>
+      <h2 className="text-2xl font-bold mb-4">{t("chatHistory")}</h2>
       {/* TODO: Add Chat History content */}
     </div>
   );

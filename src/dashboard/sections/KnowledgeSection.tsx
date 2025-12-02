@@ -1,12 +1,11 @@
-import type { SectionProps } from '../types';
-import { translations } from '../translations';
+import { useTranslation } from "react-i18next";
 
-export function KnowledgeSection({ language }: SectionProps) {
-  const t = translations[language];
-  
+export function KnowledgeSection() {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{t.knowledgeBase}</h2>
+      <h2 className="text-2xl font-bold mb-4">{t("knowledgeBase")}</h2>
       {/* TODO: Add Knowledge Base content */}
     </div>
   );

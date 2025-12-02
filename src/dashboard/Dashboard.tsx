@@ -1,96 +1,93 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, MessageSquare, Users, Settings, Key, Book, BarChart3, MessageCircle, LogOut, Bell, Search, Moon, Sun, Globe, Activity } from 'lucide-react';
-import { translations } from './translations';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
-import { OverviewSection } from './sections/OverviewSection';
-import { EmployeesSection } from './sections/EmployeesSection';
-import { ConfigSection } from './sections/ConfigSection';
-import { ApiKeySection } from './sections/ApiKeySection';
-import { KnowledgeSection } from './sections/KnowledgeSection';
-import { ChatHistorySection } from './sections/ChatHistorySection';
-import { FeedbackSection } from './sections/FeedbackSection';
-import { AnalyticsSection } from './sections/AnalyticsSection';
-import { WidgetPreviewSection } from './sections/WidgetPreviewSection';
-import type { Language, TabType, DashboardProps } from './types';
+import { OverviewSection } from "./sections/OverviewSection";
+import { EmployeesSection } from "./sections/EmployeesSection";
+import { ConfigSection } from "./sections/ConfigSection";
+import { ApiKeySection } from "./sections/ApiKeySection";
+import { KnowledgeSection } from "./sections/KnowledgeSection";
+import { ChatHistorySection } from "./sections/ChatHistorySection";
+import { FeedbackSection } from "./sections/FeedbackSection";
+import { AnalyticsSection } from "./sections/AnalyticsSection";
+import { WidgetPreviewSection } from "./sections/WidgetPreviewSection";
+import type { TabType, DashboardProps } from "./types";
 
 export function KalamnaDashboard({ onLogout, userData }: DashboardProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const { i18n } = useTranslation();
+  const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(() => {
-    // Check localStorage or system preference on initial load
-    const savedMode = localStorage.getItem('darkMode');
+    const savedMode = localStorage.getItem("darkMode");
     if (savedMode !== null) {
-      return savedMode === 'true';
+      return savedMode === "true";
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-  const [language, setLanguage] = useState<Language>(() => {
-    const savedLang = localStorage.getItem('language');
-    return (savedLang === 'ar' || savedLang === 'en') ? savedLang as Language : 'en';
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
-  const t = translations[language];
+  const language = i18n.language as "en" | "ar";
+  const isRTL = language === "ar";
 
   // Apply dark mode class to document
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
-    // Save preference
-    localStorage.setItem('darkMode', String(darkMode));
+    localStorage.setItem("darkMode", String(darkMode));
   }, [darkMode]);
 
   // Apply RTL/LTR and language
   useEffect(() => {
-    if (language === 'ar') {
-      document.documentElement.setAttribute('dir', 'rtl');
-      document.documentElement.setAttribute('lang', 'ar');
+    if (isRTL) {
+      document.documentElement.setAttribute("dir", "rtl");
+      document.documentElement.setAttribute("lang", "ar");
     } else {
-      document.documentElement.setAttribute('dir', 'ltr');
-      document.documentElement.setAttribute('lang', 'en');
+      document.documentElement.setAttribute("dir", "ltr");
+      document.documentElement.setAttribute("lang", "en");
     }
-    // Save preference
-    localStorage.setItem('language', language);
-  }, [language]);
+  }, [isRTL]);
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
-  const toggleLanguage = () => setLanguage(language === 'en' ? 'ar' : 'en');
+
+  const toggleLanguage = () => {
+    const newLang = isRTL ? "en" : "ar";
+    i18n.changeLanguage(newLang);
+  };
 
   const handleLogout = () => {
     if (onLogout) {
       onLogout();
     } else {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('current_user');
-      window.location.href = '/login';
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("current_user");
+      window.location.href = "/login";
     }
   };
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'overview':
-        return <OverviewSection language={language} />;
-      case 'employees':
-        return <EmployeesSection language={language} />;
-      case 'config':
-        return <ConfigSection language={language} />;
-      case 'apikey':
-        return <ApiKeySection language={language} />;
-      case 'knowledge':
-        return <KnowledgeSection language={language} />;
-      case 'chat':
-        return <ChatHistorySection language={language} />;
-      case 'feedback':
-        return <FeedbackSection language={language} />;
-      case 'analytics':
-        return <AnalyticsSection language={language} />;
-      case 'widget':
-        return <WidgetPreviewSection language={language} />;
+      case "overview":
+        return <OverviewSection />;
+      case "employees":
+        return <EmployeesSection />;
+      case "config":
+        return <ConfigSection />;
+      case "apikey":
+        return <ApiKeySection />;
+      case "knowledge":
+        return <KnowledgeSection />;
+      case "chat":
+        return <ChatHistorySection />;
+      case "feedback":
+        return <FeedbackSection />;
+      case "analytics":
+        return <AnalyticsSection />;
+      case "widget":
+        return <WidgetPreviewSection />;
       default:
-        return <OverviewSection language={language} />;
+        return <OverviewSection />;
     }
   };
 
@@ -98,7 +95,7 @@ export function KalamnaDashboard({ onLogout, userData }: DashboardProps) {
     <div className="min-h-screen bg-gray-50 dark:bg-bg-dark transition-colors">
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -110,13 +107,21 @@ export function KalamnaDashboard({ onLogout, userData }: DashboardProps) {
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         darkMode={darkMode}
-        language={language}
         onLogout={handleLogout}
       />
 
-      <main className={`transition-all duration-300 ${sidebarOpen ? (language === 'ar' ? 'lg:mr-64' : 'lg:ml-64') : (language === 'ar' ? 'lg:mr-20' : 'lg:ml-20')}`}>
+      <main
+        className={`transition-all duration-300 ${
+          isRTL
+            ? sidebarOpen
+              ? "lg:mr-64"
+              : "lg:mr-20"
+            : sidebarOpen
+              ? "lg:ml-64"
+              : "lg:ml-20"
+        }`}
+      >
         <Header
-          language={language}
           darkMode={darkMode}
           toggleLanguage={toggleLanguage}
           toggleDarkMode={toggleDarkMode}
@@ -124,9 +129,7 @@ export function KalamnaDashboard({ onLogout, userData }: DashboardProps) {
           userData={userData}
         />
 
-        <div className="p-4 sm:p-6">
-          {renderContent()}
-        </div>
+        <div className="p-4 sm:p-6">{renderContent()}</div>
       </main>
     </div>
   );
