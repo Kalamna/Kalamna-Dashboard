@@ -4,7 +4,7 @@ import i18next from "i18next";
 
 interface LanguageContextType {
   language: string;
-  changeLanguage: (_value: string) => void;
+  changeLanguage: (_lang: string) => void;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(
