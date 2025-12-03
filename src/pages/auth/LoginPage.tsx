@@ -97,7 +97,7 @@ const LoginPage = () => {
         >
           <FiMail className="text-gray-500" />
           <input
-            className="w-full outline-none bg-transparent"
+            className="flex-1 outline-none bg-transparent"
             type="email"
             placeholder={t("emailPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
@@ -123,7 +123,7 @@ const LoginPage = () => {
         >
           <FiLock className="text-gray-500" />
           <input
-            className="w-full outline-none bg-transparent"
+            className="flex-1 outline-none bg-transparent"
             type={showPassword ? "text" : "password"}
             placeholder={t("passwordPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}

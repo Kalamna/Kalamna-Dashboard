@@ -145,6 +145,12 @@ export function Header({
         ) : (
           // RTL: Search on right
           <div className="flex items-center gap-4 flex-1">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="header-action lg:hidden transition-colors p-2"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
             <div className="flex items-center flex-1 max-w-2xl">
               <input
                 type="text"
@@ -157,12 +163,6 @@ export function Header({
                 style={{ color: "var(--header-icon)" }}
               />
             </div>
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="header-action lg:hidden transition-colors p-2"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
           </div>
         )}
       </div>
