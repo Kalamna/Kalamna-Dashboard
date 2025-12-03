@@ -34,7 +34,7 @@ export const MainLayout = () => {
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("current_user");
-    window.location.href = "/auth/login";
+    window.location.href = "/";
   };
 
   return (
