@@ -1,3 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
+}
+
 @variant dark (&:where(.dark, .dark *));
+
+body {
+  font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
+}

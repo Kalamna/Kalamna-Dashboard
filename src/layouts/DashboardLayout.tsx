@@ -4,10 +4,12 @@ import { useTranslation } from "react-i18next";
 import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 import { useDarkMode } from "../context/DarkModeContext";
+import { useLanguage } from "../context/LanguageContext";
 
 export const MainLayout = () => {
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const { changeLanguage } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const language = i18n.language as "en" | "ar";
@@ -26,7 +28,7 @@ export const MainLayout = () => {
 
   const toggleLanguage = () => {
     const newLang = isRTL ? "en" : "ar";
-    i18n.changeLanguage(newLang);
+    changeLanguage(newLang);
   };
 
   const handleLogout = () => {

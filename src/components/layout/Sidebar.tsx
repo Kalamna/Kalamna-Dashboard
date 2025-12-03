@@ -7,7 +7,8 @@ import {
   Key,
   Book,
   BarChart3,
-  MessageCircle,
+  ThumbsUp,
+  AppWindow,
   LogOut,
   Activity,
 } from "lucide-react";
@@ -74,7 +75,7 @@ export function Sidebar({
     },
     {
       id: "feedback" as TabType,
-      icon: MessageCircle,
+      icon: ThumbsUp,
       label: t("feedback"),
       route: "/feedback",
     },
@@ -86,7 +87,7 @@ export function Sidebar({
     },
     {
       id: "widget" as TabType,
-      icon: MessageCircle,
+      icon: AppWindow,
       label: t("widgetPreview"),
       route: "/widget",
     },

@@ -23,8 +23,9 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     }
 
     // Check system preference
-    const systemLang = navigator.language;
-    if (systemLang.startsWith("ar")) {
+    const systemLang =
+      navigator.language || (navigator.languages && navigator.languages[0]);
+    if (systemLang && systemLang.startsWith("ar")) {
       return "ar";
     }
     return "en";
