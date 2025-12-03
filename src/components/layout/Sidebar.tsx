@@ -36,15 +36,60 @@ export function Sidebar({
   const language = i18n.language;
 
   const menuItems = [
-    { id: "overview" as TabType, icon: BarChart3, label: t("overview"), route: "/dashboard" },
-    { id: "employees" as TabType, icon: Users, label: t("employees"), route: "/employees" },
-    { id: "config" as TabType, icon: Settings, label: t("configuration"), route: "/configuration" },
-    { id: "apikey" as TabType, icon: Key, label: t("apiKey"), route: "/api-key" },
-    { id: "knowledge" as TabType, icon: Book, label: t("knowledgeBase"), route: "/knowledge-base" },
-    { id: "chat" as TabType, icon: MessageSquare, label: t("chatHistory"), route: "/chat-history" },
-    { id: "feedback" as TabType, icon: MessageCircle, label: t("feedback"), route: "/feedback" },
-    { id: "analytics" as TabType, icon: Activity, label: t("analytics"), route: "/analytics" },
-    { id: "widget" as TabType, icon: MessageCircle, label: t("widgetPreview"), route: "/widget" },
+    {
+      id: "overview" as TabType,
+      icon: BarChart3,
+      label: t("overview"),
+      route: "/dashboard",
+    },
+    {
+      id: "employees" as TabType,
+      icon: Users,
+      label: t("employees"),
+      route: "/employees",
+    },
+    {
+      id: "config" as TabType,
+      icon: Settings,
+      label: t("configuration"),
+      route: "/configuration",
+    },
+    {
+      id: "apikey" as TabType,
+      icon: Key,
+      label: t("apiKey"),
+      route: "/api-key",
+    },
+    {
+      id: "knowledge" as TabType,
+      icon: Book,
+      label: t("knowledgeBase"),
+      route: "/knowledge-base",
+    },
+    {
+      id: "chat" as TabType,
+      icon: MessageSquare,
+      label: t("chatHistory"),
+      route: "/chat-history",
+    },
+    {
+      id: "feedback" as TabType,
+      icon: MessageCircle,
+      label: t("feedback"),
+      route: "/feedback",
+    },
+    {
+      id: "analytics" as TabType,
+      icon: Activity,
+      label: t("analytics"),
+      route: "/analytics",
+    },
+    {
+      id: "widget" as TabType,
+      icon: MessageCircle,
+      label: t("widgetPreview"),
+      route: "/widget",
+    },
   ];
 
   const isRTL = language === "ar";
@@ -97,11 +142,11 @@ export function Sidebar({
                 style={
                   isActive
                     ? {
-                      backgroundColor: "#3b82f6",
-                      color: "#ffffff",
-                      opacity: 1,
-                      visibility: "visible",
-                    }
+                        backgroundColor: "#3b82f6",
+                        color: "#ffffff",
+                        opacity: 1,
+                        visibility: "visible",
+                      }
                     : undefined
                 }
               >
