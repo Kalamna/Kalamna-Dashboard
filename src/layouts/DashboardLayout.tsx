@@ -52,6 +52,7 @@ export const MainLayout = () => {
         setSidebarOpen={setSidebarOpen}
         darkMode={darkMode}
         onLogout={handleLogout}
+        userData={undefined}
       />
 
       <main
