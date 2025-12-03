@@ -33,11 +33,19 @@ export function Header({
           // LTR: Search on left
           <div className="flex items-center gap-4 flex-1">
             <div className="flex items-center gap-3 lg:hidden">
-              <img
-                src={darkMode ? logoDark : logoLight}
-                alt="Kalamna"
-                className="h-8 w-auto object-contain"
-              />
+              {darkMode ? (
+                <img
+                  src={logoDark}
+                  alt="Kalamna"
+                  className="h-8 w-auto object-contain"
+                />
+              ) : (
+                <img
+                  src={logoLight}
+                  alt="Kalamna"
+                  className="h-8 w-auto object-contain"
+                />
+              )}
               <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
               <button
                 onClick={() => setSidebarOpen(true)}
@@ -156,11 +164,19 @@ export function Header({
           // RTL: Search on right
           <div className="flex items-center gap-4 flex-1">
             <div className="flex items-center gap-3 lg:hidden">
-              <img
-                src={darkMode ? logoDark : logoLight}
-                alt="Kalamna"
-                className="h-8 w-auto object-contain"
-              />
+              {darkMode ? (
+                <img
+                  src={logoDark}
+                  alt="Kalamna"
+                  className="h-8 w-auto object-contain"
+                />
+              ) : (
+                <img
+                  src={logoLight}
+                  alt="Kalamna"
+                  className="h-8 w-auto object-contain"
+                />
+              )}
               <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
               <button
                 onClick={() => setSidebarOpen(true)}

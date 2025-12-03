@@ -106,11 +106,19 @@ export function Sidebar({
           <div
             className={`flex items-center ${!sidebarOpen && "justify-center"}`}
           >
-            <img
-              src={darkMode ? logoDark : logoLight}
-              alt="Kalamna Logo"
-              className="w-10 h-10 object-contain transition-all"
-            />
+            {darkMode ? (
+              <img
+                src={logoDark}
+                alt="Kalamna Logo"
+                className="w-10 h-10 object-contain transition-all"
+              />
+            ) : (
+              <img
+                src={logoLight}
+                alt="Kalamna Logo"
+                className="w-10 h-10 object-contain transition-all"
+              />
+            )}
             {sidebarOpen && (
               <span className="mx-3 text-xl font-bold">Kalamna</span>
             )}
