@@ -22,7 +22,10 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
     }
 
     // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       return true;
     }
 
