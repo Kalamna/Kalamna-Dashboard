@@ -1,1 +1,5 @@
-export const DashboardPage = () => <div>DashboardPage</div>;
+import { OverviewSection } from "../../components/overview/OverviewSection";
+
+export const DashboardPage = () => {
+  return <OverviewSection />;
+};

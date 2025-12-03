@@ -4,7 +4,7 @@ import i18next from "i18next";
 
 interface LanguageContextType {
   language: string;
-  changeLanguage: (lng: string) => void;
+  changeLanguage: (_lang: string) => void;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -16,14 +16,25 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<string>(
-    localStorage.getItem("app-language") || "en",
-  );
+  const [language, setLanguage] = useState<string>(() => {
+    const savedLanguage = localStorage.getItem("app-language");
+    if (savedLanguage) {
+      return savedLanguage;
+    }
 
-  const changeLanguage = (lng: string) => {
-    setLanguage(lng);
-    i18next.changeLanguage(lng);
-    localStorage.setItem("app-language", lng);
+    // Check system preference
+    const systemLang =
+      navigator.language || (navigator.languages && navigator.languages[0]);
+    if (systemLang && systemLang.startsWith("ar")) {
+      return "ar";
+    }
+    return "en";
+  });
+
+  const changeLanguage = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    i18next.changeLanguage(newLanguage);
+    localStorage.setItem("app-language", newLanguage);
   };
 
   useEffect(() => {
