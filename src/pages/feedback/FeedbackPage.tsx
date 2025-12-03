@@ -1,1 +1,5 @@
-export const FeedbackPage = () => <div>FeedbackPage</div>;
+import { FeedbackSection } from "../../components/feedback/FeedbackSection";
+
+export const FeedbackPage = () => {
+    return <FeedbackSection />;
+};

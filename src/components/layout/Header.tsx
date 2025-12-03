@@ -1,6 +1,6 @@
 import { Menu, Bell, Search, Moon, Sun, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { UserData } from "../../dashboard/types";
+import type { UserData } from "../../types/dashboard";
 
 interface HeaderProps {
   darkMode: boolean;

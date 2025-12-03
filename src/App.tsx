@@ -11,6 +11,8 @@ import { FeedbackPage } from "./pages/feedback/FeedbackPage";
 import { AnalyticsPage } from "./pages/analytics/AnalyticsPage";
 import { WidgetPage } from "./pages/widget/WidgetPage";
 import { SettingsPage } from "./pages/settings/SettingsPage";
+import { ConfigurationPage } from "./pages/settings/ConfigurationPage";
+import { ApiKeyPage } from "./pages/settings/ApiKeyPage";
 import LoginPage from "./pages/auth/LoginPage";
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
         <Route path="feedback" element={<FeedbackPage />} />
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="widget" element={<WidgetPage />} />
+        <Route path="configuration" element={<ConfigurationPage />} />
+        <Route path="api-key" element={<ApiKeyPage />} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>
     </Routes>

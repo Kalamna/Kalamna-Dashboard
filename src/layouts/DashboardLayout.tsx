@@ -4,12 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 import { useDarkMode } from "../context/DarkModeContext";
-import type { TabType } from "../dashboard/types";
 
 export const MainLayout = () => {
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const language = i18n.language as "en" | "ar";
@@ -48,8 +46,6 @@ export const MainLayout = () => {
       )}
 
       <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         darkMode={darkMode}
@@ -57,15 +53,14 @@ export const MainLayout = () => {
       />
 
       <main
-        className={`transition-all duration-300 ${
-          isRTL
+        className={`transition-all duration-300 ${isRTL
             ? sidebarOpen
               ? "lg:mr-64"
               : "lg:mr-20"
             : sidebarOpen
               ? "lg:ml-64"
               : "lg:ml-20"
-        }`}
+          }`}
       >
         <Header
           darkMode={darkMode}
