@@ -132,12 +132,12 @@ const LoginPage = () => {
           />
 
           {showPassword ? (
-            <FiEyeOff
+            <FiEye
               onClick={() => setShowPassword(false)}
               className="cursor-pointer"
             />
           ) : (
-            <FiEye
+            <FiEyeOff
               onClick={() => setShowPassword(true)}
               className="cursor-pointer"
             />
