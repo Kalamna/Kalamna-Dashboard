@@ -1,6 +1,8 @@
 import { Menu, Bell, Search, Moon, Sun, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { UserData } from "../../types/dashboard";
+import logoDark from "../../assets/images/logo_dark.png";
+import logoLight from "../../assets/images/logo_light.png";
 
 interface HeaderProps {
   darkMode: boolean;
@@ -30,12 +32,20 @@ export function Header({
         {!isRTL ? (
           // LTR: Search on left
           <div className="flex items-center gap-4 flex-1">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="header-action lg:hidden transition-colors p-2"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            <div className="flex items-center gap-3 lg:hidden">
+              <img
+                src={darkMode ? logoDark : logoLight}
+                alt="Kalamna"
+                className="h-8 w-auto object-contain"
+              />
+              <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="header-action transition-colors p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
             <div className="flex items-center flex-1 max-w-2xl">
               <input
                 type="text"
@@ -145,12 +155,20 @@ export function Header({
         ) : (
           // RTL: Search on right
           <div className="flex items-center gap-4 flex-1">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="header-action lg:hidden transition-colors p-2"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            <div className="flex items-center gap-3 lg:hidden">
+              <img
+                src={darkMode ? logoDark : logoLight}
+                alt="Kalamna"
+                className="h-8 w-auto object-contain"
+              />
+              <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="header-action transition-colors p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
             <div className="flex items-center flex-1 max-w-2xl">
               <input
                 type="text"
