@@ -7,11 +7,14 @@ import { useDarkMode } from "../../context/DarkModeContext";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
   const { language, changeLanguage } = useLanguage();
@@ -24,6 +27,12 @@ const LoginPage = () => {
   const toggleLanguage = () => {
     const newLang = language === "en" ? "ar" : "en";
     changeLanguage(newLang);
+  };
+
+  const handleLogin = () => {
+    if (email && password) {
+      navigate("/dashboard");
+    }
   };
 
   return (
@@ -92,6 +101,8 @@ const LoginPage = () => {
             type="email"
             placeholder={t("emailPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -116,6 +127,8 @@ const LoginPage = () => {
             type={showPassword ? "text" : "password"}
             placeholder={t("passwordPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           {showPassword ? (
@@ -140,14 +153,17 @@ const LoginPage = () => {
         </div>
 
         {/* Sign In Button */}
-        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium">
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium"
+        >
           {t("signIn")}
         </button>
 
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
-          <Link to="/auth/register" className="text-blue-500 cursor-pointer">
+          <Link to="/register" className="text-blue-500 cursor-pointer">
             {t("createAccount")}
           </Link>
         </p>

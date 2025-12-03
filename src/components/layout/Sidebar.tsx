@@ -7,18 +7,18 @@ import {
   Key,
   Book,
   BarChart3,
-  MessageCircle,
+  ThumbsUp,
+  AppWindow,
   LogOut,
   Activity,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { TabType } from "../../dashboard/types";
+import { useNavigate, useLocation } from "react-router-dom";
+import type { TabType } from "../../types/dashboard";
 import logoDark from "../../assets/images/logo_dark.png";
 import logoLight from "../../assets/images/logo_light.png";
 
 interface SidebarProps {
-  activeTab: TabType;
-  setActiveTab: (_value: TabType) => void;
   sidebarOpen: boolean;
   setSidebarOpen: (_value: boolean) => void;
   darkMode: boolean;
@@ -26,26 +26,71 @@ interface SidebarProps {
 }
 
 export function Sidebar({
-  activeTab,
-  setActiveTab,
   sidebarOpen,
   setSidebarOpen,
   darkMode,
   onLogout,
 }: SidebarProps) {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const language = i18n.language;
 
   const menuItems = [
-    { id: "overview" as TabType, icon: BarChart3, label: t("overview") },
-    { id: "employees" as TabType, icon: Users, label: t("employees") },
-    { id: "config" as TabType, icon: Settings, label: t("configuration") },
-    { id: "apikey" as TabType, icon: Key, label: t("apiKey") },
-    { id: "knowledge" as TabType, icon: Book, label: t("knowledgeBase") },
-    { id: "chat" as TabType, icon: MessageSquare, label: t("chatHistory") },
-    { id: "feedback" as TabType, icon: MessageCircle, label: t("feedback") },
-    { id: "analytics" as TabType, icon: Activity, label: t("analytics") },
-    { id: "widget" as TabType, icon: MessageCircle, label: t("widgetPreview") },
+    {
+      id: "overview" as TabType,
+      icon: BarChart3,
+      label: t("overview"),
+      route: "/dashboard",
+    },
+    {
+      id: "employees" as TabType,
+      icon: Users,
+      label: t("employees"),
+      route: "/employees",
+    },
+    {
+      id: "config" as TabType,
+      icon: Settings,
+      label: t("configuration"),
+      route: "/configuration",
+    },
+    {
+      id: "apikey" as TabType,
+      icon: Key,
+      label: t("apiKey"),
+      route: "/api-key",
+    },
+    {
+      id: "knowledge" as TabType,
+      icon: Book,
+      label: t("knowledgeBase"),
+      route: "/knowledge-base",
+    },
+    {
+      id: "chat" as TabType,
+      icon: MessageSquare,
+      label: t("chatHistory"),
+      route: "/chat-history",
+    },
+    {
+      id: "feedback" as TabType,
+      icon: ThumbsUp,
+      label: t("feedback"),
+      route: "/feedback",
+    },
+    {
+      id: "analytics" as TabType,
+      icon: Activity,
+      label: t("analytics"),
+      route: "/analytics",
+    },
+    {
+      id: "widget" as TabType,
+      icon: AppWindow,
+      label: t("widgetPreview"),
+      route: "/widget",
+    },
   ];
 
   const isRTL = language === "ar";
@@ -89,11 +134,11 @@ export function Sidebar({
         <nav className="space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeTab === item.id;
+            const isActive = location.pathname === item.route;
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
+                onClick={() => navigate(item.route)}
                 className={`w-full flex items-center ${sidebarOpen ? (isRTL ? "pr-4" : "px-4") : "justify-center"} py-3 rounded-lg transition-all ${isActive ? "font-semibold shadow-[0_0_20px_5px_rgba(59,130,246,0.4)]" : "hover:bg-gray-100 dark:hover:bg-gray-800"}`}
                 style={
                   isActive

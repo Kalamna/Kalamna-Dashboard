@@ -1,1 +1,5 @@
-export const WidgetPage = () => <div>WidgetPage</div>;
+import { WidgetPreviewSection } from "../../components/widget/WidgetPreviewSection";
+
+export const WidgetPage = () => {
+  return <WidgetPreviewSection />;
+};
