@@ -16,9 +16,19 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<string>(
-    localStorage.getItem("app-language") || "en",
-  );
+  const [language, setLanguage] = useState<string>(() => {
+    const savedLanguage = localStorage.getItem("app-language");
+    if (savedLanguage) {
+      return savedLanguage;
+    }
+
+    // Check system preference
+    const systemLang = navigator.language;
+    if (systemLang.startsWith("ar")) {
+      return "ar";
+    }
+    return "en";
+  });
 
   const changeLanguage = (newLanguage: string) => {
     setLanguage(newLanguage);

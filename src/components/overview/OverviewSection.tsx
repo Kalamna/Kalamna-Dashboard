@@ -10,12 +10,6 @@ export function OverviewSection() {
           {t("dashboardOverview")}
         </h1>
       </div>
-
-      <div className="bg-white dark:bg-card-dark p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-        <p className="text-text-light dark:text-secondary">
-          {t("welcomeMessage") || "Welcome to Kalamna Dashboard"}
-        </p>
-      </div>
     </div>
   );
 }
