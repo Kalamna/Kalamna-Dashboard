@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { MainLayout } from "./layouts/DashboardLayout";
 import { RegisterPage } from "./pages/auth/RegisterPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
-import { EmployeesPage } from "./pages/employees/EmployeesPage";
+import EmployeesPage from "./pages/employees/EmployeesPage";
 import { KnowledgeBasePage } from "./pages/knowledge-base/KnowledgeBasePage";
 import { ChatHistoryPage } from "./pages/chat-history/ChatHistoryPage";
 import { FeedbackPage } from "./pages/feedback/FeedbackPage";
