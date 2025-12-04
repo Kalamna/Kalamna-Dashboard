@@ -42,7 +42,7 @@ const LoginPage = () => {
           style={{
             borderColor: "var(--input-border)",
             color: "var(--text-main)",
-            backgroundColor: "var(--card-bg)"
+            backgroundColor: "var(--card-bg)",
           }}
         >
           <FiGlobe className="w-4 h-4" /> {language === "en" ? "AR" : "EN"}
@@ -54,10 +54,14 @@ const LoginPage = () => {
           style={{
             borderColor: "var(--input-border)",
             color: "var(--text-main)",
-            backgroundColor: "var(--card-bg)"
+            backgroundColor: "var(--card-bg)",
           }}
         >
-          {darkMode ? <BsSun className="w-4 h-4 sm:w-5 sm:h-5" /> : <BsMoon className="w-4 h-4 sm:w-5 sm:h-5" />}
+          {darkMode ? (
+            <BsSun className="w-4 h-4 sm:w-5 sm:h-5" />
+          ) : (
+            <BsMoon className="w-4 h-4 sm:w-5 sm:h-5" />
+          )}
         </button>
       </div>
 

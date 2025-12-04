@@ -41,7 +41,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.organizationNamePlaceholder}
             required
@@ -72,7 +72,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.organizationEmailPlaceholder}
             required
@@ -133,7 +133,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.websiteDomainPlaceholder}
           />
@@ -162,7 +162,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.businessDescriptionPlaceholder}
           />

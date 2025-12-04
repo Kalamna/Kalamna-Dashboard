@@ -44,7 +44,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.fullNamePlaceholder}
             required
@@ -74,7 +74,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.passwordPlaceholder}
             required
@@ -122,7 +122,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
-              textAlign: language === "ar" ? "right" : "left"
+              textAlign: language === "ar" ? "right" : "left",
             }}
             placeholder={t.confirmPasswordPlaceholder}
             required
