@@ -1,5 +1,5 @@
-import React from "react";
-import { User, Lock, Loader } from "lucide-react";
+import React, { useState } from "react";
+import { User, Lock, Loader, Eye, EyeOff } from "lucide-react";
 import type { Step2Props } from "../types";
 
 const RegisterStep2: React.FC<Step2Props> = ({
@@ -11,6 +11,8 @@ const RegisterStep2: React.FC<Step2Props> = ({
   language,
   darkMode,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
     <div className="space-y-4 sm:space-y-6">
       <h3
@@ -60,11 +62,11 @@ const RegisterStep2: React.FC<Step2Props> = ({
             className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
           />
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
@@ -74,6 +76,17 @@ const RegisterStep2: React.FC<Step2Props> = ({
             required
             minLength={8}
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+          >
+            {showPassword ? (
+              <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+            ) : (
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+            )}
+          </button>
         </div>
         <p
           className="text-xs mt-1"
@@ -95,11 +108,11 @@ const RegisterStep2: React.FC<Step2Props> = ({
             className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
           />
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
@@ -108,6 +121,17 @@ const RegisterStep2: React.FC<Step2Props> = ({
             placeholder={t.confirmPasswordPlaceholder}
             required
           />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+          >
+            {showConfirmPassword ? (
+              <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+            ) : (
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+            )}
+          </button>
         </div>
       </div>
 

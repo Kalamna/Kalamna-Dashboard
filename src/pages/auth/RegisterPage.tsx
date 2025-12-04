@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Mail, User, Lock, Globe, FileText, Building2,
-  ArrowRight, Loader, Sun, Moon
+  Mail, User, Lock, FileText, Building2,
+  ArrowRight, Loader, Eye, EyeOff
 } from "lucide-react";
+import { FiGlobe } from "react-icons/fi";
+import { BsMoon, BsSun } from "react-icons/bs";
 import { translations } from "./translations";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import kalamnaLight from "../../assets/images/KalamnaLight.png";
 import kalamnaDark from "../../assets/images/KalamnaDark.png";
+import "./Login.css";
 import "../../styles.css";
 
 // ============================================
@@ -34,6 +37,8 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [step, setStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const t = translations[language as keyof typeof translations];
 
@@ -155,29 +160,30 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
       className={`min-h-screen flex items-center justify-center p-4 ${language === "ar" ? "rtl" : ""} ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
-      <div className="fixed top-4 right-4 flex items-center space-x-2 sm:space-x-3 z-50">
+      {/* Top Buttons */}
+      <div className="absolute top-5 right-5 flex gap-2 sm:gap-3">
         <button
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleLanguage}
-          className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all border text-sm"
           style={{
-            backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)"
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)"
           }}
         >
-          <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="text-xs sm:text-sm font-medium">{language === 'en' ? 'عربي' : 'EN'}</span>
+          <FiGlobe className="w-4 h-4" /> {language === "en" ? "AR" : "EN"}
         </button>
+
         <button
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleDarkMode}
-          className="p-2 rounded-lg shadow-md hover:shadow-lg transition-all border"
           style={{
-            backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)"
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)"
           }}
         >
-          {darkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
+          {darkMode ? <BsSun className="w-4 h-4 sm:w-5 sm:h-5" /> : <BsMoon className="w-4 h-4 sm:w-5 sm:h-5" />}
         </button>
       </div>
 
@@ -204,15 +210,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           <p className="text-sm sm:text-base text-center" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.registerDesc}</p>
 
           <div className="flex items-center mt-6 space-x-2 sm:space-x-4 rtl:space-x-reverse">
-            <div className={`flex items-center ${step >= 1 ? '' : ''}`} style={{ color: step >= 1 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 1 ? 1 : 0.5 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 1 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 1 ? 'inherit' : 'var(--input-border)' }}>
+            <div className={`flex items-center ${step >= 1 ? '' : ''}`} style={{ color: step >= 1 ? "var(--card-text)" : "var(--text-main)", opacity: 1 }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold ${step >= 1 ? 'border-primary bg-primary text-white' : ''}`} style={{ borderColor: step >= 1 ? 'inherit' : '#D1D5DB', backgroundColor: step >= 1 ? 'inherit' : 'transparent', color: step >= 1 ? 'white' : 'var(--text-main)' }}>
                 1
               </div>
               <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.organization}</span>
             </div>
             <div className={`flex-1 h-0.5 ${step >= 2 ? 'bg-primary' : ''}`} style={{ backgroundColor: step >= 2 ? '#3b82f6' : 'var(--input-border)' }}></div>
-            <div className={`flex items-center ${step >= 2 ? '' : ''}`} style={{ color: step >= 2 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 2 ? 1 : 0.5 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 2 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 2 ? 'inherit' : 'var(--input-border)' }}>
+            <div className={`flex items-center ${step >= 2 ? '' : ''}`} style={{ color: step >= 2 ? "var(--card-text)" : "var(--text-main)", opacity: 1 }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold ${step >= 2 ? 'border-primary bg-primary text-white' : ''}`} style={{ borderColor: step >= 2 ? 'inherit' : '#D1D5DB', backgroundColor: step >= 2 ? 'inherit' : 'transparent', color: step >= 2 ? 'white' : 'var(--text-main)' }}>
                 2
               </div>
               <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.ownerDetails}</span>
@@ -311,7 +317,7 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                     {t.websiteDomain}
                   </label>
                   <div className="relative">
-                    <Globe className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <FiGlobe className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
                     <input
                       type="url"
                       name="domainUrl"
@@ -398,11 +404,11 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                   <div className="relative">
                     <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
@@ -412,6 +418,17 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       required
                       minLength={8}
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className={`absolute ${language === 'ar' ? 'left-3' : 'right-3'} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+                      ) : (
+                        <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+                      )}
+                    </button>
                   </div>
                   <p className="text-xs mt-1" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.passwordHint}</p>
                 </div>
@@ -423,11 +440,11 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                   <div className="relative">
                     <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
                     <input
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
@@ -436,6 +453,17 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       placeholder="Re-enter password"
                       required
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className={`absolute ${language === 'ar' ? 'left-3' : 'right-3'} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+                      ) : (
+                        <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+                      )}
+                    </button>
                   </div>
                 </div>
 
