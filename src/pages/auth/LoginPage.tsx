@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiGlobe } from "react-icons/fi";
-import { BsMoon } from "react-icons/bs";
+import { BsMoon, BsSun } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
@@ -29,12 +27,6 @@ const LoginPage = () => {
     changeLanguage(newLang);
   };
 
-  const handleLogin = () => {
-    if (email && password) {
-      navigate("/dashboard");
-    }
-  };
-
   return (
     <div
       className={`min-h-screen flex items-center justify-center relative ${
@@ -43,19 +35,33 @@ const LoginPage = () => {
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
-      <div className="absolute top-5 right-5 flex gap-3">
+      <div className="absolute top-5 right-5 flex gap-2 sm:gap-3">
         <button
-          className="border px-3 py-1 rounded-md flex items-center gap-1 text-sm"
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleLanguage}
+          style={{
+            borderColor: "var(--input-border)",
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)",
+          }}
         >
-          <FiGlobe /> {language === "en" ? "AR" : "EN"}
+          <FiGlobe className="w-4 h-4" /> {language === "en" ? "AR" : "EN"}
         </button>
 
         <button
-          className="border px-3 py-1 rounded-md text-sm"
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleDarkMode}
+          style={{
+            borderColor: "var(--input-border)",
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)",
+          }}
         >
-          <BsMoon />
+          {darkMode ? (
+            <BsSun className="w-4 h-4 sm:w-5 sm:h-5" />
+          ) : (
+            <BsMoon className="w-4 h-4 sm:w-5 sm:h-5" />
+          )}
         </button>
       </div>
 
@@ -97,12 +103,10 @@ const LoginPage = () => {
         >
           <FiMail className="text-gray-500" />
           <input
-            className="flex-1 outline-none bg-transparent"
+            className="w-full outline-none bg-transparent"
             type="email"
             placeholder={t("emailPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -123,21 +127,19 @@ const LoginPage = () => {
         >
           <FiLock className="text-gray-500" />
           <input
-            className="flex-1 outline-none bg-transparent"
+            className="w-full outline-none bg-transparent"
             type={showPassword ? "text" : "password"}
             placeholder={t("passwordPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
 
           {showPassword ? (
-            <FiEye
+            <FiEyeOff
               onClick={() => setShowPassword(false)}
               className="cursor-pointer"
             />
           ) : (
-            <FiEyeOff
+            <FiEye
               onClick={() => setShowPassword(true)}
               className="cursor-pointer"
             />
@@ -153,19 +155,19 @@ const LoginPage = () => {
         </div>
 
         {/* Sign In Button */}
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium"
-        >
+        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium">
           {t("signIn")}
         </button>
 
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
-          <Link to="/register" className="text-blue-500 cursor-pointer">
+          <button
+            onClick={() => navigate("/register")}
+            className="text-blue-500 hover:text-blue-600 font-semibold cursor-pointer"
+          >
             {t("createAccount")}
-          </Link>
+          </button>
         </p>
       </div>
     </div>
