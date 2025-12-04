@@ -42,7 +42,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="John Doe"
+            placeholder={t.fullNamePlaceholder}
             required
           />
         </div>
@@ -70,7 +70,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="Min. 8 characters"
+            placeholder={t.passwordPlaceholder}
             required
             minLength={8}
           />
@@ -105,7 +105,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="Re-enter password"
+            placeholder={t.confirmPasswordPlaceholder}
             required
           />
         </div>

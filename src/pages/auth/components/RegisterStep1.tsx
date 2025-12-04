@@ -41,7 +41,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="Your Company Name"
+            placeholder={t.organizationNamePlaceholder}
             required
           />
         </div>
@@ -70,7 +70,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="company@example.com"
+            placeholder={t.organizationEmailPlaceholder}
             required
           />
         </div>
@@ -129,7 +129,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="https://yourwebsite.com"
+            placeholder={t.websiteDomainPlaceholder}
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ const RegisterStep1: React.FC<Step1Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
             }}
-            placeholder="Brief description..."
+            placeholder={t.businessDescriptionPlaceholder}
           />
         </div>
       </div>
