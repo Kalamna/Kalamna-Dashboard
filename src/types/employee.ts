@@ -1,6 +1,6 @@
-export type EmployeeRole = 'owner' | 'staff';
-export type EmployeeStatus = 'active' | 'inactive' | 'pending';
-export type InvitationStatus = 'pending' | 'expired' | 'accepted';
+export type EmployeeRole = "owner" | "staff";
+export type EmployeeStatus = "active" | "inactive" | "pending";
+export type InvitationStatus = "pending" | "expired" | "accepted";
 
 export interface Employee {
   id: string;
