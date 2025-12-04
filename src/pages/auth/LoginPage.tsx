@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiGlobe } from "react-icons/fi";
-import { BsMoon } from "react-icons/bs";
+import { BsMoon, BsSun } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
@@ -47,7 +47,7 @@ const LoginPage = () => {
           className="border px-3 py-1 rounded-md text-sm"
           onClick={toggleDarkMode}
         >
-          <BsMoon />
+          {darkMode ? <BsSun /> : <BsMoon />}
         </button>
       </div>
 
