@@ -211,14 +211,14 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
 
           <div className="flex items-center mt-6 space-x-2 sm:space-x-4 rtl:space-x-reverse">
             <div className={`flex items-center ${step >= 1 ? '' : ''}`} style={{ color: step >= 1 ? "var(--card-text)" : "var(--text-main)", opacity: 1 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold ${step >= 1 ? 'border-primary bg-primary text-white' : ''}`} style={{ borderColor: step >= 1 ? 'inherit' : '#D1D5DB', backgroundColor: step >= 1 ? 'inherit' : 'transparent', color: step >= 1 ? 'white' : 'var(--text-main)' }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold`} style={{ borderColor: step >= 1 ? '#2196F3' : '#D1D5DB', backgroundColor: step >= 1 ? '#2196F3' : 'transparent', color: step >= 1 ? 'white' : 'var(--text-main)' }}>
                 1
               </div>
               <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.organization}</span>
             </div>
             <div className={`flex-1 h-0.5 ${step >= 2 ? 'bg-primary' : ''}`} style={{ backgroundColor: step >= 2 ? '#3b82f6' : 'var(--input-border)' }}></div>
             <div className={`flex items-center ${step >= 2 ? '' : ''}`} style={{ color: step >= 2 ? "var(--card-text)" : "var(--text-main)", opacity: 1 }}>
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold ${step >= 2 ? 'border-primary bg-primary text-white' : ''}`} style={{ borderColor: step >= 2 ? 'inherit' : '#D1D5DB', backgroundColor: step >= 2 ? 'inherit' : 'transparent', color: step >= 2 ? 'white' : 'var(--text-main)' }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm font-semibold`} style={{ borderColor: step >= 2 ? '#2196F3' : '#D1D5DB', backgroundColor: step >= 2 ? '#2196F3' : 'transparent', color: step >= 2 ? 'white' : 'var(--text-main)' }}>
                 2
               </div>
               <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.ownerDetails}</span>
