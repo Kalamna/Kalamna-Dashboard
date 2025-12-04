@@ -35,9 +35,9 @@ const LoginPage = () => {
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
-      <div className="absolute top-5 right-5 flex gap-3">
+      <div className="absolute top-5 right-5 flex gap-2 sm:gap-3">
         <button
-          className="border px-3 py-1 rounded-md flex items-center gap-1 text-sm"
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleLanguage}
           style={{
             borderColor: "var(--input-border)",
@@ -45,11 +45,11 @@ const LoginPage = () => {
             backgroundColor: "var(--card-bg)"
           }}
         >
-          <FiGlobe /> {language === "en" ? "AR" : "EN"}
+          <FiGlobe className="w-4 h-4" /> {language === "en" ? "AR" : "EN"}
         </button>
 
         <button
-          className="border px-3 py-1 rounded-md text-sm"
+          className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleDarkMode}
           style={{
             borderColor: "var(--input-border)",
@@ -57,7 +57,7 @@ const LoginPage = () => {
             backgroundColor: "var(--card-bg)"
           }}
         >
-          {darkMode ? <BsSun /> : <BsMoon />}
+          {darkMode ? <BsSun className="w-4 h-4" /> : <BsMoon className="w-4 h-4" />}
         </button>
       </div>
 
