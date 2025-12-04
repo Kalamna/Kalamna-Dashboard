@@ -39,6 +39,11 @@ const LoginPage = () => {
         <button
           className="border px-3 py-1 rounded-md flex items-center gap-1 text-sm"
           onClick={toggleLanguage}
+          style={{
+            borderColor: "var(--input-border)",
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)"
+          }}
         >
           <FiGlobe /> {language === "en" ? "AR" : "EN"}
         </button>
@@ -46,6 +51,11 @@ const LoginPage = () => {
         <button
           className="border px-3 py-1 rounded-md text-sm"
           onClick={toggleDarkMode}
+          style={{
+            borderColor: "var(--input-border)",
+            color: "var(--text-main)",
+            backgroundColor: "var(--card-bg)"
+          }}
         >
           {darkMode ? <BsSun /> : <BsMoon />}
         </button>
