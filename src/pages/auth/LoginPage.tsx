@@ -7,13 +7,11 @@ import { useDarkMode } from "../../context/DarkModeContext";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
@@ -27,12 +25,6 @@ const LoginPage = () => {
   const toggleLanguage = () => {
     const newLang = language === "en" ? "ar" : "en";
     changeLanguage(newLang);
-  };
-
-  const handleLogin = () => {
-    if (email && password) {
-      navigate("/dashboard");
-    }
   };
 
   return (
@@ -97,12 +89,10 @@ const LoginPage = () => {
         >
           <FiMail className="text-gray-500" />
           <input
-            className="flex-1 outline-none bg-transparent"
+            className="w-full outline-none bg-transparent"
             type="email"
             placeholder={t("emailPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -123,21 +113,19 @@ const LoginPage = () => {
         >
           <FiLock className="text-gray-500" />
           <input
-            className="flex-1 outline-none bg-transparent"
+            className="w-full outline-none bg-transparent"
             type={showPassword ? "text" : "password"}
             placeholder={t("passwordPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
 
           {showPassword ? (
-            <FiEye
+            <FiEyeOff
               onClick={() => setShowPassword(false)}
               className="cursor-pointer"
             />
           ) : (
-            <FiEyeOff
+            <FiEye
               onClick={() => setShowPassword(true)}
               className="cursor-pointer"
             />
@@ -153,19 +141,19 @@ const LoginPage = () => {
         </div>
 
         {/* Sign In Button */}
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium"
-        >
+        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md font-medium">
           {t("signIn")}
         </button>
 
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
-          <Link to="/register" className="text-blue-500 cursor-pointer">
+          <button
+            onClick={() => navigate("/register")}
+            className="text-blue-500 hover:text-blue-600 font-semibold cursor-pointer"
+          >
             {t("createAccount")}
-          </Link>
+          </button>
         </p>
       </div>
     </div>

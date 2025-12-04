@@ -1,39 +1,37 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Globe, Sun, Moon } from "lucide-react";
+import {
+  Mail, User, Lock, Globe, FileText, Building2,
+  ArrowRight, Loader, Sun, Moon
+} from "lucide-react";
 import { translations } from "./translations";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import kalamnaLight from "../../assets/images/KalamnaLight.png";
 import kalamnaDark from "../../assets/images/KalamnaDark.png";
 import "../../styles.css";
-import RegisterStep1 from "./components/RegisterStep1";
-import RegisterStep2 from "./components/RegisterStep2";
-import RegisterSuccess from "./components/RegisterSuccess";
-import type { FormData } from "./types";
 
 // ============================================
-// MAIN COMPONENT
+// REGISTER COMPONENT
 // ============================================
-
 function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   const navigate = useNavigate();
   const { language, changeLanguage } = useLanguage();
   const { darkMode, toggleDarkMode } = useDarkMode();
 
-  const [formData, setFormData] = useState<FormData>({
-    organizationName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    ownerFullName: "",
-    industry: "",
-    description: "",
-    domainUrl: "",
+  const [formData, setFormData] = useState({
+    organizationName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    ownerFullName: '',
+    industry: '',
+    description: '',
+    domainUrl: ''
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [step, setStep] = useState(1);
 
@@ -44,45 +42,37 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
     changeLanguage(newLang);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
-    setError("");
+    setError('');
   };
 
   const validateStep1 = () => {
     if (!formData.organizationName || !formData.email || !formData.industry) {
-      setError("Please fill in all required fields");
+      setError('Please fill in all required fields');
       return false;
     }
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError("Please enter a valid email address");
+      setError('Please enter a valid email address');
       return false;
     }
     return true;
   };
 
   const validateStep2 = () => {
-    if (
-      !formData.ownerFullName ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      setError("Please fill in all required fields");
+    if (!formData.ownerFullName || !formData.password || !formData.confirmPassword) {
+      setError('Please fill in all required fields');
       return false;
     }
     if (formData.password.length < 8) {
-      setError("Password must be at least 8 characters long");
+      setError('Password must be at least 8 characters long');
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError('Passwords do not match');
       return false;
     }
     return true;
@@ -100,16 +90,13 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
     if (!validateStep2()) return;
 
     setLoading(true);
-    setError("");
+    setError('');
 
     setTimeout(() => {
       try {
         const existingUser = localStorage.getItem(`user_${formData.email}`);
-        console.log("Checking registration for:", formData.email);
-        console.log("Found existing user:", existingUser);
-
         if (existingUser) {
-          throw new Error("Email already registered");
+          throw new Error('Email already registered');
         }
 
         const userData = {
@@ -121,17 +108,14 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           description: formData.description,
           domainUrl: formData.domainUrl,
           verified: false,
-          role: "owner",
-          createdAt: new Date().toISOString(),
+          role: 'owner',
+          createdAt: new Date().toISOString()
         };
 
-        localStorage.setItem(
-          `user_${formData.email}`,
-          JSON.stringify(userData),
-        );
+        localStorage.setItem(`user_${formData.email}`, JSON.stringify(userData));
         setSuccess(true);
       } catch (err: any) {
-        setError(err.message || "An error occurred during registration");
+        setError(err.message || 'An error occurred during registration');
       } finally {
         setLoading(false);
       }
@@ -139,7 +123,31 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
   };
 
   if (success) {
-    return <RegisterSuccess t={t} onRegisterSuccess={onRegisterSuccess} />;
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center p-4"
+        style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
+      >
+        <div
+          className="max-w-md w-full rounded-lg shadow-lg p-6 sm:p-8 text-center"
+          style={{ backgroundColor: "var(--card-bg)", color: "var(--card-text)" }}
+        >
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-success" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">{t.registrationSuccess}</h2>
+          <p className="text-sm sm:text-base mb-6">
+            {t.registrationSuccessDesc}
+          </p>
+          <button
+            onClick={onRegisterSuccess}
+            className="inline-block bg-primary text-white px-6 py-2.5 sm:py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-sm sm:text-base"
+          >
+            {t.goToLogin}
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -147,7 +155,6 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
       className={`min-h-screen flex items-center justify-center p-4 ${language === "ar" ? "rtl" : ""} ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
-      {/* Top Controls */}
       <div className="fixed top-4 right-4 flex items-center space-x-2 sm:space-x-3 z-50">
         <button
           onClick={toggleLanguage}
@@ -155,13 +162,11 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)",
+            color: "var(--card-text)"
           }}
         >
           <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="text-xs sm:text-sm font-medium">
-            {language === "en" ? "عربي" : "EN"}
-          </span>
+          <span className="text-xs sm:text-sm font-medium">{language === 'en' ? 'عربي' : 'EN'}</span>
         </button>
         <button
           onClick={toggleDarkMode}
@@ -169,29 +174,23 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)",
+            color: "var(--card-text)"
           }}
         >
-          {darkMode ? (
-            <Sun className="w-4 h-4 sm:w-5 sm:h-5" />
-          ) : (
-            <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
-          )}
+          {darkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
         </button>
       </div>
 
-      {/* Main Card */}
       <div
         className="max-w-2xl w-full rounded-lg shadow-lg overflow-hidden"
         style={{ backgroundColor: "var(--card-bg)" }}
       >
-        {/* Header Section */}
         <div
           className="text-gray-900 dark:text-white p-6 sm:p-8 border-b"
           style={{
             backgroundColor: "var(--card-bg)",
             borderColor: "var(--input-border)",
-            color: "var(--card-text)",
+            color: "var(--card-text)"
           }}
         >
           <div className="flex justify-center mb-4">
@@ -201,78 +200,27 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
               className="h-12 sm:h-16 object-contain"
             />
           </div>
-          <h1
-            className="text-xl sm:text-2xl font-bold text-center mb-2"
-            style={{ color: "var(--card-text)" }}
-          >
-            {t.createAccount}
-          </h1>
-          <p
-            className="text-sm sm:text-base text-center"
-            style={{ color: "var(--text-main)", opacity: 0.7 }}
-          >
-            {t.registerDesc}
-          </p>
-          {/* Progress Steps */}
+          <h1 className="text-xl sm:text-2xl font-bold text-center mb-2" style={{ color: "var(--card-text)" }}>{t.createAccount}</h1>
+          <p className="text-sm sm:text-base text-center" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.registerDesc}</p>
+
           <div className="flex items-center mt-6 space-x-2 sm:space-x-4 rtl:space-x-reverse">
-            {/* Step 1 */}
-            <div className="flex items-center">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300"
-                style={{
-                  backgroundColor: "#2196F3",
-                  color: "#ffffff",
-                }}
-              >
+            <div className={`flex items-center ${step >= 1 ? '' : ''}`} style={{ color: step >= 1 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 1 ? 1 : 0.5 }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 1 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 1 ? 'inherit' : 'var(--input-border)' }}>
                 1
               </div>
-              <span
-                className={`${language === "ar" ? "mr-2" : "ml-2"} text-sm font-medium`}
-                style={{ color: "var(--card-text)" }}
-              >
-                {t.organization}
-              </span>
+              <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.organization}</span>
             </div>
-
-            {/* Connecting Line */}
-            <div
-              className="flex-1 h-0.5 mx-2 transition-colors duration-300"
-              style={{
-                backgroundColor: step >= 2 ? "#2196F3" : "var(--input-border)",
-              }}
-            ></div>
-
-            {/* Step 2 */}
-            <div className="flex items-center">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 border-2"
-                style={{
-                  backgroundColor: step >= 2 ? "#2196F3" : "transparent",
-                  borderColor: step >= 2 ? "#2196F3" : "var(--input-border)",
-                  color: step >= 2 ? "#ffffff" : "var(--text-main)",
-                  opacity: step >= 2 ? 1 : 0.5,
-                }}
-              >
+            <div className={`flex-1 h-0.5 ${step >= 2 ? 'bg-primary' : ''}`} style={{ backgroundColor: step >= 2 ? '#3b82f6' : 'var(--input-border)' }}></div>
+            <div className={`flex items-center ${step >= 2 ? '' : ''}`} style={{ color: step >= 2 ? "var(--card-text)" : "var(--text-main)", opacity: step >= 2 ? 1 : 0.5 }}>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 text-xs sm:text-sm ${step >= 2 ? 'border-primary bg-primary text-white' : 'text-gray-400'}`} style={{ borderColor: step >= 2 ? 'inherit' : 'var(--input-border)' }}>
                 2
               </div>
-              <span
-                className={`${language === "ar" ? "mr-2" : "ml-2"} text-sm font-medium transition-colors duration-300`}
-                style={{
-                  color: step >= 2 ? "var(--card-text)" : "var(--text-main)",
-                  opacity: step >= 2 ? 1 : 0.5,
-                }}
-              >
-                {t.ownerDetails}
-              </span>
+              <span className={`${language === 'ar' ? 'mr-1.5 sm:mr-2' : 'ml-1.5 sm:ml-2'} text-xs sm:text-sm font-medium hidden sm:inline`}>{t.ownerDetails}</span>
             </div>
           </div>
         </div>
 
-        {/* Form Section */}
-        <div
-          className="p-6 sm:p-8"
-          style={{ backgroundColor: "var(--card-bg)" }}
-        >
+        <div className="p-6 sm:p-8" style={{ backgroundColor: "var(--card-bg)" }}>
           {error && (
             <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-3 sm:px-4 py-3 rounded-lg text-sm">
               {error}
@@ -281,36 +229,255 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
 
           <form onSubmit={handleSubmit}>
             {step === 1 && (
-              <RegisterStep1
-                formData={formData}
-                handleChange={handleChange}
-                handleNextStep={handleNextStep}
-                t={t}
-                language={language}
-              />
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-lg sm:text-xl font-semibold mb-4" style={{ color: "var(--card-text)" }}>{t.organizationInfo}</h3>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.organizationName} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <div className="relative">
+                    <Building2 className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="text"
+                      name="organizationName"
+                      value={formData.organizationName}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="Your Company Name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.organizationEmail} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="company@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.industry} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <select
+                    name="industry"
+                    value={formData.industry}
+                    onChange={handleChange}
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    style={{
+                      backgroundColor: "var(--input-bg)",
+                      borderColor: "var(--input-border)",
+                      color: "var(--text-main)"
+                    }}
+                    required
+                  >
+                    <option value="">{t.selectIndustry}</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Education">Education</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.websiteDomain}
+                  </label>
+                  <div className="relative">
+                    <Globe className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="url"
+                      name="domainUrl"
+                      value={formData.domainUrl}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="https://yourwebsite.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.businessDescription}
+                  </label>
+                  <div className="relative">
+                    <FileText className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-3 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                      rows={3}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="Brief description..."
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextStep}
+                  className="w-full text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center text-sm sm:text-base shadow-lg hover:shadow-xl"
+                  style={{
+                    backgroundColor: '#2196F3'
+                  }}
+                >
+                  {t.nextStep}
+                  <ArrowRight className={`w-5 h-5 sm:w-6 sm:h-6 ${language === 'ar' ? 'mr-2 rotate-180' : 'ml-2'}`} />
+                </button>
+              </div>
             )}
 
             {step === 2 && (
-              <RegisterStep2
-                formData={formData}
-                handleChange={handleChange}
-                setStep={setStep}
-                loading={loading}
-                t={t}
-                language={language}
-                darkMode={darkMode}
-              />
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-lg sm:text-xl font-semibold mb-4" style={{ color: "var(--card-text)" }}>{t.ownerAccountDetails}</h3>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.fullName} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <div className="relative">
+                    <User className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="text"
+                      name="ownerFullName"
+                      value={formData.ownerFullName}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.password} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <div className="relative">
+                    <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="Min. 8 characters"
+                      required
+                      minLength={8}
+                    />
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: "var(--text-main)", opacity: 0.7 }}>{t.passwordHint}</p>
+                </div>
+
+                <div>
+                  <label className="block text-xs sm:text-sm font-medium mb-2" style={{ color: "var(--card-text)" }}>
+                    {t.confirmPassword} <span className="text-red-500">{t.required}</span>
+                  </label>
+                  <div className="relative">
+                    <Lock className={`absolute ${language === 'ar' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`} />
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      style={{
+                        backgroundColor: "var(--input-bg)",
+                        borderColor: "var(--input-border)",
+                        color: "var(--text-main)"
+                      }}
+                      placeholder="Re-enter password"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex space-x-3 sm:space-x-4 rtl:space-x-reverse">
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="flex-1 py-3.5 sm:py-4 rounded-xl hover:opacity-80 transition-all font-semibold text-sm sm:text-base"
+                    style={{
+                      backgroundColor: darkMode ? "#374151" : "#E5E7EB",
+                      color: darkMode ? "#D1D5DB" : "#4B5563"
+                    }}
+                  >
+                    {t.back}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="flex-1 text-white py-3.5 sm:py-4 rounded-xl hover:opacity-90 transition-all font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base shadow-lg hover:shadow-xl"
+                    style={{
+                      backgroundColor: '#2196F3'
+                    }}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader className={`w-5 h-5 sm:w-6 sm:h-6 ${language === 'ar' ? 'ml-2' : 'mr-2'} animate-spin`} />
+                        {t.creatingAccount}
+                      </>
+                    ) : (
+                      t.createAccountBtn
+                    )}
+                  </button>
+                </div>
+              </div>
             )}
           </form>
 
-          <p
-            className="text-center text-sm mt-4 sm:mt-6"
-            style={{ color: "var(--text-main)", opacity: 0.8 }}
-          >
-            {t.alreadyHaveAccount}{" "}
+          <p className="text-center text-sm mt-4 sm:mt-6" style={{ color: "var(--text-main)", opacity: 0.8 }}>
+            {t.alreadyHaveAccount}{' '}
             <button
-              onClick={() => navigate("/auth/login")}
-              className="text-blue-500 cursor-pointer"
+              onClick={() => navigate('/')}
+              className="text-blue-500 hover:text-blue-600 font-semibold cursor-pointer"
             >
               {t.signIn}
             </button>
