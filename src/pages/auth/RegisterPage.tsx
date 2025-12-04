@@ -249,13 +249,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="organizationName"
                       value={formData.organizationName}
                       onChange={handleChange}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
                       className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="Your Company Name"
+                      placeholder={t.organizationNamePlaceholder}
                       required
                     />
                   </div>
@@ -272,13 +274,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
                       className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="company@example.com"
+                      placeholder={t.organizationEmailPlaceholder}
                       required
                     />
                   </div>
@@ -292,11 +296,13 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
+                    dir={language === 'ar' ? 'rtl' : 'ltr'}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     style={{
                       backgroundColor: "var(--input-bg)",
                       borderColor: "var(--input-border)",
-                      color: "var(--text-main)"
+                      color: "var(--text-main)",
+                      textAlign: language === 'ar' ? 'right' : 'left'
                     }}
                     required
                   >
@@ -323,13 +329,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="domainUrl"
                       value={formData.domainUrl}
                       onChange={handleChange}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
                       className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="https://yourwebsite.com"
+                      placeholder={t.websiteDomainPlaceholder}
                     />
                   </div>
                 </div>
@@ -344,14 +352,16 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="description"
                       value={formData.description}
                       onChange={handleChange}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
                       rows={3}
                       className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="Brief description..."
+                      placeholder={t.businessDescriptionPlaceholder}
                     />
                   </div>
                 </div>
@@ -385,13 +395,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="ownerFullName"
                       value={formData.ownerFullName}
                       onChange={handleChange}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
                       className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-3 sm:pr-4'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="John Doe"
+                      placeholder={t.fullNamePlaceholder}
                       required
                     />
                   </div>
@@ -408,13 +420,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-10 sm:pl-11' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="Min. 8 characters"
+                      placeholder={t.passwordPlaceholder}
                       required
                       minLength={8}
                     />
@@ -444,13 +458,15 @@ function Register({ onRegisterSuccess }: { onRegisterSuccess: () => void }) {
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-3 sm:pl-4' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
+                      className={`w-full ${language === 'ar' ? 'pr-9 sm:pr-10 pl-10 sm:pl-11' : 'pl-9 sm:pl-10 pr-10 sm:pr-11'} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
-                        color: "var(--text-main)"
+                        color: "var(--text-main)",
+                        textAlign: language === 'ar' ? 'right' : 'left'
                       }}
-                      placeholder="Re-enter password"
+                      placeholder={t.confirmPasswordPlaceholder}
                       required
                     />
                     <button
