@@ -66,21 +66,24 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with actual API call
-      // import { inviteEmployee } from '../../api/employees';
-      // await inviteEmployee(formData);
+      // Use Axios API service
+      // import { inviteEmployee } from '../../api/employeesApi';
+      // const response = await inviteEmployee(formData);
 
+      // TODO: Remove this mock when API is ready
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       setFormData({ fullName: "", email: "", role: "staff" });
       setErrors({});
       onSuccess(t("invitationSentSuccess") || "Invitation sent successfully!");
     } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        t("invitationFailed") ||
+        "Failed to send invitation. Please try again.";
       setErrors({
-        email:
-          error.message ||
-          t("invitationFailed") ||
-          "Failed to send invitation. Please try again.",
+        email: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
@@ -97,33 +100,33 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+    <div className="bg-[#0d1f2d] p-6 rounded-lg border border-[#1e3a5f]">
       {/* Owner-only note */}
-      <div className="mb-6 bg-secondary/10 dark:bg-secondary/20 border border-secondary/30 dark:border-secondary/40 rounded-lg p-4 flex items-start">
+      <div className="mb-6 bg-[#00d4ff]/10 border border-[#00d4ff]/30 rounded-lg p-4 flex items-start">
         <AlertCircle
-          className={`w-5 h-5 text-secondary ${language === "ar" ? "ml-3" : "mr-3"} flex-shrink-0 mt-0.5`}
+          className={`w-5 h-5 text-[#00d4ff] ${language === "ar" ? "ml-3" : "mr-3"} flex-shrink-0 mt-0.5`}
         />
         <div>
-          <p className="text-sm font-semibold text-gray-900 dark:text-white">
+          <p className="text-sm font-semibold text-white">
             {t("ownerOnlyAction") || "Owner-Only Action"}
           </p>
-          <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
+          <p className="text-xs text-gray-300 mt-1">
             {t("ownerOnlyDescription") ||
               "Only organization owners can invite new employees."}
           </p>
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
+      <h3 className="text-lg font-semibold text-white mb-6">
         {t("inviteNewEmployee") || "Invite New Employee"}
       </h3>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="space-y-5">
         {/* Full Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             {t("fullName") || "Full Name"}{" "}
-            <span className="text-red-500">*</span>
+            <span className="text-red-400">*</span>
           </label>
           <div className="relative">
             <User
@@ -134,16 +137,14 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               value={formData.fullName}
               onChange={(e) => handleChange("fullName", e.target.value)}
               className={`w-full ${language === "ar" ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.fullName
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors`}
+                errors.fullName ? "border-red-500" : "border-[#1e3a5f]"
+              } rounded-lg focus:ring-2 focus:ring-[#00d4ff] focus:border-transparent bg-[#0a1929] text-white transition-colors`}
               placeholder={t("fullNamePlaceholder") || "John Doe"}
               disabled={isSubmitting}
             />
           </div>
           {errors.fullName && (
-            <p className="mt-1 text-sm text-red-500 flex items-center">
+            <p className="mt-1 text-sm text-red-400 flex items-center">
               <AlertCircle className="w-4 h-4 mr-1" />
               {errors.fullName}
             </p>
@@ -152,8 +153,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t("email") || "Email"} <span className="text-red-500">*</span>
+          <label className="block text-sm font-medium text-gray-300 mb-2">
+            {t("email") || "Email"} <span className="text-red-400">*</span>
           </label>
           <div className="relative">
             <Mail
@@ -164,16 +165,14 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
               className={`w-full ${language === "ar" ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors`}
+                errors.email ? "border-red-500" : "border-[#1e3a5f]"
+              } rounded-lg focus:ring-2 focus:ring-[#00d4ff] focus:border-transparent bg-[#0a1929] text-white transition-colors`}
               placeholder={t("emailPlaceholder") || "john@company.com"}
               disabled={isSubmitting}
             />
           </div>
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500 flex items-center">
+            <p className="mt-1 text-sm text-red-400 flex items-center">
               <AlertCircle className="w-4 h-4 mr-1" />
               {errors.email}
             </p>
@@ -182,8 +181,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
 
         {/* Role */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t("role") || "Role"} <span className="text-red-500">*</span>
+          <label className="block text-sm font-medium text-gray-300 mb-2">
+            {t("role") || "Role"} <span className="text-red-400">*</span>
           </label>
           <div className="relative">
             <Shield
@@ -195,10 +194,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 handleChange("role", e.target.value as "owner" | "staff")
               }
               className={`w-full ${language === "ar" ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.role
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer`}
+                errors.role ? "border-red-500" : "border-[#1e3a5f]"
+              } rounded-lg focus:ring-2 focus:ring-[#00d4ff] focus:border-transparent bg-[#0a1929] text-white transition-colors appearance-none cursor-pointer`}
               disabled={isSubmitting}
             >
               <option value="staff">{t("staff") || "Staff"}</option>
@@ -222,7 +219,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               </svg>
             </div>
           </div>
-          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-xs text-gray-400">
             {t("roleDescription") ||
               "Staff can view data. Owners have full access to manage employees and settings."}
           </p>
@@ -230,9 +227,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
 
         {/* Submit Button */}
         <button
-          type="submit"
+          type="button"
+          onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+          className="w-full bg-[#00d4ff] text-[#0a1929] py-3 rounded-lg hover:bg-[#00bce6] transition-colors font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
         >
           {isSubmitting ? (
             <>
@@ -250,7 +248,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             </>
           )}
         </button>
-      </form>
+      </div>
     </div>
   );
 };

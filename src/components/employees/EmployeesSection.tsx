@@ -1,7 +1,7 @@
 // src/components/employees/EmployeesSection.tsx
 
-import React, { useState, useEffect } from "react";
-import { Users, UserPlus, Clock } from "lucide-react";
+import React, { useState } from "react";
+import { Users, UserPlus, Clock, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { Employee, PendingInvitation } from "../../types/employee";
 import InviteEmployeeForm from "./InviteEmployeeForm";
@@ -11,6 +11,8 @@ import AllEmployeesTable from "./AllEmployeesTable";
 interface EmployeesSectionProps {
   employees: Employee[];
   pendingInvitations: PendingInvitation[];
+  currentRole: "owner" | "staff";
+  currentUserEmail: string;
   onInviteSuccess: (_message: string) => void;
   onResendInvitation: (_invitationId: string) => void;
   onDeleteInvitation: (_invitationId: string) => void;
@@ -21,122 +23,100 @@ interface EmployeesSectionProps {
 const EmployeesSection: React.FC<EmployeesSectionProps> = ({
   employees,
   pendingInvitations,
+  currentRole,
+  currentUserEmail,
   onInviteSuccess,
   onResendInvitation,
   onDeleteInvitation,
   onEditEmployee,
   onDeleteEmployee,
 }) => {
-  const { t, i18n } = useTranslation();
-  const language = i18n.language as "en" | "ar";
+  const { t } = useTranslation();
 
-  // Get user from localStorage
-  const [currentUser, setCurrentUser] = useState<{
-    role: "owner" | "staff";
-  } | null>(null);
+  const [activeSection, setActiveSection] = useState<"all" | "pending">("all");
+  const [showInviteModal, setShowInviteModal] = useState(false);
 
-  useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("current_user");
-      if (storedUser) {
-        setCurrentUser(JSON.parse(storedUser));
-      }
-    } catch (error) {
-      console.error("Error reading user from localStorage:", error);
-    }
-  }, []);
-
-  const [activeSection, setActiveSection] = useState<
-    "invite" | "pending" | "all"
-  >("all");
-
-  const isOwner = currentUser?.role === "owner";
+  const handleInviteSuccess = (message: string) => {
+    setShowInviteModal(false);
+    onInviteSuccess(message);
+  };
 
   return (
     <div className="space-y-6">
-      {/* Navigation Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
-        {isOwner && (
-          <button
-            onClick={() => setActiveSection("invite")}
-            className={`flex items-center px-4 py-2 rounded-t-lg transition-colors text-sm sm:text-base ${
-              activeSection === "invite"
-                ? "bg-primary text-white font-semibold"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-            }`}
-          >
-            <UserPlus
-              className={`w-4 h-4 ${language === "ar" ? "ml-2" : "mr-2"}`}
-            />
-            {t("inviteEmployee") || "Invite Employee"}
-          </button>
-        )}
+      {/* Header with Action Buttons */}
+      <div className="flex justify-end items-center gap-4">
+        {/* Invite Button */}
+        <button
+          onClick={() => setShowInviteModal(true)}
+          className="flex items-center gap-2 bg-[#00d4ff] hover:bg-[#00bce6] text-[#0a1929] px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
+        >
+          <UserPlus className="w-5 h-5" />
+          {t("inviteEmployee") || "Invite Employee"}
+        </button>
 
-        {isOwner && (
+        {/* Pending Invitations Badge */}
+        {pendingInvitations.length > 0 && (
           <button
             onClick={() => setActiveSection("pending")}
-            className={`flex items-center px-4 py-2 rounded-t-lg transition-colors text-sm sm:text-base ${
-              activeSection === "pending"
-                ? "bg-primary text-white font-semibold"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-            }`}
+            className="flex items-center gap-2 bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-lg hover:bg-yellow-500/30 transition-colors font-medium border border-yellow-500/30"
           >
-            <Clock
-              className={`w-4 h-4 ${language === "ar" ? "ml-2" : "mr-2"}`}
-            />
-            <span className="hidden sm:inline">
-              {t("pendingInvitations") || "Pending Invitations"}
-            </span>
-            <span className="sm:hidden">{t("pending") || "Pending"}</span>
-            {pendingInvitations.length > 0 && (
-              <span className="ml-2 bg-warning text-white text-xs px-2 py-0.5 rounded-full">
-                {pendingInvitations.length}
-              </span>
-            )}
+            <Clock className="w-5 h-5" />
+            {pendingInvitations.length} {t("pending") || "Pending"}
           </button>
         )}
 
-        <button
-          onClick={() => setActiveSection("all")}
-          className={`flex items-center px-4 py-2 rounded-t-lg transition-colors text-sm sm:text-base ${
-            activeSection === "all"
-              ? "bg-primary text-white font-semibold"
-              : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-          }`}
-        >
-          <Users className={`w-4 h-4 ${language === "ar" ? "ml-2" : "mr-2"}`} />
-          <span className="hidden sm:inline">
+        {/* Back to All Button (when viewing pending) */}
+        {activeSection === "pending" && (
+          <button
+            onClick={() => setActiveSection("all")}
+            className="flex items-center gap-2 bg-[#0d2943] text-[#00d4ff] px-4 py-2 rounded-lg hover:bg-[#0a2540] transition-colors font-medium border border-[#1e3a5f]"
+          >
+            <Users className="w-5 h-5" />
             {t("allEmployees") || "All Employees"}
-          </span>
-          <span className="sm:hidden">{t("all") || "All"}</span>
-          <span className="ml-2 bg-primary-dark text-white text-xs px-2 py-0.5 rounded-full">
-            {employees.length}
-          </span>
-        </button>
+          </button>
+        )}
       </div>
 
       {/* Content Sections */}
       <div className="mt-6">
-        {activeSection === "invite" && isOwner && (
-          <InviteEmployeeForm onSuccess={onInviteSuccess} />
-        )}
-
-        {activeSection === "pending" && isOwner && (
+        {activeSection === "pending" ? (
           <PendingInvitationsTable
             invitations={pendingInvitations}
             onResend={onResendInvitation}
             onDelete={onDeleteInvitation}
           />
-        )}
-
-        {activeSection === "all" && (
+        ) : (
           <AllEmployeesTable
             employees={employees}
+            currentRole={currentRole}
+            currentUserEmail={currentUserEmail}
             onEdit={onEditEmployee}
             onDelete={onDeleteEmployee}
           />
         )}
       </div>
+
+      {/* Invite Modal */}
+      {showInviteModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#0d1f2d] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#1e3a5f]">
+            <div className="flex justify-between items-center p-6 border-b border-[#1e3a5f]">
+              <h3 className="text-xl font-semibold text-white">
+                {t("inviteNewEmployee") || "Invite New Employee"}
+              </h3>
+              <button
+                onClick={() => setShowInviteModal(false)}
+                className="text-gray-400 hover:text-gray-300 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-6">
+              <InviteEmployeeForm onSuccess={handleInviteSuccess} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

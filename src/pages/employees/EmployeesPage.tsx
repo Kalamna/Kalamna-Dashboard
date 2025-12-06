@@ -1,13 +1,18 @@
 // src/pages/employees/EmployeesPage.tsx
 
-import React, { useState, useEffect } from "react";
-import { Check } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Check, Shield, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { Employee, PendingInvitation } from "../../types/employee";
 import EmployeesSection from "../../components/employees/EmployeesSection";
-
-// TODO: Replace with actual API imports
-// import { getEmployees, getPendingInvitations, resendInvitation, deleteInvitation, deleteEmployee } from '../../api/employees';
+import { getUser, isOwner } from "../../utils/authUtils";
+// import {
+//   getEmployees,
+//   getPendingInvitations,
+//   resendInvitation,
+//   deleteInvitation,
+//   deleteEmployee
+// } from '../../api/employeesApi';
 
 // Mock data - will be replaced with API calls
 const mockEmployees: Employee[] = [
@@ -126,10 +131,11 @@ const mockPendingInvitations: PendingInvitation[] = [
 const EmployeesPage: React.FC = () => {
   const { t } = useTranslation();
 
-  // Get user from localStorage
-  const [currentUser, setCurrentUser] = useState<{
-    role: "owner" | "staff";
-  } | null>(null);
+  // Demo mode: Toggle between Owner and Staff view
+  const [demoRole, setDemoRole] = useState<"owner" | "staff">("owner");
+
+  // Get validated user from cookies (will be used in production)
+  const [currentUser, setCurrentUser] = useState(getUser());
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [pendingInvitations, setPendingInvitations] = useState<
     PendingInvitation[]
@@ -138,48 +144,50 @@ const EmployeesPage: React.FC = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // Get current user from localStorage
+  // Use demo role for now (in production, use currentUser?.role)
+  const effectiveRole = currentUser?.role || demoRole;
+
+  // Validate and get current user
   useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem("current_user");
-      if (storedUser) {
-        setCurrentUser(JSON.parse(storedUser));
-      }
-    } catch (error) {
-      console.error("Error reading user from localStorage:", error);
-    }
+    const user = getUser();
+    setCurrentUser(user);
   }, []);
 
   // Fetch data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
+  const fetchData = useCallback(async () => {
+    try {
+      setIsLoading(true);
 
-        // TODO: Replace with actual API calls
-        // const [employeesData, invitationsData] = await Promise.all([
-        //   getEmployees(),
-        //   currentUser?.role === 'owner' ? getPendingInvitations() : Promise.resolve([])
-        // ]);
+      // Use Axios API service
+      // const employeesData = await getEmployees();
+      // const invitationsData = isOwner(currentUser)
+      //   ? await getPendingInvitations()
+      //   : [];
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 500));
+      // TODO: Remove mock data when API is ready
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-        setEmployees(mockEmployees);
-        if (currentUser?.role === "owner") {
-          setPendingInvitations(mockPendingInvitations);
-        }
-      } catch (error) {
-        console.error("Error fetching employee data:", error);
-        showAlert(t("errorFetchingData") || "Error fetching data");
-      } finally {
-        setIsLoading(false);
+      setEmployees(mockEmployees);
+      // In demo mode, show pending invitations if demoRole is owner
+      if (demoRole === "owner" || isOwner(currentUser)) {
+        setPendingInvitations(mockPendingInvitations);
       }
-    };
+    } catch (error: any) {
+      console.error("Error fetching employee data:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        t("errorFetchingData") ||
+        "Error fetching data";
+      showAlert(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [demoRole, currentUser, t]);
 
-    // Always fetch data, even if currentUser is null (will be set shortly)
+  useEffect(() => {
     fetchData();
-  }, [currentUser, t]);
+  }, [fetchData]);
 
   const showAlert = (message: string) => {
     setAlertMessage(message);
@@ -196,28 +204,41 @@ const EmployeesPage: React.FC = () => {
 
   const handleResendInvitation = async (invitationId: string) => {
     try {
-      // TODO: Replace with actual API call
+      // Use Axios API service
       // await resendInvitation(invitationId);
+
+      // TODO: Remove mock when API is ready
       console.log("Resending invitation:", invitationId);
       showAlert(t("invitationResent") || "Invitation resent successfully");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error resending invitation:", error);
-      showAlert(t("errorResendingInvitation") || "Error resending invitation");
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        t("errorResendingInvitation") ||
+        "Error resending invitation";
+      showAlert(errorMessage);
     }
   };
 
   const handleDeleteInvitation = async (invitationId: string) => {
     try {
-      // TODO: Replace with actual API call
+      // Use Axios API service
       // await deleteInvitation(invitationId);
 
+      // TODO: Remove mock when API is ready
       setPendingInvitations((prev) =>
         prev.filter((inv) => inv.id !== invitationId),
       );
       showAlert(t("invitationDeleted") || "Invitation deleted successfully");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting invitation:", error);
-      showAlert(t("errorDeletingInvitation") || "Error deleting invitation");
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        t("errorDeletingInvitation") ||
+        "Error deleting invitation";
+      showAlert(errorMessage);
     }
   };
 
@@ -232,34 +253,46 @@ const EmployeesPage: React.FC = () => {
 
   const handleDeleteEmployee = async (employeeId: string) => {
     try {
-      // TODO: Replace with actual API call
+      // Use Axios API service
       // await deleteEmployee(employeeId);
 
+      // TODO: Remove mock when API is ready
       setEmployees((prev) => prev.filter((emp) => emp.id !== employeeId));
       showAlert(t("employeeDeleted") || "Employee deleted successfully");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting employee:", error);
-      showAlert(t("errorDeletingEmployee") || "Error deleting employee");
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        t("errorDeletingEmployee") ||
+        "Error deleting employee";
+      showAlert(errorMessage);
     }
   };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00d4ff]"></div>
       </div>
     );
   }
 
-  if (!currentUser) {
+  // In demo mode, always allow access with demoRole
+  // In production, check currentUser only
+  if (!currentUser && !demoRole) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-            No User Found
+          <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-8 h-8 text-red-400" />
+          </div>
+          <h2 className="text-xl font-bold text-white mb-2">
+            Unauthorized Access
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Please log in to access this page.
+          <p className="text-gray-400">
+            You don't have permission to access this page. Please log in with
+            valid credentials.
           </p>
         </div>
       </div>
@@ -268,16 +301,42 @@ const EmployeesPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header with View Switcher */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-text-color-specific dark:text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-white">
           {t("employeeManagement") || "Employee Management"}
         </h2>
+
+        {/* Demo View Switcher - Remove in production */}
+        <div className="flex items-center gap-2 bg-[#0d1f2d] p-1 rounded-lg border border-[#1e3a5f]">
+          <button
+            onClick={() => setDemoRole("owner")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              demoRole === "owner"
+                ? "bg-[#00d4ff] text-[#0a1929] shadow-sm"
+                : "text-gray-300 hover:text-white"
+            }`}
+          >
+            <Shield className="w-4 h-4" />
+            Owner View
+          </button>
+          <button
+            onClick={() => setDemoRole("staff")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              demoRole === "staff"
+                ? "bg-[#00d4ff] text-[#0a1929] shadow-sm"
+                : "text-gray-300 hover:text-white"
+            }`}
+          >
+            <Shield className="w-4 h-4" />
+            Staff View
+          </button>
+        </div>
       </div>
 
       {/* Success Alert */}
       {showSuccessAlert && (
-        <div className="bg-success/10 border border-success/30 text-success px-4 py-3 rounded-lg text-sm flex items-center">
+        <div className="bg-green-500/20 border border-green-500/30 text-green-400 px-4 py-3 rounded-lg text-sm flex items-center">
           <Check className="w-5 h-5 mr-2" />
           {alertMessage}
         </div>
@@ -287,6 +346,8 @@ const EmployeesPage: React.FC = () => {
       <EmployeesSection
         employees={employees}
         pendingInvitations={pendingInvitations}
+        currentRole={effectiveRole}
+        currentUserEmail={currentUser?.email || "demo@example.com"}
         onInviteSuccess={handleInviteSuccess}
         onResendInvitation={handleResendInvitation}
         onDeleteInvitation={handleDeleteInvitation}
