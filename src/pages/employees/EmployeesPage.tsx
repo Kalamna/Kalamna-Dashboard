@@ -300,21 +300,21 @@ const EmployeesPage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-white dark:bg-transparent">
       {/* Header with View Switcher */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
           {t("employeeManagement") || "Employee Management"}
         </h2>
 
         {/* Demo View Switcher - Remove in production */}
-        <div className="flex items-center gap-2 bg-[#0d1f2d] p-1 rounded-lg border border-[#1e3a5f]">
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-[#0d1f2d] p-1 rounded-lg border border-gray-300 dark:border-[#1e3a5f]">
           <button
             onClick={() => setDemoRole("owner")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               demoRole === "owner"
-                ? "bg-[#00d4ff] text-[#0a1929] shadow-sm"
-                : "text-gray-300 hover:text-white"
+                ? "bg-[#0066cc] dark:bg-[#00d4ff] text-white dark:text-[#0a1929] shadow-sm"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
             <Shield className="w-4 h-4" />
@@ -324,8 +324,8 @@ const EmployeesPage: React.FC = () => {
             onClick={() => setDemoRole("staff")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               demoRole === "staff"
-                ? "bg-[#00d4ff] text-[#0a1929] shadow-sm"
-                : "text-gray-300 hover:text-white"
+                ? "bg-[#0066cc] dark:bg-[#00d4ff] text-white dark:text-[#0a1929] shadow-sm"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
             <Shield className="w-4 h-4" />
@@ -336,7 +336,7 @@ const EmployeesPage: React.FC = () => {
 
       {/* Success Alert */}
       {showSuccessAlert && (
-        <div className="bg-green-500/20 border border-green-500/30 text-green-400 px-4 py-3 rounded-lg text-sm flex items-center">
+        <div className="bg-green-50 dark:bg-green-500/20 border border-green-200 dark:border-green-500/30 text-green-700 dark:text-green-400 px-4 py-3 rounded-lg text-sm flex items-center">
           <Check className="w-5 h-5 mr-2" />
           {alertMessage}
         </div>
