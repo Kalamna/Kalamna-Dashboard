@@ -1,7 +1,14 @@
 // src/components/employees/PendingInvitationsTable.tsx
 
 import React, { useState } from "react";
-import { Clock, RefreshCw, Trash2, AlertCircle } from "lucide-react";
+import {
+  Clock,
+  RefreshCw,
+  Trash2,
+  AlertCircle,
+  Mail,
+  User as UserIcon,
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { PendingInvitation } from "../../types/employee";
 import Pagination from "../common/pagination";
@@ -37,7 +44,6 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
   );
   const itemsPerPage = 10;
 
-  // Calculate pagination
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentInvitations = invitations.slice(startIndex, endIndex);
@@ -65,7 +71,7 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
   return (
     <div className="space-y-4">
       {/* Desktop Table View */}
-      <div className="bg-[#0d1f2d] dark:bg-[#0d1f2d] rounded-lg shadow-xl border border-[#1e3a5f] overflow-hidden">
+      <div className="hidden lg:block bg-[#0d1f2d] dark:bg-[#0d1f2d] rounded-lg shadow-xl border border-[#1e3a5f] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-[#0066cc] dark:bg-[#00d4ff]">
@@ -157,26 +163,29 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
 
       {/* Mobile Card View */}
       <div className="lg:hidden space-y-4">
-        {currentInvitations.map((invitation, index) => (
+        {currentInvitations.map((invitation) => (
           <div
             key={invitation.id}
-            className={`${
-              index % 2 === 0
-                ? "bg-white dark:bg-[#0a1929]"
-                : "bg-gray-50 dark:bg-[#0d2943]"
-            } p-4 rounded-lg border border-gray-200 dark:border-[#1e3a5f]`}
+            className="bg-white dark:bg-[#0a1929] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
           >
-            <div className="flex justify-between items-start mb-3">
-              <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  {invitation.fullName}
-                </h4>
-                <p className="text-sm text-[#0066cc] dark:text-[#00d4ff]">
-                  {invitation.email}
-                </p>
+            {/* Header with Name and Role */}
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex items-start gap-3 flex-1">
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
+                  <UserIcon className="w-5 h-5 text-[#0066cc] dark:text-[#00d4ff]" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words">
+                    {invitation.fullName}
+                  </h4>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 break-all">
+                    <Mail className="w-4 h-4 flex-shrink-0" />
+                    <span>{invitation.email}</span>
+                  </div>
+                </div>
               </div>
               <span
-                className={`px-3 py-1 rounded-full text-xs font-medium border ${
+                className={`px-3 py-1 rounded-full text-xs font-medium border flex-shrink-0 ${
                   invitation.role === "owner"
                     ? "bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-teal-500/20 dark:text-teal-400 dark:border-teal-500/30"
                     : "bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
@@ -187,28 +196,42 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
                   : t("staff") || "Staff"}
               </span>
             </div>
-            <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-300 mb-3">
-              <span className="flex items-center">
-                <Clock className="w-4 h-4 mr-1" />
-                {getTimeRemaining(invitation.expiresAt)}
-              </span>
-              <span className="px-2 py-1 rounded-full text-xs font-medium border bg-yellow-100 text-yellow-700 border-yellow-300 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30">
-                {t("pending") || "Pending"}
-              </span>
+
+            {/* Status and Expiry */}
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                  {t("status") || "Status"}
+                </p>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-medium border bg-yellow-100 text-yellow-700 border-yellow-300 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30">
+                  {t("pending") || "Pending"}
+                </span>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                  {t("expires") || "Expires"}
+                </p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white flex items-center">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {getTimeRemaining(invitation.expiresAt)}
+                </p>
+              </div>
             </div>
-            <div className="flex space-x-2">
+
+            {/* Actions */}
+            <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-[#1e3a5f]">
               <button
                 onClick={() => onResend(invitation.id)}
-                className="flex-1 bg-blue-50 text-[#0066cc] dark:bg-[#00d4ff]/10 dark:text-[#00d4ff] px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-[#00d4ff]/20 transition-colors text-sm font-medium flex items-center justify-center border border-blue-200 dark:border-[#00d4ff]/30"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-[#0066cc] dark:bg-[#00d4ff]/10 dark:text-[#00d4ff] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#00d4ff]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#00d4ff]/30"
               >
-                <RefreshCw className="w-4 h-4 mr-2" />
+                <RefreshCw className="w-4 h-4" />
                 {t("resend") || "Resend"}
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(invitation.id)}
-                className="flex-1 bg-red-50 text-red-600 dark:bg-red-500/20 dark:text-red-400 px-4 py-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-colors text-sm font-medium flex items-center justify-center border border-red-200 dark:border-red-500/30"
+                className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 dark:bg-red-500/20 dark:text-red-400 px-4 py-2.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-colors text-sm font-medium border border-red-200 dark:border-red-500/30"
               >
-                <Trash2 className="w-4 h-4 mr-2" />
+                <Trash2 className="w-4 h-4" />
                 {t("delete") || "Delete"}
               </button>
             </div>
