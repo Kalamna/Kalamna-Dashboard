@@ -66,25 +66,25 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
       <div className="hidden lg:block bg-[#0d1f2d] rounded-lg shadow-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full" dir={isRTL ? "rtl" : "ltr"}>
-            <thead className="bg-[#0066cc] dark:bg-[#00d4ff]">
+            <thead className="bg-[#0066cc] dark:bg-[#3b82f6]">
               <tr>
-                <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                   {t("name") || "Name"}
                 </th>
-                <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                   {t("email") || "Email"}
                 </th>
-                <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                   {t("role") || "Role"}
                 </th>
-                <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                   {t("status") || "Status"}
                 </th>
-                <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                   {t("joinDate") || "Join Date"}
                 </th>
                 {showActions && (
-                  <th className="px-6 py-4 text-center font-semibold text-white dark:text-[#0a1929]">
+                  <th className="px-6 py-4 text-center font-semibold text-white dark:text-white">
                     {t("actions") || "Actions"}
                   </th>
                 )}
@@ -103,14 +103,14 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   <td className="px-6 py-4 text-center text-gray-900 dark:text-white font-medium">
                     {employee.fullName}
                   </td>
-                  <td className="px-6 py-4 text-center text-[#0066cc] dark:text-[#00d4ff]">
+                  <td className="px-6 py-4 text-center text-[#0066cc] dark:text-[#3b82f6]">
                     {employee.email}
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span
                       className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
                         employee.role === "owner"
-                          ? "bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border-cyan-300 dark:border-cyan-500/30"
+                          ? "bg-cyan-100 dark:bg-[#3b82f6]/20 text-cyan-700 dark:text-[#3b82f6] border-cyan-300 dark:border-[#3b82f6]/30"
                           : "bg-gray-200 dark:bg-gray-500/20 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-500/30"
                       }`}
                     >
@@ -132,7 +132,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                       {employee.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center text-gray-600 dark:text-[#00d4ff]">
+                  <td className="px-6 py-4 text-center text-gray-600 dark:text-[#3b82f6]">
                     {formatDate(employee.joinDate)}
                   </td>
                   {showActions && (
@@ -142,7 +142,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                           <>
                             <button
                               onClick={() => onEdit(employee.id)}
-                              className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#00d4ff] dark:hover:text-[#00bce6] transition-colors"
+                              className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:bg-[#3b82f6]/20 transition-colors"
                               title={t("edit") || "Edit"}
                             >
                               <Edit className="w-5 h-5" />
@@ -180,8 +180,8 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
             {/* Header with Name and Role */}
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-start gap-3 flex-1">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                  <UserIcon className="w-5 h-5 text-blue-600 dark:text-cyan-400" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
+                  <UserIcon className="w-5 h-5 text-blue-600 dark:text-[#3b82f6]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words">
@@ -196,7 +196,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
               <span
                 className={`px-3 py-1 rounded-full text-xs font-medium border flex-shrink-0 ${
                   employee.role === "owner"
-                    ? "bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border-cyan-300 dark:border-cyan-500/30"
+                    ? "bg-cyan-100 dark:bg-[#3b82f6]/20 text-cyan-700 dark:text-[#3b82f6] border-cyan-300 dark:border-[#3b82f6]/30"
                     : "bg-gray-200 dark:bg-gray-500/20 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-500/30"
                 }`}
               >
@@ -239,7 +239,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
               <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-[#1e3a5f]">
                 <button
                   onClick={() => onEdit(employee.id)}
-                  className="flex-1 flex items-center justify-center gap-2 bg-blue-50 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-cyan-500/20 transition-colors text-sm font-medium border border-blue-200 dark:border-cyan-500/30"
+                  className="flex-1 flex items-center justify-center gap-2 bg-blue-50 dark:bg-[#3b82f6]/10 text-blue-600 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30"
                 >
                   <Edit className="w-4 h-4" />
                   {t("edit") || "Edit"}

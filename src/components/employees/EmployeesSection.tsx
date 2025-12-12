@@ -51,7 +51,7 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
           {/* Invite Button */}
           <button
             onClick={() => setShowInviteModal(true)}
-            className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#00d4ff] dark:hover:bg-[#00bce6] text-white dark:text-[#0a1929] px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
+            className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#3b82f6] text-white px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
           >
             <UserPlus className="w-5 h-5" />
             {t("inviteEmployee") || "Invite Employee"}
@@ -72,7 +72,7 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
           {activeSection === "pending" && (
             <button
               onClick={() => setActiveSection("all")}
-              className="flex items-center gap-2 bg-blue-100 dark:bg-cyan-500/20 text-blue-700 dark:text-cyan-400 px-4 py-2 rounded-lg hover:bg-blue-200 dark:hover:bg-cyan-500/30 transition-colors font-medium border border-blue-300 dark:border-cyan-500/30"
+              className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#3b82f6] text-white px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
             >
               <Users className="w-5 h-5" />
               {t("allEmployees") || "All Employees"}

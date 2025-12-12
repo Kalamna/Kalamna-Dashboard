@@ -74,24 +74,24 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
       <div className="hidden lg:block bg-[#0d1f2d] dark:bg-[#0d1f2d] rounded-lg shadow-xl border border-[#1e3a5f] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-[#0066cc] dark:bg-[#00d4ff]">
+            <thead className="bg-[#0066cc] dark:bg-[#3b82f6]">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("name") || "Name"}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("email") || "Email"}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("role") || "Role"}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("status") || "Status"}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("expires") || "Expires"}
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-white dark:text-[#0a1929]">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-white">
                   {t("actions") || "Actions"}
                 </th>
               </tr>
@@ -109,14 +109,14 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
                   <td className="px-6 py-4 text-sm text-gray-900 dark:text-white font-medium">
                     {invitation.fullName}
                   </td>
-                  <td className="px-6 py-4 text-sm text-[#0066cc] dark:text-[#00d4ff]">
+                  <td className="px-6 py-4 text-sm text-[#0066cc] dark:text-[#3b82f6]">
                     {invitation.email}
                   </td>
                   <td className="px-6 py-4 text-sm">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium border ${
                         invitation.role === "owner"
-                          ? "bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-teal-500/20 dark:text-teal-400 dark:border-teal-500/30"
+                          ? "bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-[#3b82f6]/20 dark:text-[#3b82f6] dark:border-[#3b82f6]/30"
                           : "bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
                       }`}
                     >
@@ -140,7 +140,7 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => onResend(invitation.id)}
-                        className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#00d4ff] dark:hover:text-[#00bce6] transition-colors p-2 hover:bg-gray-100 dark:hover:bg-[#0a2540] rounded"
+                        className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:bg-[#3b82f6]/20 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-[#0a2540] rounded"
                         title={t("resendInvitation") || "Resend Invitation"}
                       >
                         <RefreshCw className="w-4 h-4 text-current" />
@@ -171,8 +171,8 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
             {/* Header with Name and Role */}
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-start gap-3 flex-1">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-[#00d4ff]/10 flex items-center justify-center flex-shrink-0">
-                  <UserIcon className="w-5 h-5 text-[#0066cc] dark:text-[#00d4ff]" />
+                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
+                  <UserIcon className="w-5 h-5 text-[#0066cc] dark:text-[#3b82f6]" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words">
@@ -187,7 +187,7 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
               <span
                 className={`px-3 py-1 rounded-full text-xs font-medium border flex-shrink-0 ${
                   invitation.role === "owner"
-                    ? "bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-teal-500/20 dark:text-teal-400 dark:border-teal-500/30"
+                    ? "bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-[#3b82f6]/20 dark:text-[#3b82f6] dark:border-[#3b82f6]/30"
                     : "bg-gray-200 text-gray-700 border-gray-300 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
                 }`}
               >
@@ -222,7 +222,7 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
             <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-[#1e3a5f]">
               <button
                 onClick={() => onResend(invitation.id)}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-[#0066cc] dark:bg-[#00d4ff]/10 dark:text-[#00d4ff] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#00d4ff]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#00d4ff]/30"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-[#0066cc] dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30"
               >
                 <RefreshCw className="w-4 h-4" />
                 {t("resend") || "Resend"}

@@ -135,7 +135,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 errors.fullName
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
+              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
               placeholder={t("fullNamePlaceholder") || "John Doe"}
               disabled={isSubmitting}
             />
@@ -166,7 +166,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 errors.email
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
+              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
               placeholder={t("emailPlaceholder") || "john@company.com"}
               disabled={isSubmitting}
             />
@@ -198,7 +198,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 errors.role
                   ? "border-red-500"
                   : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-cyan-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer`}
+              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer`}
               disabled={isSubmitting}
             >
               <option value="staff">{t("staff") || "Staff"}</option>
@@ -233,7 +233,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-full bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#00d4ff] dark:hover:bg-[#00bce6] text-white dark:text-[#0a1929] py-3 rounded-lg transition-colors font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+          className="w-full bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white py-3 rounded-lg transition-colors font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
         >
           {isSubmitting ? (
             <>

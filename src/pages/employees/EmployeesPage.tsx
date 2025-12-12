@@ -6,13 +6,6 @@ import { useTranslation } from "react-i18next";
 import type { Employee, PendingInvitation } from "../../types/employee";
 import EmployeesSection from "../../components/employees/EmployeesSection";
 import { getUser, isOwner } from "../../utils/authUtils";
-// import {
-//   getEmployees,
-//   getPendingInvitations,
-//   resendInvitation,
-//   deleteInvitation,
-//   deleteEmployee
-// } from '../../api/employeesApi';
 
 // Mock data - will be replaced with API calls
 const mockEmployees: Employee[] = [
@@ -158,13 +151,6 @@ const EmployeesPage: React.FC = () => {
     try {
       setIsLoading(true);
 
-      // Use Axios API service
-      // const employeesData = await getEmployees();
-      // const invitationsData = isOwner(currentUser)
-      //   ? await getPendingInvitations()
-      //   : [];
-
-      // TODO: Remove mock data when API is ready
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       setEmployees(mockEmployees);
@@ -197,17 +183,10 @@ const EmployeesPage: React.FC = () => {
 
   const handleInviteSuccess = (message: string) => {
     showAlert(message);
-    // TODO: Refresh pending invitations list
-    // const invitations = await getPendingInvitations();
-    // setPendingInvitations(invitations);
   };
 
   const handleResendInvitation = async (invitationId: string) => {
     try {
-      // Use Axios API service
-      // await resendInvitation(invitationId);
-
-      // TODO: Remove mock when API is ready
       console.log("Resending invitation:", invitationId);
       showAlert(t("invitationResent") || "Invitation resent successfully");
     } catch (error: any) {
@@ -223,10 +202,6 @@ const EmployeesPage: React.FC = () => {
 
   const handleDeleteInvitation = async (invitationId: string) => {
     try {
-      // Use Axios API service
-      // await deleteInvitation(invitationId);
-
-      // TODO: Remove mock when API is ready
       setPendingInvitations((prev) =>
         prev.filter((inv) => inv.id !== invitationId),
       );
@@ -243,20 +218,11 @@ const EmployeesPage: React.FC = () => {
   };
 
   const handleEditEmployee = (employeeId: string) => {
-    // TODO: Implement edit modal or navigate to edit page
     console.log("Editing employee:", employeeId);
-    // You can either:
-    // 1. Open a modal with edit form
-    // 2. Navigate to /employees/:id/edit
-    // 3. Show inline editing
   };
 
   const handleDeleteEmployee = async (employeeId: string) => {
     try {
-      // Use Axios API service
-      // await deleteEmployee(employeeId);
-
-      // TODO: Remove mock when API is ready
       setEmployees((prev) => prev.filter((emp) => emp.id !== employeeId));
       showAlert(t("employeeDeleted") || "Employee deleted successfully");
     } catch (error: any) {
@@ -273,13 +239,11 @@ const EmployeesPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00d4ff]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3b82f6]"></div>
       </div>
     );
   }
 
-  // In demo mode, always allow access with demoRole
-  // In production, check currentUser only
   if (!currentUser && !demoRole) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -313,7 +277,7 @@ const EmployeesPage: React.FC = () => {
             onClick={() => setDemoRole("owner")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               demoRole === "owner"
-                ? "bg-[#0066cc] dark:bg-[#00d4ff] text-white dark:text-[#0a1929] shadow-sm"
+                ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
@@ -324,7 +288,7 @@ const EmployeesPage: React.FC = () => {
             onClick={() => setDemoRole("staff")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               demoRole === "staff"
-                ? "bg-[#0066cc] dark:bg-[#00d4ff] text-white dark:text-[#0a1929] shadow-sm"
+                ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
