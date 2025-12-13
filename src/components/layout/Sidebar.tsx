@@ -176,7 +176,8 @@ export function Sidebar({
                         : undefined
                     }
                   >
-                    {item.label}
+                    {item.label.charAt(0).toUpperCase() +
+                      item.label.slice(1)}{" "}
                   </span>
                 )}
               </button>
