@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { knowledgeMockData } from "./mockData";
 import type { KnowledgeEntry } from "./types";
 
@@ -79,15 +79,30 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 };
 
 export const KnowledgeList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // Search input
-  const [filterType, setFilterType] = useState<"all" | "text" | "file">("all"); // Type filter
+  const [searchTerm, setSearchTerm] = useState("") //search input
+  const [filterType, setFilterType] = useState<"all" | "text" | "file">("all"); //type filter
 
-  // Filter data based on search & type
-  const filteredData = knowledgeMockData.filter((entry: KnowledgeEntry) => {
+  const [currentPage, setCurrentPage] = useState(1); //current page number 
+  const itemsPerPage = 10 //show 10 cards per page
+
+  useEffect( ()=> {
+    setCurrentPage(1);
+  }, [searchTerm, filterType] );
+
+  //filter data based on search & type
+  const filteredData = knowledgeMockData.filter( (entry: KnowledgeEntry) => {
     const matchesSearch = entry.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === "all" || entry.type === filterType;
-    return matchesSearch && matchesType;
-  });
+    return matchesSearch && matchesType
+  } );
+
+  //calculate pagination
+  const totalItems = filteredData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage) //user to render the page number
+  const startIndex = (currentPage - 1) * itemsPerPage; // where the current page start
+  const endIndex = startIndex + itemsPerPage; // where it ends
+  const paginatedData = filteredData.slice(startIndex, endIndex); // returns only the items for that age
+
 
   return (
     <div className="space-y-4">
@@ -116,8 +131,8 @@ export const KnowledgeList: React.FC = () => {
 
       {/* Knowledge cards */}
       <div className="space-y-2">
-        {filteredData.length > 0 ? (
-          filteredData.map((entry) => (
+        {paginatedData.length > 0 ? (
+          paginatedData.map((entry) => (
             <KnowledgeCard
               key={entry.id}
               title={entry.title}
@@ -133,7 +148,49 @@ export const KnowledgeList: React.FC = () => {
         ) : (
           <p className="text-sm text-muted-foreground">No knowledge found.</p>
         )}
+
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center space-x-2 mt-4">
+            {/* Prev button */}
+            <button 
+            onClick={() => setCurrentPage( (prev) => Math.max(prev - 1, 1) )} 
+            disabled = {currentPage === 1} 
+            className="px-3 py-1 border rounded disabled:opacity-50">
+              Prev
+            </button>
+
+            {/* Page numbers */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+            (page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-3 py-1 border rounded ${
+                  currentPage === page
+                    ? "bg-primary text-white"
+                    : ""
+                }`}
+              >
+                {page}
+              </button>
+            )
+          )}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) =>
+                Math.min(prev + 1, totalPages)
+              )
+            }
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 border rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+          </div>
+
+        ) }
+
       </div>
     </div>
-  );
-};
+  )};
