@@ -22,5 +22,28 @@ export interface DashboardProps {
   userData?: UserData;
 }
 
-// Remove SectionProps or make it empty since sections no longer need language prop
-// export interface SectionProps {}  // Can be removed entirely
+export type SessionStatus = "active" | "pending" | "completed";
+
+export interface ChatSession {
+  id: string;
+  userId: string;
+  startTime: string;
+  endTime?: string;
+  duration: string;
+  messagesCount: number;
+  status: SessionStatus;
+}
+
+export type SenderType = "user" | "ai" | "staff";
+
+export interface ChatMessage {
+  id: string;
+  senderType: SenderType;
+  content: string;
+  timestamp: string;
+  emotion?: string;
+}
+
+export interface ChatSessionDetails extends ChatSession {
+  messages: ChatMessage[];
+}
