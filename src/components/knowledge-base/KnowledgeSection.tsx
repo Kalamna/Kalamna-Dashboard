@@ -1,4 +1,7 @@
 import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
+import { knowledgeMockData } from "./mockData";
+import type { KnowledgeEntry } from "./types";
 
 export function KnowledgeSection() {
   const { t } = useTranslation();
@@ -10,8 +13,6 @@ export function KnowledgeSection() {
     </div>
   );
 }
-
-import React from "react";
 
 interface KnowledgeCardProps {
   title: string;
@@ -72,6 +73,66 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
             🗑️
           </button>
         </div>
+      </div>
+    </div>
+  );
+};
+
+export const KnowledgeList: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState(""); // Search input
+  const [filterType, setFilterType] = useState<"all" | "text" | "file">("all"); // Type filter
+
+  // Filter data based on search & type
+  const filteredData = knowledgeMockData.filter((entry: KnowledgeEntry) => {
+    const matchesSearch = entry.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = filterType === "all" || entry.type === filterType;
+    return matchesSearch && matchesType;
+  });
+
+  return (
+    <div className="space-y-4">
+      {/* Search + Filter */}
+      <div className="flex space-x-4 items-center">
+        {/* Search input */}
+        <input
+          type="text"
+          placeholder="Search knowledge..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-3 py-2 border rounded-lg flex-1"
+        />
+
+        {/* Type filter */}
+        <select
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value as "all" | "text" | "file")}
+          className="px-3 py-2 border rounded-lg"
+        >
+          <option value="all">All</option>
+          <option value="text">Text</option>
+          <option value="file">File</option>
+        </select>
+      </div>
+
+      {/* Knowledge cards */}
+      <div className="space-y-2">
+        {filteredData.length > 0 ? (
+          filteredData.map((entry) => (
+            <KnowledgeCard
+              key={entry.id}
+              title={entry.title}
+              type={entry.type}
+              updatedAt={entry.updatedAt}
+              chunksCount={entry.chunks.length}
+              status={entry.status}
+              onView={() => console.log("View", entry.id)}
+              onEdit={() => console.log("Edit", entry.id)}
+              onDelete={() => console.log("Delete", entry.id)}
+            />
+          ))
+        ) : (
+          <p className="text-sm text-muted-foreground">No knowledge found.</p>
+        )}
       </div>
     </div>
   );
