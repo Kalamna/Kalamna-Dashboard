@@ -1,1 +1,5 @@
-export const AnalyticsPage = () => <div>AnalyticsPage</div>;
+import { AnalyticsSection } from "../../components/analytics/AnalyticsSection";
+
+export const AnalyticsPage = () => {
+  return <AnalyticsSection />;
+};

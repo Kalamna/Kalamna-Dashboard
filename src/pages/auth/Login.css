@@ -1,19 +1,197 @@
-/* لما اللغة تكون عربي */
+/* ========================================
+   GLOBAL RESET FOR CROSS-BROWSER COMPATIBILITY
+   ======================================== */
+
+/* Critical box-sizing fix for all inputs */
+input,
+textarea,
+select {
+  box-sizing: border-box !important;
+}
+
+/* ========================================
+   RTL LANGUAGE SUPPORT
+   ======================================== */
 .rtl {
   direction: rtl;
   text-align: right;
 }
 
-/* خلي الـ placeholder بالعربي RTL */
+/* RTL Placeholder styling */
 .rtl input::placeholder {
   direction: rtl;
   text-align: right;
 }
+
 .rtl textarea::placeholder {
   direction: rtl;
   text-align: right;
 }
-/* Input Wrapper Styling */
+
+.rtl select {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ========================================
+   INPUT FIELDS - UNIVERSAL FIX
+   ======================================== */
+
+/* Base input styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+  /* Core fixes */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+
+  /* Remove default styling */
+  border: none;
+  outline: none;
+
+  /* Font fixes */
+  font-size: 16px; /* Prevents iOS auto-zoom */
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+
+  /* Spacing - DESKTOP SIZE */
+  margin: 0;
+  padding: 12px 14px;
+
+  /* Ensure proper display */
+  display: block;
+  width: 100%;
+
+  /* Mobile touch improvements */
+  -webkit-touch-callout: none;
+  -webkit-user-select: text;
+  user-select: text;
+
+  /* Fix for cursor on mobile */
+  cursor: text;
+
+  /* Desktop sizing */
+  min-height: 44px;
+}
+
+/* Desktop larger sizing */
+@media (min-width: 1024px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  select {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  textarea {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 120px;
+  }
+}
+
+/* Disable autofill background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+  box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-main) !important;
+}
+
+/* ========================================
+   SELECT ELEMENT FIX
+   ======================================== */
+select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23666' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  padding-right: 32px !important;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/* ========================================
+   PLACEHOLDER STYLING
+   ======================================== */
+input::placeholder,
+textarea::placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+  transition: color 0.2s ease-in-out;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+}
+
+/* Dark mode placeholder */
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #b8c7d9;
+  opacity: 1;
+}
+
+.dark-mode input::-webkit-input-placeholder,
+.dark-mode textarea::-webkit-input-placeholder {
+  color: #b8c7d9;
+  opacity: 1;
+}
+
+/* ========================================
+   PASSWORD FIELD - HIDE BROWSER CONTROLS
+   ======================================== */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+input[type="password"]::-webkit-textfield-decoration-container,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Firefox */
+input[type="password"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+/* Edge legacy */
+input::-ms-reveal,
+input::-ms-clear,
+input::-ms-check {
+  display: none !important;
+}
+
+/* ========================================
+   INPUT WRAPPER
+   ======================================== */
 .input-wrapper {
   display: flex;
   align-items: center;
@@ -24,26 +202,293 @@
   margin-top: 4px;
   margin-bottom: 16px;
   transition: 0.2s ease-in-out;
+  background-color: var(--input-bg);
 }
 
-/* Default Placeholder */
-input::placeholder {
-  color: #8a8a8a;
-  transition: color 0.2s ease-in-out;
-}
-
-/* Placeholder in Dark Mode */
-.dark-mode input::placeholder {
-  color: #b8c7d9; /* لون فاتح يناسب الخلفية الداكنة */
-}
-
-/* Dark Mode Input Wrappers */
 .dark-mode .input-wrapper {
-  border-color: #1e3a5f;
+  border-color: var(--input-border) !important;
+  background-color: var(--input-bg) !important;
 }
 
-/* Edge (old + new) */
-input::-ms-reveal,
-input::-ms-clear {
-  display: none !important;
+/* ========================================
+   BUTTON STYLING - CROSS-BROWSER
+   ======================================== */
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+button[class*="border"] {
+  transition: all 0.2s ease-in-out;
+  border-width: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+  /* Remove default button styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Ensure proper styling */
+  background-clip: padding-box;
+}
+
+button[class*="border"]:hover {
+  opacity: 0.8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+button[class*="border"]:active {
+  transform: scale(0.98);
+}
+
+button[type="button"],
+button[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* ========================================
+   FOCUS & ACTIVE STATES
+   ======================================== */
+
+/* Visible focus for accessibility */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Remove iOS 15+ blue outline */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* Better visual feedback on focus */
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ========================================
+   MOBILE-SPECIFIC FIXES
+   ======================================== */
+
+/* iOS fixes */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevents auto-zoom */
+    -webkit-font-smoothing: antialiased;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
+
+  /* Fix for iOS zoom on focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Android fixes */
+@media (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    min-height: 44px; /* Touch target */
+    font-size: 16px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+/* ========================================
+   TEXTAREA FIXES
+   ======================================== */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  max-height: 300px;
+  vertical-align: top;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  textarea {
+    min-height: 120px;
+    font-size: 16px;
+  }
+}
+
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* ========================================
+   ICON POSITIONING FIX
+   ======================================== */
+
+/* Prevent icon interference with input */
+.relative input,
+.relative textarea,
+.relative select {
+  position: relative;
+  z-index: 1;
+}
+
+/* Only disable pointer-events on icons, not on buttons */
+.absolute {
+  z-index: 2;
+}
+
+.absolute svg {
+  pointer-events: none;
+}
+
+/* Ensure buttons are clickable */
+button {
+  pointer-events: auto;
+  z-index: auto;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  input,
+  textarea,
+  select {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  input,
+  textarea,
+  select,
+  button {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ========================================
+   FORM CONTAINER DESKTOP SIZING
+   ======================================== */
+
+/* Increase form field spacing on desktop */
+@media (min-width: 1024px) {
+  .space-y-4 {
+    --space-y: 1.5rem;
+  }
+
+  .space-y-6 {
+    --space-y: 2rem;
+  }
+
+  /* Make form fields larger on desktop */
+  input,
+  textarea,
+  select {
+    transition: all 0.2s ease;
+  }
+
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: #999;
+  }
+}
+
+/* ========================================
+   DARK MODE OVERRIDE - ENSURE VISIBILITY
+   ======================================== */
+
+/* Force dark mode colors on all inputs in dark mode */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-main) !important;
+  border-color: var(--input-border) !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #b8c7d9 !important;
+}
+
+.dark-mode .input-wrapper {
+  background-color: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+}
+
+/* Ensure labels and text are visible in dark mode */
+.dark-mode label,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+  color: var(--card-text) !important;
+}
+
+.dark-mode p {
+  color: var(--text-main) !important;
+}
+
+/* RTL text alignment */
+.rtl input,
+.rtl textarea,
+.rtl select {
+  text-align: right;
+}
+
+.rtl input::placeholder,
+.rtl textarea::placeholder {
+  text-align: right;
 }
