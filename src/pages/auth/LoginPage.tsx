@@ -83,14 +83,14 @@ const LoginPage = () => {
           />
         </div>
 
-        <h2 
+        <h2
           className="text-center text-xl sm:text-2xl font-bold mb-2"
           style={{ color: "var(--card-text)" }}
         >
           {t("welcome")}
         </h2>
 
-        <p 
+        <p
           className="text-center text-sm sm:text-base mb-6 sm:mb-8"
           style={{ color: "var(--text-main)", opacity: 0.7 }}
         >
@@ -104,7 +104,7 @@ const LoginPage = () => {
               className="block text-xs sm:text-sm font-medium mb-2"
               style={{ color: "var(--card-text)" }}
             >
-            {t("email")}
+              {t("email")}
             </label>
 
             {/* Email Input */}
@@ -173,15 +173,15 @@ const LoginPage = () => {
 
           {/* Remember Me */}
           <div className="flex items-center gap-2">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               id="remember"
               style={{
                 accentColor: "#2196F3",
               }}
             />
-            <label 
-              htmlFor="remember" 
+            <label
+              htmlFor="remember"
               className="text-xs sm:text-sm"
               style={{ color: "var(--text-main)" }}
             >
@@ -190,7 +190,7 @@ const LoginPage = () => {
           </div>
 
           {/* Sign In Button */}
-          <button 
+          <button
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-base transition-all shadow-lg hover:shadow-xl"
             style={{
               backgroundColor: "#2196F3",
@@ -201,7 +201,7 @@ const LoginPage = () => {
         </form>
 
         {/* Create Account */}
-        <p 
+        <p
           className="text-center text-xs sm:text-sm mt-4 sm:mt-6"
           style={{ color: "var(--text-main)", opacity: 0.8 }}
         >
