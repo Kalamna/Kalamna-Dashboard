@@ -75,5 +75,16 @@
   "customerFeedback": "تقييمات العملاء",
   "averageRating": "متوسط التقييم",
   "totalFeedback": "إجمالي التقييمات",
-  "positiveRate": "معدل الإيجابية"
+  "positiveRate": "معدل الإيجابية",
+  "avgSessionsPerDay": "متوسط الجلسات يومياً",
+  "viewAll": "عرض الكل",
+  "notifications": "الإشعارات",
+  "sessionId": "معرف الجلسة",
+  "messageCount": "عدد الرسائل",
+  "duration": "المدة",
+  "rating": "التقييم",
+  "comment": "التعليق",
+  "alertType": "النوع",
+  "alertMessage": "الرسالة",
+  "timestamp": "الوقت"
 }
