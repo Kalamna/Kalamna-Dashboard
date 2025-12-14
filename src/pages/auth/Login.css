@@ -41,13 +41,6 @@ input::placeholder {
 .dark-mode .input-wrapper {
   border-color: #1e3a5f;
 }
-input[type="password"]::-webkit-textfield-decoration-container,
-input[type="password"]::-webkit-clear-button,
-input[type="password"]::-webkit-inner-spin-button,
-input[type="password"]::-webkit-credentials-auto-fill-button,
-input[type="password"]::-webkit-textfield-decoration {
-  display: none !important;
-}
 
 /* Edge (old + new) */
 input::-ms-reveal,
