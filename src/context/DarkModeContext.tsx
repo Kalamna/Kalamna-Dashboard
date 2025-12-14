@@ -32,11 +32,16 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
   // Apply dark mode class to HTML element
   useEffect(() => {
     const htmlElement = document.documentElement;
+    const bodyElement = document.body;
 
     if (darkMode) {
+      htmlElement.classList.add("dark-mode");
       htmlElement.classList.add("dark");
+      bodyElement.classList.add("dark-mode");
     } else {
+      htmlElement.classList.remove("dark-mode");
       htmlElement.classList.remove("dark");
+      bodyElement.classList.remove("dark-mode");
     }
 
     localStorage.setItem("darkMode", darkMode.toString());
