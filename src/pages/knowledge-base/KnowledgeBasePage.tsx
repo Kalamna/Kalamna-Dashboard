@@ -1,5 +1,6 @@
 import { knowledgeMockData } from "../../components/knowledge-base/mockData";
 import type { KnowledgeEntry } from "../../components/knowledge-base/types";
+import { KnowledgeCard } from "../../components/knowledge-base/KnowledgeSection";
 
 export const KnowledgeBasePage = () => {
   return (
@@ -18,22 +19,19 @@ export const KnowledgeBasePage = () => {
       {/* Page content placeholder */} 
       <div className="text-sm text-muted-foreground">
         <div className="space-y-4">
-          {knowledgeMockData.map((entry: KnowledgeEntry) => (
-            <div
-              key={entry.id}
-              className="p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center"
-            >
-              <div>
-                <h2 className="font-medium">{entry.title}</h2>
-                <p className="text-sm text-muted-foreground">
-                  {entry.chunks.join(", ")}
-                </p>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                {entry.status} • {entry.updatedAt}
-              </div>
-            </div>
-          ))}
+        {knowledgeMockData.map((entry) => (
+        <KnowledgeCard
+          key={entry.id}
+          title={entry.title}
+          type={entry.type}
+          updatedAt={entry.updatedAt}
+          chunksCount={entry.chunks.length}
+          status={entry.status}
+          onView={() => console.log("View", entry.id)}
+          onEdit={() => console.log("Edit", entry.id)}
+          onDelete={() => console.log("Delete", entry.id)}
+        />
+      ))}
         </div> 
       </div> 
     </div>
