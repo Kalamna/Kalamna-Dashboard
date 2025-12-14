@@ -194,3 +194,152 @@ export const KnowledgeList: React.FC = () => {
       </div>
     </div>
   )};
+
+  interface KnowledgeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
+  /* -----------------------------
+   * Local UI State
+   * ----------------------------- */
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState<"text" | "file">("text");
+  const [content, setContent] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState("");
+
+  /* -----------------------------
+   * Validation (UI ONLY)
+   * ----------------------------- */
+  const handleSubmit = () => {
+    if (!title.trim()) {
+      setError("Title is required");
+      return;
+    }
+
+    if (type === "text" && !content.trim()) {
+      setError("Text content is required");
+      return;
+    }
+
+    if (type === "file" && !file) {
+      setError("File is required");
+      return;
+    }
+
+    // UI only — no logic yet
+    console.log("Add Knowledge");
+
+    // Reset + close
+    setTitle("");
+    setContent("");
+    setFile(null);
+    setError("");
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg w-full max-w-md p-6 space-y-4">
+        {/* Header */}
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg font-semibold">Add Knowledge</h2>
+          <button onClick={onClose}>✖</button>
+        </div>
+
+        {/* Error */}
+        {error && (
+          <p className="text-sm text-red-600">{error}</p>
+        )}
+
+        {/* Title */}
+        <div>
+          <label className="text-sm font-medium">Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setError("");
+            }}
+            className="w-full mt-1 px-3 py-2 border rounded-lg"
+          />
+        </div>
+
+        {/* Type switch */}
+        <div>
+          <label className="text-sm font-medium">Type</label>
+          <select
+            value={type}
+            onChange={(e) => {
+              setType(e.target.value as "text" | "file");
+              setError("");
+            }}
+            className="w-full mt-1 px-3 py-2 border rounded-lg"
+          >
+            <option value="text">Text</option>
+            <option value="file">File</option>
+          </select>
+        </div>
+
+        {/* Conditional content */}
+        {type === "text" ? (
+          <div>
+            <label className="text-sm font-medium">Text Content</label>
+            <textarea
+              value={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+                setError("");
+              }}
+              className="w-full mt-1 px-3 py-2 border rounded-lg"
+              rows={4}
+            />
+          </div>
+        ) : (
+          <div>
+            <label className="text-sm font-medium">Upload File</label>
+
+            <input
+              type="file"
+              onChange={(e) => {
+                setFile(e.target.files?.[0] || null);
+      setError("");
+    }}
+    className="w-full mt-1"
+  />
+
+  {file && (
+    <p className="text-sm text-muted-foreground mt-1">
+      Selected file: {file.name}
+    </p>
+  )}
+</div>
+        )}
+
+        {/* Actions */}
+        <div className="flex justify-end space-x-2 pt-2">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border rounded-lg"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="px-4 py-2 border rounded-lg"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
