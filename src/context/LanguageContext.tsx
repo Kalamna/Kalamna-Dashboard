@@ -35,10 +35,33 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     setLanguage(newLanguage);
     i18next.changeLanguage(newLanguage);
     localStorage.setItem("app-language", newLanguage);
+    
+    // Update document direction and language
+    const htmlElement = document.documentElement;
+    htmlElement.lang = newLanguage;
+    htmlElement.dir = newLanguage === "ar" ? "rtl" : "ltr";
+    
+    // Update body classes
+    if (newLanguage === "ar") {
+      htmlElement.classList.add("rtl");
+    } else {
+      htmlElement.classList.remove("rtl");
+    }
   };
 
   useEffect(() => {
     i18next.changeLanguage(language);
+    
+    // Update document on mount and language change
+    const htmlElement = document.documentElement;
+    htmlElement.lang = language;
+    htmlElement.dir = language === "ar" ? "rtl" : "ltr";
+    
+    if (language === "ar") {
+      htmlElement.classList.add("rtl");
+    } else {
+      htmlElement.classList.remove("rtl");
+    }
   }, [language]);
 
   return (

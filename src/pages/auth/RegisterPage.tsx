@@ -19,6 +19,7 @@ import { useDarkMode } from "../../context/DarkModeContext";
 import kalamnaLight from "../../assets/images/KalamnaLight.png";
 import kalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
+import "./Mobile.css";
 import "../../styles.css";
 
 // ============================================
@@ -154,7 +155,7 @@ function Register({
   if (success) {
     return (
       <div
-        className="min-h-screen flex items-center justify-center p-4"
+        className={`min-h-screen flex items-center justify-center p-4 ${language === "ar" ? "rtl" : ""} ${darkMode ? "dark-mode" : ""}`}
         style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
       >
         <div
@@ -190,7 +191,7 @@ function Register({
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
-      <div className="absolute top-5 right-5 flex gap-2 sm:gap-3">
+      <div className="absolute top-5 right-5 flex gap-2 sm:gap-3 z-50">
         <button
           className="border px-2 sm:px-3 py-1 sm:py-1.5 rounded-md flex items-center gap-1 text-xs sm:text-sm"
           onClick={toggleLanguage}
@@ -346,12 +347,14 @@ function Register({
                       value={formData.organizationName}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="organization"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.organizationNamePlaceholder}
                       required
@@ -377,12 +380,14 @@ function Register({
                       value={formData.email}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="email"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.organizationEmailPlaceholder}
                       required
@@ -409,6 +414,8 @@ function Register({
                       borderColor: "var(--input-border)",
                       color: "var(--text-main)",
                       textAlign: language === "ar" ? "right" : "left",
+                      boxSizing: "border-box",
+                      paddingRight: language === "ar" ? "4px" : "32px",
                     }}
                     required
                   >
@@ -441,12 +448,14 @@ function Register({
                       value={formData.domainUrl}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="url"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.websiteDomainPlaceholder}
                     />
@@ -476,6 +485,8 @@ function Register({
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
+                        fontFamily: "inherit",
                       }}
                       placeholder={t.businessDescriptionPlaceholder}
                     />
@@ -525,12 +536,14 @@ function Register({
                       value={formData.ownerFullName}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="name"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.fullNamePlaceholder}
                       required
@@ -556,12 +569,14 @@ function Register({
                       value={formData.password}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="new-password"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.passwordPlaceholder}
                       required
@@ -605,12 +620,14 @@ function Register({
                       value={formData.confirmPassword}
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
+                      autoComplete="new-password"
                       className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
                         borderColor: "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
+                        boxSizing: "border-box",
                       }}
                       placeholder={t.confirmPasswordPlaceholder}
                       required

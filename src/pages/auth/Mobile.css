@@ -1,0 +1,254 @@
+/* ========================================
+   MOBILE & TABLET RESPONSIVE FIXES
+   ======================================== */
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iPhone/iPad */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents auto-zoom on focus */
+    padding: 12px 10px !important;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 6px;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Fix for iOS input zoom on focus */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    font-size: 16px !important;
+    outline: none;
+  }
+
+  /* Prevent iOS 15+ default styling */
+  input[type="text"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* Android Chrome fixes */
+@media only screen and (-webkit-min-device-pixel-ratio: 1) and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    min-height: 44px; /* Touch target */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Ensure proper focus state */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--primary-color);
+  }
+
+  /* Fix for Android email input */
+  input[type="email"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Fix for Android password input */
+  input[type="password"] {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 16px !important;
+  }
+
+  /* Fix for Android select */
+  select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+/* Small devices (phones) */
+@media only screen and (max-width: 480px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    min-height: 48px; /* Larger touch target on phones */
+  }
+
+  /* Improve form spacing */
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* Better button sizing for mobile */
+  button[type="submit"],
+  button[type="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 16px !important;
+  }
+
+  /* Fix icon positioning on mobile */
+  .absolute {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+/* Landscape mode fixes */
+@media only screen and (max-height: 500px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    margin: 4px 0;
+    padding: 10px 12px !important;
+  }
+
+  textarea {
+    max-height: 120px;
+    min-height: 60px;
+  }
+}
+
+/* High DPI screens (Retina) */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  input,
+  textarea,
+  select {
+    border-width: 1px;
+    font-size: 16px;
+  }
+}
+
+/* Dark mode mobile fixes */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-main);
+    opacity: 0.6;
+  }
+}
+
+/* Fix for floating labels on mobile */
+@media only screen and (max-width: 640px) {
+  input[placeholder]:not(:placeholder-shown),
+  textarea[placeholder]:not(:placeholder-shown) {
+    padding-top: 18px;
+    padding-bottom: 6px;
+  }
+}
+
+/* Prevent zoom on input focus for iOS */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Fix for iOS automatic zooming on form fields */
+@supports (padding: max(0px)) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1rem) !important;
+  }
+}
+
+/* Desktop XL sizing (1024px and above) */
+@media only screen and (min-width: 1024px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  select {
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    min-height: 48px;
+  }
+  
+  textarea {
+    padding: 14px 16px !important;
+    font-size: 16px !important;
+    min-height: 120px;
+  }
+  
+  label {
+    font-size: 15px;
+  }
+}
+
+/* Tablet sizing (768px - 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    min-height: 44px;
+    padding: 12px 13px !important;
+  }
+  
+  textarea {
+    min-height: 110px;
+  }
+}
+
+/* ========================================
+   BUTTON FIXES FOR ALL MOBILE DEVICES
+   ======================================== */
+
+/* Ensure buttons are always clickable on mobile */
+button {
+  pointer-events: auto !important;
+  z-index: auto !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  cursor: pointer !important;
+}
+
+button:active {
+  opacity: 0.85;
+}
+
+/* Touch-friendly button sizing */
+@media (max-width: 768px) {
+  button[class*="border"] {
+    min-height: 40px;
+    padding: 10px 12px !important;
+  }
+}

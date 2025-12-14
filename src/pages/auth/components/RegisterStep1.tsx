@@ -36,12 +36,14 @@ const RegisterStep1: React.FC<Step1Props> = ({
             value={formData.organizationName}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
+            autoComplete="organization"
             className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.organizationNamePlaceholder}
             required
@@ -67,12 +69,14 @@ const RegisterStep1: React.FC<Step1Props> = ({
             value={formData.email}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
+            autoComplete="email"
             className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.organizationEmailPlaceholder}
             required
@@ -96,6 +100,8 @@ const RegisterStep1: React.FC<Step1Props> = ({
             backgroundColor: "var(--input-bg)",
             borderColor: "var(--input-border)",
             color: "var(--text-main)",
+            boxSizing: "border-box",
+            paddingRight: "32px",
           }}
           required
         >
@@ -128,12 +134,14 @@ const RegisterStep1: React.FC<Step1Props> = ({
             value={formData.domainUrl}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
+            autoComplete="url"
             className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.websiteDomainPlaceholder}
           />
@@ -163,6 +171,8 @@ const RegisterStep1: React.FC<Step1Props> = ({
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
+              fontFamily: "inherit",
             }}
             placeholder={t.businessDescriptionPlaceholder}
           />

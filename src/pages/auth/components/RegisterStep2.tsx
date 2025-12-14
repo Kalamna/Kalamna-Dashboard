@@ -39,12 +39,14 @@ const RegisterStep2: React.FC<Step2Props> = ({
             value={formData.ownerFullName}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
-            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            autoComplete="name"
+            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 md:pr-11 pl-3 sm:pl-4 md:pl-5" : "pl-9 sm:pl-10 md:pl-11 pr-3 sm:pr-4 md:pr-5"} py-2.5 sm:py-3 md:py-3.5 text-sm sm:text-base md:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.fullNamePlaceholder}
             required
@@ -69,12 +71,14 @@ const RegisterStep2: React.FC<Step2Props> = ({
             value={formData.password}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
+            autoComplete="new-password"
             className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.passwordPlaceholder}
             required
@@ -117,12 +121,14 @@ const RegisterStep2: React.FC<Step2Props> = ({
             value={formData.confirmPassword}
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
+            autoComplete="new-password"
             className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
               color: "var(--text-main)",
               textAlign: language === "ar" ? "right" : "left",
+              boxSizing: "border-box",
             }}
             placeholder={t.confirmPasswordPlaceholder}
             required
