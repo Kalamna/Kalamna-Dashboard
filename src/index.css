@@ -8,4 +8,5 @@
 
 body {
   font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
+  overflow-x: hidden;
 }

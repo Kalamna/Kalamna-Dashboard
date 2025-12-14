@@ -10,7 +10,9 @@ export const MainLayout = () => {
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { changeLanguage } = useLanguage();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(
+    () => window.innerWidth >= 1024,
+  );
 
   const language = i18n.language as "en" | "ar";
   const isRTL = language === "ar";
