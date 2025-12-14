@@ -212,10 +212,19 @@ export function OverviewSection() {
             </thead>
             <tbody>
               {recentConversations.map((conv, index) => (
-                <tr key={index} className="border-b border-gray-100 dark:border-gray-700">
-                  <td className="py-3 text-gray-900 dark:text-white">{conv.id}</td>
-                  <td className="py-3 text-gray-900 dark:text-white">{conv.messages}</td>
-                  <td className="py-3 text-gray-900 dark:text-white">{conv.duration}</td>
+                <tr
+                  key={index}
+                  className="border-b border-gray-100 dark:border-gray-700"
+                >
+                  <td className="py-3 text-gray-900 dark:text-white">
+                    {conv.id}
+                  </td>
+                  <td className="py-3 text-gray-900 dark:text-white">
+                    {conv.messages}
+                  </td>
+                  <td className="py-3 text-gray-900 dark:text-white">
+                    {conv.duration}
+                  </td>
                   <td className="py-3">
                     <span
                       className={`px-2 py-1 rounded-full text-xs ${
@@ -267,7 +276,9 @@ export function OverviewSection() {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {feedback.date}
                 </p>
-                <p className="text-gray-900 dark:text-white">{feedback.comment}</p>
+                <p className="text-gray-900 dark:text-white">
+                  {feedback.comment}
+                </p>
               </div>
             </div>
           ))}
