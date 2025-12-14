@@ -75,5 +75,16 @@
   "customerFeedback": "Customer Feedback",
   "averageRating": "Average Rating",
   "totalFeedback": "Total Feedback",
-  "positiveRate": "Positive Rate"
+  "positiveRate": "Positive Rate",
+  "avgSessionsPerDay": "Avg Sessions per Day",
+  "viewAll": "View All",
+  "notifications": "Notifications",
+  "sessionId": "Session ID",
+  "messageCount": "Message Count",
+  "duration": "Duration",
+  "rating": "Rating",
+  "comment": "Comment",
+  "alertType": "Type",
+  "alertMessage": "Message",
+  "timestamp": "Timestamp"
 }
