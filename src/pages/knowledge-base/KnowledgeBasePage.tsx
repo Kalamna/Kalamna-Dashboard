@@ -1,3 +1,6 @@
+import { knowledgeMockData } from "../../components/knowledge-base/mockData";
+import type { KnowledgeEntry } from "../../components/knowledge-base/types";
+
 export const KnowledgeBasePage = () => {
   return (
     <div className="p-6 space-y-6"> 
@@ -14,7 +17,24 @@ export const KnowledgeBasePage = () => {
       </div>
       {/* Page content placeholder */} 
       <div className="text-sm text-muted-foreground">
-         Knowledge list will be implemented here 
+        <div className="space-y-4">
+          {knowledgeMockData.map((entry: KnowledgeEntry) => (
+            <div
+              key={entry.id}
+              className="p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center"
+            >
+              <div>
+                <h2 className="font-medium">{entry.title}</h2>
+                <p className="text-sm text-muted-foreground">
+                  {entry.chunks.join(", ")}
+                </p>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {entry.status} • {entry.updatedAt}
+              </div>
+            </div>
+          ))}
+        </div> 
       </div> 
     </div>
     );
