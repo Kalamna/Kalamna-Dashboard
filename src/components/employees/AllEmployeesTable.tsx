@@ -94,11 +94,11 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
               {currentEmployees.map((employee, index) => (
                 <tr
                   key={employee.id}
-                  className={`${
+                  className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${
                     index % 2 === 0
-                      ? "bg-white dark:bg-[#0a1929]"
-                      : "bg-gray-50 dark:bg-[#0d2943]"
-                  } border-b border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-100 dark:hover:bg-[#102a43] transition-colors`}
+                      ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
+                      : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
+                  }`}
                 >
                   <td className="px-6 py-4 text-center text-gray-900 dark:text-white font-medium">
                     {employee.fullName}
@@ -142,14 +142,14 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                           <>
                             <button
                               onClick={() => onEdit(employee.id)}
-                              className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:bg-[#3b82f6]/20 transition-colors"
+                              className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa] transition-all duration-200 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f45] active:scale-95"
                               title={t("edit") || "Edit"}
                             >
                               <Edit className="w-5 h-5" />
                             </button>
                             <button
                               onClick={() => setShowDeleteConfirm(employee.id)}
-                              className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+                              className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-all duration-200 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f45] active:scale-95"
                               title={t("delete") || "Delete"}
                             >
                               <Trash2 className="w-5 h-5" />
@@ -239,14 +239,14 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
               <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-[#1e3a5f]">
                 <button
                   onClick={() => onEdit(employee.id)}
-                  className="flex-1 flex items-center justify-center gap-2 bg-blue-50 dark:bg-[#3b82f6]/10 text-blue-600 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30"
+                  className="flex-1 flex items-center justify-center gap-2 bg-blue-50 dark:bg-[#3b82f6]/10 text-blue-600 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-all duration-200 text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30 active:scale-95"
                 >
                   <Edit className="w-4 h-4" />
                   {t("edit") || "Edit"}
                 </button>
                 <button
                   onClick={() => setShowDeleteConfirm(employee.id)}
-                  className="flex-1 flex items-center justify-center gap-2 bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 px-4 py-2.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-colors text-sm font-medium border border-red-200 dark:border-red-500/30"
+                  className="flex-1 flex items-center justify-center gap-2 bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 px-4 py-2.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-all duration-200 text-sm font-medium border border-red-200 dark:border-red-500/30 active:scale-95"
                 >
                   <Trash2 className="w-4 h-4" />
                   {t("delete") || "Delete"}
@@ -285,13 +285,13 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
             <div className="flex space-x-3">
               <button
                 onClick={() => setShowDeleteConfirm(null)}
-                className="flex-1 px-4 py-2 border border-gray-300 dark:border-[#1e3a5f] rounded-lg hover:bg-gray-50 dark:hover:bg-[#0a2540] transition-colors text-gray-700 dark:text-gray-300 font-medium"
+                className="flex-1 px-4 py-2 border border-gray-300 dark:border-[#1e3a5f] rounded-lg hover:bg-gray-50 dark:hover:bg-[#1a2f45] transition-all duration-200 text-gray-700 dark:text-gray-300 font-medium active:scale-95"
               >
                 {t("cancel") || "Cancel"}
               </button>
               <button
                 onClick={() => handleDelete(showDeleteConfirm)}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-500 text-white transition-all duration-200 font-medium active:scale-95"
               >
                 {t("delete") || "Delete"}
               </button>

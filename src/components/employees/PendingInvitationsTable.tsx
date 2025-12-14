@@ -140,14 +140,14 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => onResend(invitation.id)}
-                        className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:bg-[#3b82f6]/20 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-[#0a2540] rounded"
+                        className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa] transition-all duration-200 p-2 hover:bg-gray-100 dark:hover:bg-[#1a2f45] rounded-lg active:scale-95"
                         title={t("resendInvitation") || "Resend Invitation"}
                       >
                         <RefreshCw className="w-4 h-4 text-current" />
                       </button>
                       <button
                         onClick={() => setShowDeleteConfirm(invitation.id)}
-                        className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-[#0a2540] rounded"
+                        className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-all duration-200 p-2 hover:bg-gray-100 dark:hover:bg-[#1a2f45] rounded-lg active:scale-95"
                         title={t("deleteInvitation") || "Delete Invitation"}
                       >
                         <Trash2 className="w-4 h-4 text-current" />
@@ -222,14 +222,14 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
             <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-[#1e3a5f]">
               <button
                 onClick={() => onResend(invitation.id)}
-                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-[#0066cc] dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-colors text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30"
+                className="flex-1 flex items-center justify-center gap-2 bg-blue-50 text-[#0066cc] dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] px-4 py-2.5 rounded-lg hover:bg-blue-100 dark:hover:bg-[#3b82f6]/20 transition-all duration-200 text-sm font-medium border border-blue-200 dark:border-[#3b82f6]/30 active:scale-95"
               >
                 <RefreshCw className="w-4 h-4" />
                 {t("resend") || "Resend"}
               </button>
               <button
                 onClick={() => setShowDeleteConfirm(invitation.id)}
-                className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 dark:bg-red-500/20 dark:text-red-400 px-4 py-2.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-colors text-sm font-medium border border-red-200 dark:border-red-500/30"
+                className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 dark:bg-red-500/20 dark:text-red-400 px-4 py-2.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-500/30 transition-all duration-200 text-sm font-medium border border-red-200 dark:border-red-500/30 active:scale-95"
               >
                 <Trash2 className="w-4 h-4" />
                 {t("delete") || "Delete"}
@@ -267,13 +267,13 @@ const PendingInvitationsTable: React.FC<PendingInvitationsTableProps> = ({
             <div className="flex space-x-3">
               <button
                 onClick={() => setShowDeleteConfirm(null)}
-                className="flex-1 px-4 py-2 border border-gray-300 dark:border-[#1e3a5f] rounded-lg hover:bg-gray-50 dark:hover:bg-[#0a2540] transition-colors text-gray-700 dark:text-gray-300 font-medium"
+                className="flex-1 px-4 py-2 border border-gray-300 dark:border-[#1e3a5f] rounded-lg hover:bg-gray-50 dark:hover:bg-[#1a2f45] transition-all duration-200 text-gray-700 dark:text-gray-300 font-medium active:scale-95"
               >
                 {t("cancel") || "Cancel"}
               </button>
               <button
                 onClick={() => handleDelete(showDeleteConfirm)}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-500 text-white transition-all duration-200 font-medium active:scale-95"
               >
                 {t("delete") || "Delete"}
               </button>

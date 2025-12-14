@@ -47,24 +47,26 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
     <div className="space-y-6">
       {/* Header with Action Buttons (Owner Only) */}
       {userIsOwner && (
-        <div className="flex justify-end items-center gap-4">
+        <div className="flex flex-wrap justify-end items-center gap-3">
           {/* Invite Button */}
           <button
             onClick={() => setShowInviteModal(true)}
-            className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#3b82f6] text-white px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
+            className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white dark:text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base whitespace-nowrap"
           >
-            <UserPlus className="w-5 h-5" />
-            {t("inviteEmployee") || "Invite Employee"}
+            <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+            <span>{t("inviteEmployee") || "Invite Employee"}</span>
           </button>
 
           {/* Pending Invitations Badge */}
           {pendingInvitations.length > 0 && (
             <button
               onClick={() => setActiveSection("pending")}
-              className="flex items-center gap-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 px-4 py-2 rounded-lg hover:bg-yellow-200 dark:hover:bg-yellow-500/30 transition-colors font-medium border border-yellow-300 dark:border-yellow-500/30"
+              className="flex items-center gap-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-yellow-200 dark:hover:bg-yellow-500/30 transition-all duration-200 font-medium border border-yellow-300 dark:border-yellow-500/30 active:scale-95 text-sm sm:text-base whitespace-nowrap"
             >
-              <Clock className="w-5 h-5" />
-              {pendingInvitations.length} {t("pending") || "Pending"}
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+              <span>
+                {pendingInvitations.length} {t("pending") || "Pending"}
+              </span>
             </button>
           )}
 
@@ -72,10 +74,10 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
           {activeSection === "pending" && (
             <button
               onClick={() => setActiveSection("all")}
-              className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#3b82f6] text-white px-5 py-2.5 rounded-lg transition-colors font-semibold shadow-lg"
+              className="flex items-center gap-2 bg-blue-100 dark:bg-[#3b82f6]/20 text-blue-700 dark:text-[#3b82f6] px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-blue-200 dark:hover:bg-[#3b82f6]/30 transition-all duration-200 font-medium border border-blue-300 dark:border-[#3b82f6]/30 active:scale-95 text-sm sm:text-base whitespace-nowrap"
             >
-              <Users className="w-5 h-5" />
-              {t("allEmployees") || "All Employees"}
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+              <span>{t("allEmployees") || "All Employees"}</span>
             </button>
           )}
         </div>
@@ -104,13 +106,13 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
       {showInviteModal && userIsOwner && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-[#1e3a5f]">
-            <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-[#1e3a5f]">
+            <div className="flex flex-wrap justify-end items-center gap-3">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {t("inviteNewEmployee") || "Invite New Employee"}
               </h3>
               <button
                 onClick={() => setShowInviteModal(false)}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95"
               >
                 <X className="w-6 h-6" />
               </button>
