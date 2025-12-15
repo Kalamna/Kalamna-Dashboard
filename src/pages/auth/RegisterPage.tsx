@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Mail,
@@ -52,8 +52,32 @@ function Register({
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 
   const t = translations[language as keyof typeof translations];
+
+  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+    setTimeout(() => {
+      if (passwordInputRef.current) {
+        passwordInputRef.current.focus();
+      }
+    }, 0);
+  };
+
+  const handleConfirmPasswordToggle = (
+    e: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    e.preventDefault();
+    setShowConfirmPassword(!showConfirmPassword);
+    setTimeout(() => {
+      if (confirmPasswordInputRef.current) {
+        confirmPasswordInputRef.current.focus();
+      }
+    }, 0);
+  };
 
   const toggleLanguage = () => {
     const newLang = language === "en" ? "ar" : "en";
@@ -563,6 +587,7 @@ function Register({
                       className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
                     />
                     <input
+                      ref={passwordInputRef}
                       type={showPassword ? "text" : "password"}
                       name="password"
                       value={formData.password}
@@ -583,8 +608,10 @@ function Register({
                     />
                     <button
                       type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                      onMouseDown={handlePasswordToggle}
+                      onClick={(e) => e.preventDefault()}
                       className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+                      tabIndex={-1}
                     >
                       {showPassword ? (
                         <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -614,6 +641,7 @@ function Register({
                       className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
                     />
                     <input
+                      ref={confirmPasswordInputRef}
                       type={showConfirmPassword ? "text" : "password"}
                       name="confirmPassword"
                       value={formData.confirmPassword}
@@ -633,10 +661,10 @@ function Register({
                     />
                     <button
                       type="button"
-                      onClick={() =>
-                        setShowConfirmPassword(!showConfirmPassword)
-                      }
+                      onMouseDown={handleConfirmPasswordToggle}
+                      onClick={(e) => e.preventDefault()}
                       className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+                      tabIndex={-1}
                     >
                       {showConfirmPassword ? (
                         <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />

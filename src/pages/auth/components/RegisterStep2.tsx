@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { User, Lock, Loader, Eye, EyeOff } from "lucide-react";
 import type { Step2Props } from "../types";
 
@@ -13,6 +13,30 @@ const RegisterStep2: React.FC<Step2Props> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
+
+  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+    setTimeout(() => {
+      if (passwordInputRef.current) {
+        passwordInputRef.current.focus();
+      }
+    }, 0);
+  };
+
+  const handleConfirmPasswordToggle = (
+    e: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    e.preventDefault();
+    setShowConfirmPassword(!showConfirmPassword);
+    setTimeout(() => {
+      if (confirmPasswordInputRef.current) {
+        confirmPasswordInputRef.current.focus();
+      }
+    }, 0);
+  };
   return (
     <div className="space-y-4 sm:space-y-6">
       <h3
@@ -66,6 +90,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
             className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
           />
           <input
+            ref={passwordInputRef}
             type={showPassword ? "text" : "password"}
             name="password"
             value={formData.password}
@@ -86,8 +111,10 @@ const RegisterStep2: React.FC<Step2Props> = ({
           />
           <button
             type="button"
-            onClick={() => setShowPassword(!showPassword)}
+            onMouseDown={handlePasswordToggle}
+            onClick={(e) => e.preventDefault()}
             className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+            tabIndex={-1}
           >
             {showPassword ? (
               <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -116,6 +143,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
             className={`absolute ${language === "ar" ? "right-3" : "left-3"} top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5`}
           />
           <input
+            ref={confirmPasswordInputRef}
             type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             value={formData.confirmPassword}
@@ -135,8 +163,10 @@ const RegisterStep2: React.FC<Step2Props> = ({
           />
           <button
             type="button"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            onMouseDown={handleConfirmPasswordToggle}
+            onClick={(e) => e.preventDefault()}
             className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
+            tabIndex={-1}
           >
             {showConfirmPassword ? (
               <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
