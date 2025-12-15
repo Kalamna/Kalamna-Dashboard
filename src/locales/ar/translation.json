@@ -75,5 +75,23 @@
   "customerFeedback": "تقييمات العملاء",
   "averageRating": "متوسط التقييم",
   "totalFeedback": "إجمالي التقييمات",
-  "positiveRate": "معدل الإيجابية"
+  "positiveRate": "معدل الإيجابية",
+
+  "inactive": "غير نشط",
+  "all": "الكل",
+  "text": "نص",
+  "file": "ملف",
+  "updated": "تم التحديث",
+  "chunks": "القطع",
+  "titleRequired": "العنوان مطلوب",
+  "textRequired": "المحتوى النصي مطلوب",
+  "fileRequired": "الملف مطلوب",
+  "cancel": "إلغاء",
+  "add": "إضافة",
+  "title": "العنوان",
+  "type": "النوع",
+  "textContent": "المحتوى النصي",
+  "uploadFile": "تحميل ملف",
+  "prev": "سابق",
+  "next": "التالي"
 }

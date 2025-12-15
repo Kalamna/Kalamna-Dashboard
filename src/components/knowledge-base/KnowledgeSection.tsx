@@ -35,6 +35,7 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
   onEdit,
   onDelete,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center">
       {/* Left: Icon + Title + Info */}
@@ -48,12 +49,12 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
         <div>
           <h2 className="font-medium">{title}</h2>
           <p className="text-sm text-muted-foreground">
-              Updated: {updatedAt} -
-              {chunksCount} {type === "text" ? "chunks" : "files"}
+              <span>{t("updated")}: {updatedAt}</span>
+              <span>{t("chunks")}: {chunksCount} {type === "text" ? "chunks" : "files"}</span>
               <span className={`px-2 py-1 text-xs rounded-full ${
                 status === "active" ? "bg-green-100 text-green-800" : "bg-gray-200 text-gray-800"
               }`} >
-              {status}
+              {t(status)}
               </span>
             </p>
         </div>
@@ -79,6 +80,8 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 };
 
 export const KnowledgeList: React.FC = () => {
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState("") //search input
   const [filterType, setFilterType] = useState<"all" | "text" | "file">("all"); //type filter
 
@@ -111,7 +114,7 @@ export const KnowledgeList: React.FC = () => {
         {/* Search input */}
         <input
           type="text"
-          placeholder="Search knowledge..."
+          placeholder={t("search")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="px-3 py-2 border rounded-lg flex-1"
@@ -123,9 +126,9 @@ export const KnowledgeList: React.FC = () => {
           onChange={(e) => setFilterType(e.target.value as "all" | "text" | "file")}
           className="px-3 py-2 border rounded-lg"
         >
-          <option value="all">All</option>
-          <option value="text">Text</option>
-          <option value="file">File</option>
+          <option value="all">{t("all")}</option>
+          <option value="text">{t("text")}</option>
+          <option value="file">{t("file")}</option>
         </select>
       </div>
 
@@ -156,7 +159,7 @@ export const KnowledgeList: React.FC = () => {
             onClick={() => setCurrentPage( (prev) => Math.max(prev - 1, 1) )} 
             disabled = {currentPage === 1} 
             className="px-3 py-1 border rounded disabled:opacity-50">
-              Prev
+              {t("prev")}
             </button>
 
             {/* Page numbers */}
@@ -185,7 +188,7 @@ export const KnowledgeList: React.FC = () => {
             disabled={currentPage === totalPages}
             className="px-3 py-1 border rounded disabled:opacity-50"
           >
-            Next
+            {t("next")}
           </button>
           </div>
 
@@ -204,6 +207,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation();
   /* -----------------------------
    * Local UI State
    * ----------------------------- */
@@ -218,17 +222,17 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
    * ----------------------------- */
   const handleSubmit = () => {
     if (!title.trim()) {
-      setError("Title is required");
+      setError(t("titleRequired"));
       return;
     }
 
     if (type === "text" && !content.trim()) {
-      setError("Text content is required");
+      setError(t("textRequired"));
       return;
     }
 
     if (type === "file" && !file) {
-      setError("File is required");
+      setError(t("fileRequired"));
       return;
     }
 
@@ -250,7 +254,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       <div className="bg-white rounded-lg w-full max-w-md p-6 space-y-4">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold">Add Knowledge</h2>
+          <h2 className="text-lg font-semibold">{t("addKnowledge")}</h2>
           <button onClick={onClose}>✖</button>
         </div>
 
@@ -261,7 +265,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
         {/* Title */}
         <div>
-          <label className="text-sm font-medium">Title</label>
+          <label className="text-sm font-medium">{t("title")}</label>
           <input
             type="text"
             value={title}
@@ -275,7 +279,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
         {/* Type switch */}
         <div>
-          <label className="text-sm font-medium">Type</label>
+          <label className="text-sm font-medium">{t("type")}</label>
           <select
             value={type}
             onChange={(e) => {
@@ -284,15 +288,15 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
             }}
             className="w-full mt-1 px-3 py-2 border rounded-lg"
           >
-            <option value="text">Text</option>
-            <option value="file">File</option>
+            <option value="text">{t("text")}</option>
+            <option value="file">{t("file")}</option>
           </select>
         </div>
 
         {/* Conditional content */}
         {type === "text" ? (
           <div>
-            <label className="text-sm font-medium">Text Content</label>
+            <label className="text-sm font-medium">{t("textContent")}</label>
             <textarea
               value={content}
               onChange={(e) => {
@@ -305,7 +309,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
         ) : (
           <div>
-            <label className="text-sm font-medium">Upload File</label>
+            <label className="text-sm font-medium">{t("uploadFile")}</label>
 
             <input
               type="file"
@@ -330,13 +334,13 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 border rounded-lg"
           >
-            Cancel
+            {t("cancel")}
           </button>
           <button
             onClick={handleSubmit}
             className="px-4 py-2 border rounded-lg"
           >
-            Add
+            {t("add")}
           </button>
         </div>
       </div>
