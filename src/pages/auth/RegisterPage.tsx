@@ -19,7 +19,6 @@ import { useDarkMode } from "../../context/DarkModeContext";
 import kalamnaLight from "../../assets/images/KalamnaLight.png";
 import kalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
-import "./Mobile.css";
 import "../../styles.css";
 
 // ============================================
