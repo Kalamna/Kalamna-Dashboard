@@ -1,9 +1,7 @@
-
 import React, { useState } from "react";
 import { Star, MessageSquare } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../components/common/Button";
 
 interface Feedback {
   id: number;
@@ -17,7 +15,9 @@ interface FeedbackPageProps {
   feedbacks?: Feedback[];
 }
 
-export default function FeedbackPage({ feedbacks: initialFeedbacks }: FeedbackPageProps) {
+export default function FeedbackPage({
+  feedbacks: initialFeedbacks,
+}: FeedbackPageProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [feedbacks] = useState<Feedback[]>(
@@ -43,7 +43,7 @@ export default function FeedbackPage({ feedbacks: initialFeedbacks }: FeedbackPa
         comment: "Very satisfied with the platform.",
         date: "2025-12-12",
       },
-    ]
+    ],
   );
 
   const averageRating =
@@ -136,9 +136,7 @@ function StatCard({
 }) {
   return (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-      <p className="text-sm text-gray-600 dark:text-secondary mb-2">
-        {title}
-      </p>
+      <p className="text-sm text-gray-600 dark:text-secondary mb-2">{title}</p>
       <div className="flex items-center gap-2">
         <p className="text-3xl font-bold text-text-color-specific dark:text-white">
           {value}
