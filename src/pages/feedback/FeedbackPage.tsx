@@ -143,7 +143,7 @@ function StarRating({ rating }: { rating: number }) {
           key={i}
           className={`w-5 h-5 ${
             i < rating
-              ? "text-warning fill-warning"
+              ? "text-yellow-400 fill-yellow-400"
               : "text-gray-300 dark:text-gray-600"
           }`}
         />
