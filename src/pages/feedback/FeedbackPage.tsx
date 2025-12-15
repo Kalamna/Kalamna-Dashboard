@@ -1,6 +1,9 @@
+
 import React, { useState } from "react";
-import { Star } from "lucide-react";
+import { Star, MessageSquare } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/common/Button";
 
 interface Feedback {
   id: number;
@@ -16,6 +19,7 @@ interface FeedbackPageProps {
 
 export default function FeedbackPage({ feedbacks: initialFeedbacks }: FeedbackPageProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [feedbacks] = useState<Feedback[]>(
     initialFeedbacks || [
       {
@@ -51,10 +55,20 @@ export default function FeedbackPage({ feedbacks: initialFeedbacks }: FeedbackPa
 
   return (
     <div className="space-y-6">
-      {/* Page Title */}
-      <h2 className="text-2xl font-bold text-text-color-specific dark:text-white">
-        {t("customerFeedback", "Customer Feedback")}
-      </h2>
+      {/* Top Bar with Title and Button */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-text-color-specific dark:text-white">
+          {t("customerFeedback", "Customer Feedback")}
+        </h2>
+        <button
+          type="button"
+          className="flex items-center gap-2 px-6 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow transition-colors"
+          onClick={() => navigate("/chat-history")}
+        >
+          <MessageSquare className="w-5 h-5" />
+          {t("goToChatSession", "Go to Chat Session")}
+        </button>
+      </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
