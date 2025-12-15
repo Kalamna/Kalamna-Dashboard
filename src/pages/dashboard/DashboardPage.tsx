@@ -1,5 +1,10 @@
 import { OverviewSection } from "../../components/overview/OverviewSection";
 
 export const DashboardPage = () => {
-  return <OverviewSection />;
+  return (
+    <div className="space-y-12">
+      {/* Overview Section */}
+      <OverviewSection />
+    </div>
+  );
 };
