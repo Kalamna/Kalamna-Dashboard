@@ -4,7 +4,7 @@ import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import EmployeesPage from "./pages/employees/EmployeesPage";
 import { KnowledgeBasePage } from "./pages/knowledge-base/KnowledgeBasePage";
 import { ChatHistoryPage } from "./pages/chat-history/ChatHistoryPage";
-import { FeedbackPage } from "./pages/feedback/FeedbackPage";
+import FeedbackPage from "./pages/feedback/FeedbackPage";
 import { AnalyticsPage } from "./pages/analytics/AnalyticsPage";
 import { WidgetPage } from "./pages/widget/WidgetPage";
 import { SettingsPage } from "./pages/settings/SettingsPage";
