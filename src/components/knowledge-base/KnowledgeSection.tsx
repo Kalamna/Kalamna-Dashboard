@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import React, { useState, useEffect } from "react";
 import { knowledgeMockData } from "./mockData";
 import type { KnowledgeEntry } from "./types";
+import { FileText, Folder, Eye, Edit2, Trash2 } from "lucide-react";
+import { X } from "lucide-react";
 
 export function KnowledgeSection() {
   const { t } = useTranslation();
@@ -37,45 +39,48 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="p-4 border rounded-lg bg-white shadow-sm flex justify-between items-center">
-      {/* Left: Icon + Title + Info */}
-      <div className="flex items-center space-x-4">
-        {/* Document icon */}
-        <div className="text-xl">
-          {type === "text" ? "📄" : "📁"}
-        </div>
-
-        {/* Title and info */}
-        <div>
-          <h2 className="font-medium">{title}</h2>
-          <p className="text-sm text-muted-foreground">
-              <span>{t("updated")}: {updatedAt}</span>
-              <span>{t("chunks")}: {chunksCount} {type === "text" ? "chunks" : "files"}</span>
-              <span className={`px-2 py-1 text-xs rounded-full ${
-                status === "active" ? "bg-green-100 text-green-800" : "bg-gray-200 text-gray-800"
-              }`} >
-              {t(status)}
-              </span>
-            </p>
-        </div>
+    <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md">
+  {/* Top-level flex container: left + right */}
+  <div className="flex justify-between items-start">
+    {/* Left: Icon + Title + Info */}
+    <div className="flex items-start space-x-4">
+      {/* Document icon */}
+      <div className="w-6 h-6 text-blue-800 dark:text-blue-400 mt-1">
+        {type === "text" ? <FileText /> : <Folder />}
       </div>
 
-      {/* Right: Status badge + action icons */}
-      <div className="flex items-center space-x-4">
-        {/* Action icons */}
-        <div className="flex space-x-2 text-gray-500">
-          <button onClick={onView} title="View">
-            👁️
-          </button>
-          <button onClick={onEdit} title="Edit">
-            ✏️
-          </button>
-          <button onClick={onDelete} title="Delete">
-            🗑️
-          </button>
-        </div>
+      {/* Title and info */}
+      <div>
+        <h2 className="font-medium mb-2 text-gray-900 dark:text-white">{title}</h2>
+        <p className="text-sm text-muted-foreground text-gray-900 dark:text-white">
+          <span>{t("updated")}: {updatedAt}</span> &nbsp; | &nbsp;
+          <span>{t("chunks")}: {chunksCount} {type === "text" ? "chunks" : "files"}</span> &nbsp; | &nbsp;
+          <span className={`text-xs text-black dark:text-white mb-1 px-2 py-1 rounded-full ${
+            status === "active"
+              ? "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-500/30"
+              : "bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400 border-red-300 dark:border-red-500/30"
+          }`}>
+            {t(status)}
+          </span>
+        </p>
       </div>
     </div>
+
+    {/* Right: Action icons */}
+    <div className="flex items-center space-x-2 text-gray-900 dark:text-white">
+      <button onClick={onView} title="View">
+        <Eye className="w-5 h-5 text-blue-800 dark:text-blue-400 mt-1" />
+      </button>
+      <button onClick={onEdit} title="Edit">
+        <Edit2 className="w-5 h-5 text-blue-800 dark:text-blue-400 mt-1" />
+      </button>
+      <button onClick={onDelete} title="Delete">
+        <Trash2 className="w-5 h-5 text-blue-800 dark:text-blue-400 mt-1" />
+      </button>
+    </div>
+  </div>
+</div>
+
   );
 };
 
@@ -117,14 +122,14 @@ export const KnowledgeList: React.FC = () => {
           placeholder={t("search")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="px-3 py-2 border rounded-lg flex-1"
+          className="app-header__search px-4 py-2 rounded-lg w-full focus:outline-none text-left"
         />
 
         {/* Type filter */}
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value as "all" | "text" | "file")}
-          className="px-3 py-2 border rounded-lg"
+          className="app-header__search px-3 py-2 rounded-lg w-64 text-left bg-blue-500 text-white focus:outline-none disabled:opacity-50"
         >
           <option value="all">{t("all")}</option>
           <option value="text">{t("text")}</option>
@@ -133,7 +138,7 @@ export const KnowledgeList: React.FC = () => {
       </div>
 
       {/* Knowledge cards */}
-      <div className="space-y-2">
+      <div className="space-y-4">
         {paginatedData.length > 0 ? (
           paginatedData.map((entry) => (
             <KnowledgeCard
@@ -158,7 +163,7 @@ export const KnowledgeList: React.FC = () => {
             <button 
             onClick={() => setCurrentPage( (prev) => Math.max(prev - 1, 1) )} 
             disabled = {currentPage === 1} 
-            className="px-3 py-1 border rounded disabled:opacity-50">
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-smflex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm">
               {t("prev")}
             </button>
 
@@ -168,7 +173,7 @@ export const KnowledgeList: React.FC = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`px-3 py-1 border rounded ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm ${
                   currentPage === page
                     ? "bg-primary text-white"
                     : ""
@@ -186,7 +191,7 @@ export const KnowledgeList: React.FC = () => {
               )
             }
             disabled={currentPage === totalPages}
-            className="px-3 py-1 border rounded disabled:opacity-50"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm"
           >
             {t("next")}
           </button>
@@ -251,99 +256,101 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg w-full max-w-md p-6 space-y-4">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold">{t("addKnowledge")}</h2>
-          <button onClick={onClose}>✖</button>
-        </div>
-
-        {/* Error */}
-        {error && (
-          <p className="text-sm text-red-600">{error}</p>
-        )}
-
-        {/* Title */}
-        <div>
-          <label className="text-sm font-medium">{t("title")}</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              setError("");
-            }}
-            className="w-full mt-1 px-3 py-2 border rounded-lg"
-          />
-        </div>
-
-        {/* Type switch */}
-        <div>
-          <label className="text-sm font-medium">{t("type")}</label>
-          <select
-            value={type}
-            onChange={(e) => {
-              setType(e.target.value as "text" | "file");
-              setError("");
-            }}
-            className="w-full mt-1 px-3 py-2 border rounded-lg"
-          >
-            <option value="text">{t("text")}</option>
-            <option value="file">{t("file")}</option>
-          </select>
-        </div>
-
-        {/* Conditional content */}
-        {type === "text" ? (
-          <div>
-            <label className="text-sm font-medium">{t("textContent")}</label>
-            <textarea
-              value={content}
-              onChange={(e) => {
-                setContent(e.target.value);
-                setError("");
-              }}
-              className="w-full mt-1 px-3 py-2 border rounded-lg"
-              rows={4}
-            />
-          </div>
-        ) : (
-          <div>
-            <label className="text-sm font-medium">{t("uploadFile")}</label>
-
-            <input
-              type="file"
-              onChange={(e) => {
-                setFile(e.target.files?.[0] || null);
-      setError("");
-    }}
-    className="w-full mt-1"
-  />
-
-  {file && (
-    <p className="text-sm text-muted-foreground mt-1">
-      Selected file: {file.name}
-    </p>
-  )}
-</div>
-        )}
-
-        {/* Actions */}
-        <div className="flex justify-end space-x-2 pt-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 border rounded-lg"
-          >
-            {t("cancel")}
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 border rounded-lg"
-          >
-            {t("add")}
-          </button>
-        </div>
-      </div>
+  <div className="bg-white dark:bg-[#0d1f2d] rounded-lg w-full max-w-md p-6 space-y-4 shadow-lg">
+    {/* Header */}
+    <div className="flex justify-between items-center">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        {t("addKnowledge")}
+      </h2>
+      <button onClick={onClose} className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-200">
+        <X size={20} />
+      </button>
     </div>
+
+    {/* Error */}
+    {error && (
+      <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+    )}
+
+    {/* Title */}
+    <div>
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("title")}</label>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value);
+          setError("");
+        }}
+        className="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-[#14283b] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    {/* Type switch */}
+    <div>
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("type")}</label>
+      <select
+        value={type}
+        onChange={(e) => {
+          setType(e.target.value as "text" | "file");
+          setError("");
+        }}
+        className="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-[#14283b] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="text">{t("text")}</option>
+        <option value="file">{t("file")}</option>
+      </select>
+    </div>
+
+    {/* Conditional content */}
+    {type === "text" ? (
+      <div>
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("textContent")}</label>
+        <textarea
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+            setError("");
+          }}
+          className="w-full mt-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-[#14283b] text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows={4}
+        />
+      </div>
+    ) : (
+      <div>
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-200">{t("uploadFile")}</label>
+        <input
+          type="file"
+          onChange={(e) => {
+            setFile(e.target.files?.[0] || null);
+            setError("");
+          }}
+          className="w-full mt-1 text-gray-900 dark:text-gray-100"
+        />
+        {file && (
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Selected file: {file.name}
+          </p>
+        )}
+      </div>
+    )}
+
+    {/* Actions */}
+    <div className="flex justify-end space-x-2 pt-2">
+      <button
+        onClick={onClose}
+        className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-blue-600 dark:bg-blue-500 text-white shadow-sm hover:bg-blue-700 dark:hover:bg-blue-400"
+      >
+        {t("cancel")}
+      </button>
+      <button
+        onClick={handleSubmit}
+        className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-blue-600 dark:bg-blue-500 text-white shadow-sm hover:bg-blue-700 dark:hover:bg-blue-400"
+      >
+        {t("add")}
+      </button>
+    </div>
+  </div>
+</div>
   );
 };

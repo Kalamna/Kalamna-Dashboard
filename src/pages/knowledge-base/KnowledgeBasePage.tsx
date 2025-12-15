@@ -10,13 +10,11 @@ export const KnowledgeBasePage = () => {
   return (
     <div className="p-6 space-y-6"> 
     {/* Page header */} 
-    <div className="flex items-center justify-between">
-      {/* Big bold text for page title */} 
-      <h1 className="text-2xl font-semibold">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
         {t("knowledgeBase")}
-      </h1> 
-      {/* Add Knowledge button */}
-      <button onClick={() => setIsModalOpen(true)} className="px-4 py-2 rounded-lg bg-primary text-black">
+      </h2> 
+      <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm">
         {t("addKnowledge")}
       </button>
       </div>
