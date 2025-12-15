@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiGlobe } from "react-icons/fi";
 import { BsMoon } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   const { t, i18n } = useTranslation();
@@ -33,6 +34,17 @@ const LoginPage = () => {
     if (email && password) {
       navigate("/dashboard");
     }
+  };
+
+  const handlePasswordToggle = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+    // Ensure focus stays on input after toggle
+    setTimeout(() => {
+      if (passwordInputRef.current) {
+        passwordInputRef.current.focus();
+      }
+    }, 0);
   };
 
   return (
@@ -123,25 +135,22 @@ const LoginPage = () => {
         >
           <FiLock className="text-gray-500" />
           <input
+            ref={passwordInputRef}
             className="flex-1 outline-none bg-transparent"
             type={showPassword ? "text" : "password"}
             placeholder={t("passwordPlaceholder") ?? ""}
             style={{ color: darkMode ? "white" : "black" }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
           />
 
-          {showPassword ? (
-            <FiEye
-              onClick={() => setShowPassword(false)}
-              className="cursor-pointer"
-            />
-          ) : (
-            <FiEyeOff
-              onClick={() => setShowPassword(true)}
-              className="cursor-pointer"
-            />
-          )}
+          <div
+            onClick={handlePasswordToggle}
+            style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+          >
+            {showPassword ? <FiEye /> : <FiEyeOff />}
+          </div>
         </div>
 
         {/* Remember Me */}

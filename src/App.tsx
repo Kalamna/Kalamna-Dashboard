@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { MainLayout } from "./layouts/DashboardLayout";
-import { RegisterPage } from "./pages/auth/RegisterPage";
 import { DashboardPage } from "./pages/dashboard/DashboardPage";
-import { EmployeesPage } from "./pages/employees/EmployeesPage";
+import EmployeesPage from "./pages/employees/EmployeesPage";
 import { KnowledgeBasePage } from "./pages/knowledge-base/KnowledgeBasePage";
 import { ChatHistoryPage } from "./pages/chat-history/ChatHistoryPage";
 import { ChatSessionPage } from "./pages/chat-history/ChatSessionPage";
@@ -13,13 +12,13 @@ import { SettingsPage } from "./pages/settings/SettingsPage";
 import { ConfigurationPage } from "./pages/settings/ConfigurationPage";
 import { ApiKeyPage } from "./pages/settings/ApiKeyPage";
 import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/employees" element={<EmployeesPage />} />
