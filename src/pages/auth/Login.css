@@ -42,46 +42,8 @@ input::placeholder {
   border-color: #1e3a5f;
 }
 
-/* Hide browser password visibility toggle on iOS Safari and Chrome */
-input[type="password"]::-webkit-outer-spin-button,
-input[type="password"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
-input[type="password"]::-webkit-textfield-decoration-container,
-input[type="password"]::-webkit-clear-button,
-input[type="password"]::-webkit-credentials-auto-fill-button,
-input[type="password"]::-webkit-textfield-decoration {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Safari/iOS specific password field fixes */
-input[type="password"] {
-  -webkit-user-select: text;
-  user-select: text;
-  -webkit-text-security: disc;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* Edge (old + new) and IE password fixes */
+/* Edge (old + new) */
 input::-ms-reveal,
 input::-ms-clear {
   display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Ensure password input in wrapper doesn't show browser's native visibility toggle */
-.input-wrapper input[type="password"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
