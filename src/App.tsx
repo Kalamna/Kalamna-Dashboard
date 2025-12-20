@@ -4,6 +4,7 @@ import { DashboardPage } from "./pages/dashboard/DashboardPage";
 import EmployeesPage from "./pages/employees/EmployeesPage";
 import { KnowledgeBasePage } from "./pages/knowledge-base/KnowledgeBasePage";
 import { ChatHistoryPage } from "./pages/chat-history/ChatHistoryPage";
+import { ChatSessionPage } from "./pages/chat-history/ChatSessionPage";
 import FeedbackPage from "./pages/feedback/FeedbackPage";
 import { AnalyticsPage } from "./pages/analytics/AnalyticsPage";
 import { WidgetPage } from "./pages/widget/WidgetPage";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/employees" element={<EmployeesPage />} />
         <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
         <Route path="/chat-history" element={<ChatHistoryPage />} />
+        <Route path="/chat-history/session/:id" element={<ChatSessionPage />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/widget" element={<WidgetPage />} />
