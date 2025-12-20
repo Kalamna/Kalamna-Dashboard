@@ -86,7 +86,7 @@
   "comment": "Comment",
   "alertType": "Type",
   "alertMessage": "Message",
-  "timestamp": "Timestamp"
+  "timestamp": "Timestamp",
   "employeeManagement": "Employee Management",
   "inviteEmployee": "Invite Employee",
   "pendingInvitations": "Pending Invitations",

@@ -86,7 +86,7 @@
   "comment": "التعليق",
   "alertType": "النوع",
   "alertMessage": "الرسالة",
-  "timestamp": "الوقت"
+  "timestamp": "الوقت",
   "employeeManagement": "إدارة الموظفين",
   "inviteEmployee": "دعوة موظف",
   "pendingInvitations": "الدعوات المعلقة",
