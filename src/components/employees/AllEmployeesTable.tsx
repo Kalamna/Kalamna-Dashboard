@@ -184,10 +184,10 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   <UserIcon className="w-5 h-5 text-blue-600 dark:text-[#3b82f6]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words">
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words overflow-wrap-anywhere">
                     {employee.fullName}
                   </h4>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 break-all">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 break-all overflow-wrap-anywhere">
                     <Mail className="w-4 h-4 flex-shrink-0" />
                     <span>{employee.email}</span>
                   </div>

@@ -99,9 +99,9 @@ export function Sidebar({
 
   return (
     <aside
-      className={`fixed ${isRTL ? "right-0" : "left-0"} top-0 h-full bg-white dark:bg-[#0a1929] border-r border-gray-200 dark:border-gray-700 text-text-color-specific dark:text-white transition-all duration-300 ${sidebarOpen ? "w-64" : "w-20 -translate-x-full lg:translate-x-0"} ${isRTL && !sidebarOpen ? "translate-x-full lg:translate-x-0" : ""} z-50 shadow-lg flex flex-col`}
+      className={`fixed ${isRTL ? "right-0" : "left-0"} top-0 h-full bg-white dark:bg-[#0a1929] border-r border-gray-200 dark:border-gray-700 text-text-color-specific dark:text-white transition-all duration-300 ${sidebarOpen ? "w-64" : "w-20 -translate-x-full lg:translate-x-0"} ${isRTL && !sidebarOpen ? "translate-x-full lg:translate-x-0" : ""} z-50 shadow-lg flex flex-col overflow-hidden`}
     >
-      <div className="p-4 flex-1 overflow-y-auto scrollbar-hide">
+      <div className="p-4 flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
         <div className="flex items-center justify-between mb-8">
           <div
             className={`flex items-center ${!sidebarOpen && "justify-center"}`}

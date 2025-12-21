@@ -264,9 +264,9 @@ const EmployeesPage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6 bg-white dark:bg-transparent">
+    <div className="space-y-6 bg-white dark:bg-transparent max-w-full overflow-x-hidden">
       {/* Header with View Switcher */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 flex-wrap">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
           {t("employeeManagement") || "Employee Management"}
         </h2>

@@ -126,8 +126,8 @@ export function OverviewSection() {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
+    <div className="max-w-full overflow-x-hidden">
+      <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
           {t("dashboardOverview")}
         </h1>
@@ -138,7 +138,7 @@ export function OverviewSection() {
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -170,7 +170,7 @@ export function OverviewSection() {
       </div>
 
       {/* Analytics Charts */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8 overflow-hidden">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           {t("conversationAnalytics")}
         </h3>
@@ -180,8 +180,8 @@ export function OverviewSection() {
       </div>
 
       {/* Recent Conversations */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8 overflow-hidden">
+        <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {t("recentConversations")}
           </h3>

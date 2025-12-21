@@ -65,8 +65,8 @@ export const ChatSessionPage = () => {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-6 max-w-full overflow-x-hidden">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
         <h1 className="text-2xl font-bold text-text-color-specific dark:text-white">
           {t("sessionDetails")}
         </h1>
@@ -131,18 +131,18 @@ export const ChatSessionPage = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6 overflow-hidden">
         <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
           {t("messageContent")}
         </h2>
-        <div className="space-y-4 max-h-96 overflow-y-auto">
+        <div className="space-y-4 max-h-96 overflow-y-auto overflow-x-hidden">
           {session.messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.senderType === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex ${message.senderType === "user" ? "justify-end" : "justify-start"} w-full`}
             >
               <div
-                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg break-words ${
                   message.senderType === "user"
                     ? "bg-blue-500 text-white"
                     : message.senderType === "ai"
@@ -168,12 +168,12 @@ export const ChatSessionPage = () => {
 
       {/* Send Message (only for active/pending) */}
       {(session.status === "active" || session.status === "pending") && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-          <div className="flex space-x-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 overflow-hidden">
+          <div className="flex space-x-4 flex-wrap gap-4">
             <input
               type="text"
               placeholder={t("messagePlaceholder")}
-              className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              className="flex-1 min-w-0 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
             />
             <button
               onClick={handleSendMessage}

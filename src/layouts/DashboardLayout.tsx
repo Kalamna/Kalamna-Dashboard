@@ -40,7 +40,7 @@ export const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors overflow-x-hidden">
       {/* Mobile Overlay - Removed as requested */}
       {/* {sidebarOpen && (
         <div
@@ -66,7 +66,7 @@ export const MainLayout = () => {
             : sidebarOpen
               ? "lg:ml-64"
               : "lg:ml-20"
-        }`}
+        } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
         <Header
           darkMode={darkMode}
@@ -76,7 +76,7 @@ export const MainLayout = () => {
           userData={undefined}
         />
 
-        <div className="p-4 sm:p-6">
+        <div className="p-4 sm:p-6 max-w-full overflow-x-hidden">
           <Outlet />
         </div>
       </main>

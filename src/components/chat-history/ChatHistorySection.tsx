@@ -82,7 +82,7 @@ export function ChatHistorySection() {
     const totalPages = Math.ceil(sessions.length / itemsPerPage);
 
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6 overflow-hidden">
         <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
           {title}
         </h2>
@@ -209,8 +209,8 @@ export function ChatHistorySection() {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div className="p-6 max-w-full overflow-x-hidden">
+      <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <h1 className="text-2xl font-bold text-text-color-specific dark:text-white">
           {t("chatHistory")}
         </h1>

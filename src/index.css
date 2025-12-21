@@ -6,7 +6,30 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+/* Global reset to prevent unwanted overflow */
+* {
+  box-sizing: border-box;
+  /* max-width: 100%; */
+}
+
+html,
 body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100%;
   font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--bg-main);
 }

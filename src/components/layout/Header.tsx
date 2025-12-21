@@ -24,15 +24,15 @@ export function Header({
   const isRTL = language === "ar";
 
   return (
-    <header className="app-header sticky top-0 z-40">
+    <header className="app-header sticky top-0 z-40 overflow-x-hidden w-full">
       <div
-        className={`px-4 sm:px-6 py-4 flex items-center justify-between gap-4 ${isRTL ? "flex-row-reverse" : ""}`}
+        className={`px-4 sm:px-6 py-4 flex items-center justify-between gap-2 sm:gap-4 max-w-full ${isRTL ? "flex-row-reverse" : ""}`}
       >
         {/* Left Side in LTR / Right Side in RTL */}
         {!isRTL ? (
           // LTR: Search on left
-          <div className="flex items-center gap-4 flex-1">
-            <div className="flex items-center gap-3 lg:hidden">
+          <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0 overflow-hidden">
+            <div className="flex items-center gap-3 lg:hidden flex-shrink-0">
               {darkMode ? (
                 <img
                   src={logoDark}
@@ -54,12 +54,12 @@ export function Header({
                 <Menu className="w-6 h-6" />
               </button>
             </div>
-            <div className="flex items-center flex-1 max-w-2xl">
+            <div className="flex items-center flex-1 max-w-2xl min-w-0 overflow-hidden">
               <input
                 type="text"
                 placeholder={t("search")}
                 dir="ltr"
-                className="app-header__search px-4 py-2 rounded-lg w-full focus:outline-none text-left"
+                className="app-header__search px-4 py-2 rounded-lg w-full focus:outline-none text-left truncate min-w-0"
               />
               <Search
                 className="w-5 h-5 ml-3 hidden sm:block"
@@ -69,7 +69,7 @@ export function Header({
           </div>
         ) : (
           // RTL: Icons + User on left (reversed order)
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <button
               onClick={toggleLanguage}
               className="header-action flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 transition-colors"
@@ -98,16 +98,16 @@ export function Header({
               </span>
             </button>
 
-            <div className="hidden sm:flex items-center gap-3">
-              <div className="hidden md:block text-right">
-                <p className="text-sm font-semibold text-[var(--header-text)] whitespace-nowrap">
+            <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
+              <div className="hidden md:block text-right max-w-[150px] overflow-hidden">
+                <p className="text-sm font-semibold text-[var(--header-text)] whitespace-nowrap truncate">
                   {userData?.name || "Admin User"}
                 </p>
-                <p className="text-xs text-[var(--header-muted-text)] whitespace-nowrap">
+                <p className="text-xs text-[var(--header-muted-text)] whitespace-nowrap truncate">
                   {userData?.email || "admin@kalamna.ai"}
                 </p>
               </div>
-              <div className="header-avatar w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold shadow-sm">
+              <div className="header-avatar w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold shadow-sm flex-shrink-0">
                 {userData?.name?.[0]?.toUpperCase() || "A"}
               </div>
             </div>
@@ -117,7 +117,7 @@ export function Header({
         {/* Right Side in LTR / Left Side in RTL */}
         {!isRTL ? (
           // LTR: Icons + User on right
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <button
               onClick={toggleLanguage}
               className="header-action flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 transition-colors"
@@ -146,12 +146,12 @@ export function Header({
               </span>
             </button>
 
-            <div className="hidden sm:flex items-center gap-3">
-              <div className="header-avatar w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold shadow-sm">
+            <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
+              <div className="header-avatar w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold shadow-sm flex-shrink-0">
                 {userData?.name?.[0]?.toUpperCase() || "A"}
               </div>
-              <div className="hidden md:block text-left">
-                <p className="text-sm font-semibold text-[var(--header-text)] whitespace-nowrap">
+              <div className="hidden md:block text-left max-w-[150px] overflow-hidden">
+                <p className="text-sm font-semibold text-[var(--header-text)] whitespace-nowrap truncate">
                   {userData?.name || "Admin User"}
                 </p>
                 <p className="text-xs text-[var(--header-muted-text)] whitespace-nowrap">
@@ -162,8 +162,8 @@ export function Header({
           </div>
         ) : (
           // RTL: Search on right
-          <div className="flex items-center gap-4 flex-1">
-            <div className="flex items-center gap-3 lg:hidden">
+          <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0 overflow-hidden">
+            <div className="flex items-center gap-3 lg:hidden flex-shrink-0">
               {darkMode ? (
                 <img
                   src={logoDark}
@@ -185,12 +185,12 @@ export function Header({
                 <Menu className="w-6 h-6" />
               </button>
             </div>
-            <div className="flex items-center flex-1 max-w-2xl">
+            <div className="flex items-center flex-1 max-w-2xl min-w-0 overflow-hidden">
               <input
                 type="text"
                 placeholder={t("search")}
                 dir="rtl"
-                className="app-header__search px-4 py-2 rounded-lg w-full focus:outline-none text-right"
+                className="app-header__search px-4 py-2 rounded-lg w-full focus:outline-none text-right truncate min-w-0"
               />
               <Search
                 className="w-5 h-5 mr-3 hidden sm:block"

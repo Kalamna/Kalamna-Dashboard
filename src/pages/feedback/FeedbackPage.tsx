@@ -54,9 +54,9 @@ export default function FeedbackPage({
     0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-full overflow-x-hidden">
       {/* Top Bar with Title and Button */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <h2 className="text-2xl font-bold text-text-color-specific dark:text-white">
           {t("customerFeedback", "Customer Feedback")}
         </h2>
@@ -95,7 +95,7 @@ export default function FeedbackPage({
         {feedbacks.map((feedback) => (
           <div
             key={feedback.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
             {/* Header */}
             <div className="flex justify-between items-start mb-3">
