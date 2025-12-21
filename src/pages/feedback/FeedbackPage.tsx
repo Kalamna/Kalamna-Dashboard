@@ -102,7 +102,7 @@ export default function FeedbackPage({
         {feedbacks.map((feedback) => (
           <div
             key={feedback.id}
-            className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] overflow-hidden hover:shadow-md transition-shadow duration-200"
+            className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
           >
             {/* Header */}
             <div className="flex justify-between items-start mb-3">
@@ -142,7 +142,7 @@ function StatCard({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] hover:shadow-md transition-shadow duration-200">
+    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
       <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{title}</p>
       <div className="flex items-center gap-3">
         <p className="text-3xl font-bold text-gray-900 dark:text-white">

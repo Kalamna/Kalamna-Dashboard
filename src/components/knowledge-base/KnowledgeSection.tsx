@@ -58,7 +58,7 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
       {/* Top-level flex container: left + right */}
       <div className="flex justify-between items-start gap-4 flex-wrap">
         {/* Left: Icon + Title + Info */}
@@ -312,8 +312,8 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-[#1e3a5f] my-8">
-        <div className="flex flex-wrap justify-between items-center gap-3 px-6 pt-6 border-b border-gray-200 dark:border-[#1e3a5f] pb-4">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-slate-700 my-8">
+        <div className="flex flex-wrap justify-between items-center gap-3 px-6 pt-6 border-b border-gray-200 dark:border-slate-700 pb-4">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               {t("addKnowledge")}
@@ -381,7 +381,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   setType(e.target.value as "text" | "file");
                   setError("");
                 }}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none"
               >
                 <option value="text">{t("text")}</option>
                 <option value="file">{t("file")}</option>
@@ -405,7 +405,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     setContent(e.target.value);
                     setError("");
                   }}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm"
                   rows={4}
                   placeholder={t("textContent")}
                 />
@@ -435,7 +435,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                 />
                 <label
                   htmlFor="kb-file-upload"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#0d2943] border border-gray-200 dark:border-[#1e3a5f] cursor-pointer shadow-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-slate-700 dark:text-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600 cursor-pointer shadow-sm"
                 >
                   <Upload className="w-4 h-4" />
                   {t("chooseFile") || "Choose file"}

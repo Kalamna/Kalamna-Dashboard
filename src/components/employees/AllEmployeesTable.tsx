@@ -175,7 +175,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
         {currentEmployees.map((employee) => (
           <div
             key={employee.id}
-            className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
+            className="bg-white dark:bg-slate-800 p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-md"
           >
             {/* Header with Name and Role */}
             <div className="flex justify-between items-start mb-4">
@@ -269,7 +269,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl max-w-md w-full p-6 border border-gray-200 dark:border-[#1e3a5f]">
+          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-md w-full p-6 border border-gray-200 dark:border-slate-700">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-500/20 flex items-center justify-center mr-4">
                 <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />

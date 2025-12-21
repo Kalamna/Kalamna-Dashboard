@@ -272,7 +272,7 @@ const EmployeesPage: React.FC = () => {
         </h2>
 
         {/* Demo View Switcher - Remove in production */}
-        <div className="flex items-center gap-2 bg-gray-100 dark:bg-[#0d1f2d] p-1 rounded-lg border border-gray-300 dark:border-[#1e3a5f]">
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-700 p-1 rounded-lg border border-gray-300 dark:border-slate-600">
           <button
             onClick={() => setDemoRole("owner")}
             className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${

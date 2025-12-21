@@ -105,7 +105,7 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
       {/* Invite Modal (Owner Only) with Blurred Backdrop */}
       {showInviteModal && userIsOwner && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-[#1e3a5f]">
+          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-slate-700">
             <div className="flex flex-wrap justify-end items-center gap-3">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {t("inviteNewEmployee") || "Invite New Employee"}
