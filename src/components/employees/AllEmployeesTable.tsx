@@ -175,7 +175,7 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
         {currentEmployees.map((employee) => (
           <div
             key={employee.id}
-            className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
+            className="bg-white dark:bg-[#0a1929] p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
           >
             {/* Header with Name and Role */}
             <div className="flex justify-between items-start mb-4">
@@ -184,10 +184,10 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   <UserIcon className="w-5 h-5 text-blue-600 dark:text-[#3b82f6]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words">
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-lg mb-1 break-words overflow-wrap-anywhere">
                     {employee.fullName}
                   </h4>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 break-all">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 break-all overflow-wrap-anywhere">
                     <Mail className="w-4 h-4 flex-shrink-0" />
                     <span>{employee.email}</span>
                   </div>

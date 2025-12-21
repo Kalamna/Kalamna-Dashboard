@@ -54,19 +54,27 @@ export default function FeedbackPage({
     0;
 
   return (
-    <div className="space-y-6">
-      {/* Top Bar with Title and Button */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-text-color-specific dark:text-white">
-          {t("customerFeedback", "Customer Feedback")}
-        </h2>
+    <div className="space-y-6 max-w-full overflow-x-hidden">
+      {/* Page header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="space-y-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+            {t("customerFeedback", "Customer Feedback")}
+          </h2>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            {t("feedbackSubtitle", {
+              defaultValue:
+                "Monitor and analyze customer satisfaction and feedback",
+            })}
+          </p>
+        </div>
         <button
           type="button"
-          className="flex items-center gap-2 px-6 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow transition-colors"
+          className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base whitespace-nowrap"
           onClick={() => navigate("/chat-history")}
         >
-          <MessageSquare className="w-5 h-5" />
-          {t("goToChatSession", "Go to Chat Session")}
+          <MessageSquare className="w-5 h-5 flex-shrink-0" />
+          {t("goToChatSession", "View Chat Sessions")}
         </button>
       </div>
 
@@ -95,23 +103,26 @@ export default function FeedbackPage({
         {feedbacks.map((feedback) => (
           <div
             key={feedback.id}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] overflow-hidden hover:shadow-md transition-all duration-200"
           >
             {/* Header */}
-            <div className="flex justify-between items-start mb-3">
+            <div className="flex justify-between items-start mb-4">
               <div>
                 <StarRating rating={feedback.rating} />
-                <p className="text-sm text-gray-600 dark:text-secondary mt-1">
-                  Session: {feedback.sessionId}
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  {t("session", "Session")}:{" "}
+                  <span className="font-medium text-[#0066cc] dark:text-[#3b82f6]">
+                    {feedback.sessionId}
+                  </span>
                 </p>
               </div>
-              <span className="text-sm text-gray-500 dark:text-secondary">
-                {feedback.date}
+              <span className="text-sm text-gray-500 dark:text-gray-400 font-medium bg-gray-100 dark:bg-[#0a1929] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e3a5f]">
+                {new Date(feedback.date).toLocaleDateString()}
               </span>
             </div>
 
             {/* Comment */}
-            <p className="text-gray-700 dark:text-secondary">
+            <p className="text-gray-700 dark:text-white leading-relaxed">
               {feedback.comment}
             </p>
           </div>
@@ -123,7 +134,7 @@ export default function FeedbackPage({
 
 /* ========================
    Reusable Components
-======================== */
+ ======================== */
 
 function StatCard({
   title,
@@ -135,10 +146,12 @@ function StatCard({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-      <p className="text-sm text-gray-600 dark:text-secondary mb-2">{title}</p>
-      <div className="flex items-center gap-2">
-        <p className="text-3xl font-bold text-text-color-specific dark:text-white">
+    <div className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] hover:shadow-md transition-all duration-200">
+      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">
+        {title}
+      </p>
+      <div className="flex items-center gap-3">
+        <p className="text-3xl font-bold text-gray-900 dark:text-white">
           {value}
         </p>
         {children}
@@ -149,13 +162,13 @@ function StatCard({
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div className="flex">
+    <div className="flex gap-1">
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
           className={`w-5 h-5 ${
             i < rating
-              ? "text-yellow-400 fill-yellow-400"
+              ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
               : "text-gray-300 dark:text-gray-600"
           }`}
         />

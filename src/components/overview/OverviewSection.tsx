@@ -12,6 +12,8 @@ import {
   CheckCircle,
   XCircle,
   Info,
+  Book,
+  ThumbsUp,
 } from "lucide-react";
 
 export function OverviewSection() {
@@ -44,6 +46,20 @@ export function OverviewSection() {
       value: "2.3s",
       change: "-10%",
       icon: Clock,
+      positive: true,
+    },
+    {
+      title: "knowledgeBase",
+      value: "156",
+      change: "+5",
+      icon: Book,
+      positive: true,
+    },
+    {
+      title: "employees",
+      value: "12",
+      change: "+2",
+      icon: Users,
       positive: true,
     },
   ];
@@ -126,19 +142,27 @@ export function OverviewSection() {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          {t("dashboardOverview")}
-        </h1>
+    <div className="max-w-full overflow-x-hidden">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div className="space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+            {t("dashboardOverview")}
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            {t("overviewSubtitle", {
+              defaultValue:
+                "Monitor your AI assistant's performance and recent activity at a glance.",
+            })}
+          </p>
+        </div>
       </div>
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -163,122 +187,128 @@ export function OverviewSection() {
                   </p>
                 </div>
               </div>
-              <card.icon className="text-blue-500" size={24} />
+              <card.icon
+                className="text-[#0066cc] dark:text-[#3b82f6]"
+                size={24}
+              />
             </div>
           </div>
         ))}
       </div>
 
       {/* Analytics Charts */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+      <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] mb-8 overflow-hidden">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           {t("conversationAnalytics")}
         </h3>
-        <div className="h-64 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
+        <div className="h-64 bg-gray-100 dark:bg-[#0a1929] rounded border border-gray-200 dark:border-[#1e3a5f] flex items-center justify-center">
           <p className="text-gray-500 dark:text-gray-400">Chart Placeholder</p>
         </div>
       </div>
 
       {/* Recent Conversations */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] mb-8 overflow-hidden">
+        <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {t("recentConversations")}
           </h3>
           <Link
             to="/chat-history"
-            className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa]"
           >
             {t("viewAll")}
           </Link>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="text-left py-2 text-gray-600 dark:text-gray-400">
-                  {t("sessionId")}
-                </th>
-                <th className="text-left py-2 text-gray-600 dark:text-gray-400">
-                  {t("messageCount")}
-                </th>
-                <th className="text-left py-2 text-gray-600 dark:text-gray-400">
-                  {t("duration")}
-                </th>
-                <th className="text-left py-2 text-gray-600 dark:text-gray-400">
-                  {t("status")}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentConversations.map((conv, index) => (
-                <tr
-                  key={index}
-                  className="border-b border-gray-100 dark:border-gray-700"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {recentConversations.map((conv, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-[#0a1929] p-5 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-sm hover:shadow-md transition-all duration-200 group"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-[#3b82f6]/10 flex items-center justify-center text-[#0066cc] dark:text-[#3b82f6] group-hover:scale-110 transition-transform">
+                    <MessageSquare size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 dark:text-white">
+                      #{conv.id}
+                    </h4>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      {conv.duration}
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-medium border ${
+                    conv.status === "active"
+                      ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                      : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+                  }`}
                 >
-                  <td className="py-3 text-gray-900 dark:text-white">
-                    {conv.id}
-                  </td>
-                  <td className="py-3 text-gray-900 dark:text-white">
-                    {conv.messages}
-                  </td>
-                  <td className="py-3 text-gray-900 dark:text-white">
-                    {conv.duration}
-                  </td>
-                  <td className="py-3">
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        conv.status === "active"
-                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                          : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
-                      }`}
-                    >
-                      {t(conv.status)}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  {t(conv.status)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t("messages")}
+                </span>
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  {conv.messages}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Recent Feedback */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+      <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] mb-8">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {t("recentFeedback")}
           </h3>
           <Link
             to="/feedback"
-            className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa]"
           >
             {t("viewAll")}
           </Link>
         </div>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recentFeedback.map((feedback, index) => (
-            <div key={index} className="flex items-start space-x-4">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className={
-                      i < feedback.rating
-                        ? "text-yellow-400 fill-current"
-                        : "text-gray-300 dark:text-gray-600"
-                    }
-                  />
-                ))}
-              </div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+            <div
+              key={index}
+              className="bg-white dark:bg-[#0a1929] p-5 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-sm hover:shadow-md transition-all duration-200 group"
+            >
+              <div className="flex justify-between items-start mb-3">
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className={
+                        i < feedback.rating
+                          ? "text-yellow-400 fill-current"
+                          : "text-gray-300 dark:text-gray-600"
+                      }
+                    />
+                  ))}
+                </div>
+                <span className="text-[10px] text-gray-500 dark:text-gray-400">
                   {feedback.date}
-                </p>
-                <p className="text-gray-900 dark:text-white">
-                  {feedback.comment}
-                </p>
+                </span>
+              </div>
+              <p className="text-sm text-gray-900 dark:text-white line-clamp-2 italic">
+                "{feedback.comment}"
+              </p>
+              <div className="mt-4 pt-4 border-t border-gray-100 dark:border-[#1e3a5f] flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-blue-50 dark:bg-[#3b82f6]/10 flex items-center justify-center text-[#0066cc] dark:text-[#3b82f6]">
+                  <ThumbsUp size={12} />
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {t("customerFeedback")}
+                </span>
               </div>
             </div>
           ))}
@@ -286,18 +316,21 @@ export function OverviewSection() {
       </div>
 
       {/* Alerts Section */}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f]">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {t("notifications")}
           </h3>
-          <button className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">
+          <button className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa]">
             {t("viewAll")}
           </button>
         </div>
         <div className="space-y-4">
           {alerts.map((alert, index) => (
-            <div key={index} className="flex items-start space-x-4">
+            <div
+              key={index}
+              className="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-transparent border border-gray-100 dark:border-transparent dark:border-b dark:border-[#1e3a5f] dark:rounded-none last:border-0"
+            >
               {getAlertIcon(alert.type)}
               <div className="flex-1">
                 <p className="text-gray-900 dark:text-white">{alert.message}</p>

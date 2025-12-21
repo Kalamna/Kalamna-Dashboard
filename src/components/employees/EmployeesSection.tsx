@@ -1,7 +1,7 @@
 // src/components/employees/EmployeesSection.tsx
 
 import React, { useState } from "react";
-import { Users, UserPlus, Clock, X } from "lucide-react";
+import { Users, UserPlus, Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import InviteEmployeeForm from "./InviteEmployeeForm";
 import PendingInvitationsTable from "./PendingInvitationsTable";
@@ -104,22 +104,12 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
 
       {/* Invite Modal (Owner Only) with Blurred Backdrop */}
       {showInviteModal && userIsOwner && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-[#1e3a5f]">
-            <div className="flex flex-wrap justify-end items-center gap-3">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                {t("inviteNewEmployee") || "Invite New Employee"}
-              </h3>
-              <button
-                onClick={() => setShowInviteModal(false)}
-                className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="p-6">
-              <InviteEmployeeForm onSuccess={handleInviteSuccess} />
-            </div>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-[#0d1f2d] rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-[#1e3a5f]">
+            <InviteEmployeeForm
+              onSuccess={handleInviteSuccess}
+              onClose={() => setShowInviteModal(false)}
+            />
           </div>
         </div>
       )}
