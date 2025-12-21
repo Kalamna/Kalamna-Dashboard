@@ -93,11 +93,10 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
                 |
               </span>
               <span
-                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${
-                  status === "active"
-                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                    : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
-                }`}
+                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${status === "active"
+                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
+                  }`}
               >
                 {t(status)}
               </span>
@@ -227,11 +226,10 @@ export const KnowledgeList: React.FC = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${
-                  currentPage === page
-                    ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
-                    : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
-                }`}
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${currentPage === page
+                  ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
+                  : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
+                  }`}
               >
                 {page}
               </button>
@@ -310,7 +308,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       if (!isAllowed) {
         setError(
           t("fileTypeNotAllowed") ||
-            "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
+          "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
         );
         return;
       }
@@ -328,161 +326,163 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-[#0d1f2d] rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-[#1e3a5f]">
-        <div className="sticky top-0 bg-white dark:bg-[#0d1f2d] z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-[#1e3a5f]">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-              {t("addKnowledge")}
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
-              {t("addKnowledgeSubtitle", {
-                defaultValue: "Add training materials to enhance AI learning",
-              })}
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f45] active:scale-95"
-          >
-            <X className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-        </div>
-
-        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
-          {error && (
-            <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
-              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <span>{error}</span>
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+      <div className="bg-white dark:bg-[#0d1f2d] rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden border border-gray-200 dark:border-[#1e3a5f] flex flex-col">
+        <div className="overflow-y-auto">
+          <div className="sticky top-0 bg-white dark:bg-[#0d1f2d] z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-[#1e3a5f]">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+                {t("addKnowledge")}
+              </h2>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
+                {t("addKnowledgeSubtitle", {
+                  defaultValue: "Add training materials to enhance AI learning",
+                })}
+              </p>
             </div>
-          )}
-
-          {/* Title */}
-          <div className="space-y-1.5 sm:space-y-2">
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-              {t("title")}
-              <span className="text-red-500 dark:text-red-400 ml-1">*</span>
-            </label>
-            <div className="relative">
-              <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                  setError("");
-                }}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
-                placeholder={t("title")}
-              />
-            </div>
-            <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
-              {t("titleHelper", {
-                defaultValue:
-                  "Keep it short and clear, e.g. 'Return Policy' or 'FAQ'.",
-              })}
-            </p>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f45] active:scale-95"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
           </div>
 
-          {/* Type switch */}
-          <div className="space-y-1.5 sm:space-y-2">
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-              {t("type")}
-            </label>
-            <div className="relative">
-              <Folder className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <select
-                value={type}
-                onChange={(e) => {
-                  setType(e.target.value as "text" | "file");
-                  setError("");
-                }}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
-              >
-                <option value="text">{t("text")}</option>
-                <option value="file">{t("file")}</option>
-              </select>
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-                ▾
-              </span>
-            </div>
-          </div>
+          <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
+            {error && (
+              <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
+                <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
 
-          {/* Conditional content */}
-          {type === "text" ? (
+            {/* Title */}
             <div className="space-y-1.5 sm:space-y-2">
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {t("textContent")}
+                {t("title")}
                 <span className="text-red-500 dark:text-red-400 ml-1">*</span>
               </label>
               <div className="relative">
-                <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                <textarea
-                  value={content}
+                <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={title}
                   onChange={(e) => {
-                    setContent(e.target.value);
+                    setTitle(e.target.value);
                     setError("");
                   }}
                   className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
-                  rows={4}
-                  placeholder={t("textContent")}
+                  placeholder={t("title")}
                 />
               </div>
               <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
-                {t("textContentHelper", {
+                {t("titleHelper", {
                   defaultValue:
-                    "Add a concise summary; bullets or short paragraphs work best.",
+                    "Keep it short and clear, e.g. 'Return Policy' or 'FAQ'.",
                 })}
               </p>
             </div>
-          ) : (
+
+            {/* Type switch */}
             <div className="space-y-1.5 sm:space-y-2">
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {t("uploadFile")}
-                <span className="text-red-500 dark:text-red-400 ml-1">*</span>
+                {t("type")}
               </label>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <input
-                  id="kb-file-upload"
-                  type="file"
-                  accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.gif,.webp"
-                  className="hidden"
+              <div className="relative">
+                <Folder className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <select
+                  value={type}
                   onChange={(e) => {
-                    setFile(e.target.files?.[0] || null);
+                    setType(e.target.value as "text" | "file");
                     setError("");
                   }}
-                />
-                <label
-                  htmlFor="kb-file-upload"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#1a2f45] border border-gray-200 dark:border-[#1e3a5f] cursor-pointer shadow-sm w-full sm:w-auto justify-center"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
                 >
-                  <Upload className="w-4 h-4" />
-                  {t("chooseFile") || "Choose file"}
-                </label>
-                {file && (
-                  <span className="text-xs sm:text-sm text-gray-700 dark:text-white truncate max-w-full">
-                    {file.name}
-                  </span>
-                )}
+                  <option value="text">{t("text")}</option>
+                  <option value="file">{t("file")}</option>
+                </select>
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                  ▾
+                </span>
               </div>
-              <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
-                {t("fileTypeHint", {
-                  defaultValue:
-                    "Allowed: PDF, DOC/DOCX, XLS/XLSX, CSV, PNG, JPG, JPEG, GIF, WEBP.",
-                })}
-              </p>
             </div>
-          )}
 
-          {/* Actions */}
-          <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-[#0d1f2d] pb-2 sm:pb-0">
-            <button
-              onClick={handleSubmit}
-              className="flex items-center justify-center gap-2 px-7 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white shadow-lg hover:shadow-xl w-full"
-            >
-              <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
-              {t("add")}
-            </button>
+            {/* Conditional content */}
+            {type === "text" ? (
+              <div className="space-y-1.5 sm:space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  {t("textContent")}
+                  <span className="text-red-500 dark:text-red-400 ml-1">*</span>
+                </label>
+                <div className="relative">
+                  <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
+                  <textarea
+                    value={content}
+                    onChange={(e) => {
+                      setContent(e.target.value);
+                      setError("");
+                    }}
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
+                    rows={4}
+                    placeholder={t("textContent")}
+                  />
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
+                  {t("textContentHelper", {
+                    defaultValue:
+                      "Add a concise summary; bullets or short paragraphs work best.",
+                  })}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-1.5 sm:space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  {t("uploadFile")}
+                  <span className="text-red-500 dark:text-red-400 ml-1">*</span>
+                </label>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <input
+                    id="kb-file-upload"
+                    type="file"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.gif,.webp"
+                    className="hidden"
+                    onChange={(e) => {
+                      setFile(e.target.files?.[0] || null);
+                      setError("");
+                    }}
+                  />
+                  <label
+                    htmlFor="kb-file-upload"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#1a2f45] border border-gray-200 dark:border-[#1e3a5f] cursor-pointer shadow-sm w-full sm:w-auto justify-center"
+                  >
+                    <Upload className="w-4 h-4" />
+                    {t("chooseFile") || "Choose file"}
+                  </label>
+                  {file && (
+                    <span className="text-xs sm:text-sm text-gray-700 dark:text-white truncate max-w-full">
+                      {file.name}
+                    </span>
+                  )}
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
+                  {t("fileTypeHint", {
+                    defaultValue:
+                      "Allowed: PDF, DOC/DOCX, XLS/XLSX, CSV, PNG, JPG, JPEG, GIF, WEBP.",
+                  })}
+                </p>
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-[#0d1f2d] pb-2 sm:pb-0">
+              <button
+                onClick={handleSubmit}
+                className="flex items-center justify-center gap-2 px-7 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white shadow-lg hover:shadow-xl w-full"
+              >
+                <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
+                {t("add")}
+              </button>
+            </div>
           </div>
         </div>
       </div>

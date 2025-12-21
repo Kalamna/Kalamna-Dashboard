@@ -104,12 +104,14 @@ const EmployeesSection: React.FC<EmployeesSectionProps> = ({
 
       {/* Invite Modal (Owner Only) with Blurred Backdrop */}
       {showInviteModal && userIsOwner && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto">
-          <div className="bg-white dark:bg-[#0d1f2d] rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-[#1e3a5f]">
-            <InviteEmployeeForm
-              onSuccess={handleInviteSuccess}
-              onClose={() => setShowInviteModal(false)}
-            />
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-[#0d1f2d] rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden border border-gray-200 dark:border-[#1e3a5f] flex flex-col">
+            <div className="overflow-y-auto">
+              <InviteEmployeeForm
+                onSuccess={handleInviteSuccess}
+                onClose={() => setShowInviteModal(false)}
+              />
+            </div>
           </div>
         </div>
       )}
