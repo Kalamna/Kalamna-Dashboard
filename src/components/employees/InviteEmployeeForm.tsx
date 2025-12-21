@@ -103,7 +103,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
   };
 
   return (
-    <div className="bg-white dark:bg-[#0d1f2d] rounded-lg border-0 sm:border border-gray-200 dark:border-[#1e3a5f] overflow-hidden shadow-xl">
+    <div className="overflow-hidden">
       {/* Header - Matching KB Form Style */}
       <div className="sticky top-0 bg-white dark:bg-[#0d1f2d] z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-[#1e3a5f]">
         <div className={isRTL ? "text-right" : "text-left"}>

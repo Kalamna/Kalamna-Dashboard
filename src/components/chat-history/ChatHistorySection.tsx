@@ -82,8 +82,9 @@ export function ChatHistorySection() {
     const totalPages = Math.ceil(sessions.length / itemsPerPage);
 
     return (
-      <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] p-4 sm:p-6 mb-6 overflow-hidden">
-        <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+      <div className="sm:bg-white dark:sm:bg-[#0d1f2d] rounded-2xl sm:shadow-xl sm:border border-gray-200 dark:border-[#1e3a5f] p-0 sm:p-8 mb-12">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-gray-900 dark:text-white px-1 sm:px-0 flex items-center gap-3">
+          <div className="w-1.5 h-6 bg-[#0066cc] dark:bg-[#3b82f6] rounded-full sm:hidden"></div>
           {title}
         </h2>
 
@@ -184,7 +185,7 @@ export function ChatHistorySection() {
           {paginatedSessions.map((session) => (
             <div
               key={session.id}
-              className="bg-white dark:bg-[#0a1929] p-5 sm:p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
+              className="bg-white dark:bg-[#0d2133] p-5 sm:p-6 rounded-2xl border border-gray-100 dark:border-[#1e3a5f] shadow-sm hover:shadow-md transition-all duration-200"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-start gap-3 flex-1">
@@ -268,9 +269,9 @@ export function ChatHistorySection() {
               <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-[#1e3a5f]">
                 <button
                   onClick={() => handleViewSession(session.id)}
-                  className="flex-1 py-3 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white rounded-lg text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                  className="flex-1 py-3.5 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white rounded-xl text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
                 >
-                  {t("viewDetails")}
+                  {t("view")}
                 </button>
                 {showAnswerManual && (
                   <button
@@ -371,8 +372,8 @@ export function ChatHistorySection() {
   };
 
   return (
-    <div className="p-6 max-w-full overflow-x-hidden">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+    <div className="p-4 sm:p-6 max-w-full overflow-x-hidden bg-gray-50/50 dark:bg-transparent min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div className="space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             {t("chatHistory")}
