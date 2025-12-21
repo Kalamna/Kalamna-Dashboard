@@ -102,17 +102,17 @@ export default function FeedbackPage({
         {feedbacks.map((feedback) => (
           <div
             key={feedback.id}
-            className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow duration-200"
+            className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] overflow-hidden hover:shadow-2xl transition-all duration-300"
           >
             {/* Header */}
-            <div className="flex justify-between items-start mb-3">
+            <div className="flex justify-between items-start mb-4">
               <div>
                 <StarRating rating={feedback.rating} />
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                   {t("session", "Session")}: <span className="font-medium text-[#0066cc] dark:text-[#3b82f6]">{feedback.sessionId}</span>
                 </p>
               </div>
-              <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+              <span className="text-sm text-gray-500 dark:text-gray-400 font-medium bg-gray-100 dark:bg-[#0a1929] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e3a5f]">
                 {new Date(feedback.date).toLocaleDateString()}
               </span>
             </div>
@@ -130,7 +130,7 @@ export default function FeedbackPage({
 
 /* ========================
    Reusable Components
-======================== */
+ ======================== */
 
 function StatCard({
   title,
@@ -142,8 +142,8 @@ function StatCard({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-md transition-shadow duration-200">
-      <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">{title}</p>
+    <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] hover:shadow-2xl transition-all duration-300">
+      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">{title}</p>
       <div className="flex items-center gap-3">
         <p className="text-3xl font-bold text-gray-900 dark:text-white">
           {value}
@@ -160,11 +160,10 @@ function StarRating({ rating }: { rating: number }) {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`w-5 h-5 ${
-            i < rating
-              ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
-              : "text-gray-300 dark:text-gray-600"
-          }`}
+          className={`w-5 h-5 ${i < rating
+            ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
+            : "text-gray-300 dark:text-gray-600"
+            }`}
         />
       ))}
     </div>

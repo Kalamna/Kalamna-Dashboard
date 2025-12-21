@@ -58,13 +58,13 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+    <div className="bg-white dark:bg-[#0a1929] p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
       {/* Top-level flex container: left + right */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         {/* Left: Icon + Title + Info */}
         <div className="flex items-start space-x-3 sm:space-x-4 w-full">
           {/* Document icon */}
-          <div className="w-6 h-6 text-blue-600 dark:text-[#3b82f6] mt-1 flex-shrink-0">
+          <div className="w-6 h-6 text-[#0066cc] dark:text-[#3b82f6] mt-1 flex-shrink-0">
             {type === "text" ? <FileText className="w-5 h-5 sm:w-6 sm:h-6" /> : <Folder className="w-5 h-5 sm:w-6 sm:h-6" />}
           </div>
 
@@ -85,8 +85,8 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
               <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
               <span
                 className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${status === "active"
-                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800"
-                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800"
+                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
                   }`}
               >
                 {t(status)}
@@ -96,11 +96,11 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
         </div>
 
         {/* Right: Action icons */}
-        <div className="flex items-center space-x-3 sm:space-x-4 text-gray-500 dark:text-gray-300 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100 dark:border-slate-700">
+        <div className="flex items-center space-x-3 sm:space-x-4 text-gray-500 dark:text-gray-300 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100 dark:border-[#1e3a5f]">
           <button
             onClick={onView}
             title="View"
-            className="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 dark:text-[#3b82f6] dark:hover:text-blue-300 transition-colors text-xs sm:text-sm font-medium"
+            className="flex items-center gap-1.5 text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa] transition-colors text-xs sm:text-sm font-medium"
           >
             <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="sm:hidden">{t("view")}</span>
@@ -159,7 +159,7 @@ export const KnowledgeList: React.FC = () => {
             placeholder={t("search")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="app-header__search px-4 py-2.5 rounded-lg w-full focus:outline-none text-left text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm"
+            className="app-header__search px-4 py-2.5 rounded-lg w-full focus:outline-none text-left text-gray-900 dark:text-white border border-gray-200 dark:border-[#1e3a5f] bg-white dark:bg-[#0a1929] shadow-sm"
           />
         </div>
 
@@ -170,7 +170,7 @@ export const KnowledgeList: React.FC = () => {
             onChange={(e) =>
               setFilterType(e.target.value as "all" | "text" | "file")
             }
-            className="app-header__search px-3 py-2.5 rounded-lg w-full text-left text-gray-900 dark:text-white focus:outline-none disabled:opacity-50 border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm appearance-none"
+            className="app-header__search px-3 py-2.5 rounded-lg w-full text-left text-gray-900 dark:text-white focus:outline-none disabled:opacity-50 border border-gray-200 dark:border-[#1e3a5f] bg-white dark:bg-[#0a1929] shadow-sm appearance-none"
           >
             <option value="all">{t("all")}</option>
             <option value="text">{t("text")}</option>
@@ -217,7 +217,7 @@ export const KnowledgeList: React.FC = () => {
                 onClick={() => setCurrentPage(page)}
                 className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${currentPage === page
                   ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
-                  : "bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-[#e5e7eb] dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700"
+                  : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
                   }`}
               >
                 {page}
@@ -317,13 +317,13 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-slate-800 rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-slate-700">
-        <div className="sticky top-0 bg-white dark:bg-slate-800 z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-slate-700">
+      <div className="bg-white dark:bg-[#0d1f2d] rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-[#1e3a5f]">
+        <div className="sticky top-0 bg-white dark:bg-[#0d1f2d] z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-[#1e3a5f]">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               {t("addKnowledge")}
             </h2>
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-0.5 sm:mt-1">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
               {t("addKnowledgeSubtitle", {
                 defaultValue: "Add training materials to enhance AI learning",
               })}
@@ -331,7 +331,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 active:scale-95"
+            className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#1a2f45] active:scale-95"
           >
             <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
@@ -339,7 +339,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
         <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
           {error && (
-            <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
+            <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
               <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -360,7 +360,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   setTitle(e.target.value);
                   setError("");
                 }}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
                 placeholder={t("title")}
               />
             </div>
@@ -384,7 +384,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   setType(e.target.value as "text" | "file");
                   setError("");
                 }}
-                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
               >
                 <option value="text">{t("text")}</option>
                 <option value="file">{t("file")}</option>
@@ -408,7 +408,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     setContent(e.target.value);
                     setError("");
                   }}
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
                   rows={4}
                   placeholder={t("textContent")}
                 />
@@ -438,7 +438,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                 />
                 <label
                   htmlFor="kb-file-upload"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-slate-700 dark:text-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600 cursor-pointer shadow-sm w-full sm:w-auto justify-center"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#1a2f45] border border-gray-200 dark:border-[#1e3a5f] cursor-pointer shadow-sm w-full sm:w-auto justify-center"
                 >
                   <Upload className="w-4 h-4" />
                   {t("chooseFile") || "Choose file"}
@@ -458,7 +458,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           )}
 
           {/* Actions */}
-          <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-slate-800 pb-2 sm:pb-0">
+          <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-[#0d1f2d] pb-2 sm:pb-0">
             <button
               onClick={handleSubmit}
               className="flex items-center justify-center gap-2 px-7 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white shadow-lg hover:shadow-xl w-full"

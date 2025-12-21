@@ -82,64 +82,70 @@ export function ChatHistorySection() {
     const totalPages = Math.ceil(sessions.length / itemsPerPage);
 
     return (
-      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 p-4 sm:p-6 mb-6 overflow-hidden">
+      <div className="bg-white dark:bg-[#0d1f2d] rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] p-4 sm:p-6 mb-6 overflow-hidden">
         <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
           {title}
         </h2>
 
         {/* Desktop Table View (> 1024px) */}
         <div className="hidden lg:block overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-slate-700">
-            <thead className="bg-gray-50 dark:bg-slate-700/50">
+          <table className="min-w-full">
+            <thead className="bg-[#0066cc] dark:bg-[#3b82f6]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("sessionId")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("userId")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("startTime")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("duration")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("messagesCount")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("sessionStatus")}
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                   {t("actions")}
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-slate-700">
-              {paginatedSessions.map((session) => (
-                <tr key={session.id} className="hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
+            <tbody>
+              {paginatedSessions.map((session, index) => (
+                <tr
+                  key={session.id}
+                  className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${index % 2 === 0
+                    ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
+                    : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
+                    }`}
+                >
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                     #{session.id}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-300">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                     {session.userId}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-300">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                     {new Date(session.startTime).toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-300">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                     {session.duration}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-slate-300">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                     {session.messagesCount}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border ${session.status === "active"
-                        ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800"
+                        ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
                         : session.status === "pending"
-                          ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800"
-                          : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600"
+                          ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                          : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
                         }`}
                     >
                       {t(session.status)}
@@ -149,14 +155,14 @@ export function ChatHistorySection() {
                     <div className="flex space-x-3">
                       <button
                         onClick={() => handleViewSession(session.id)}
-                        className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                        className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa] transition-colors"
                       >
                         {t("view")}
                       </button>
                       {showAnswerManual && (
                         <button
                           onClick={() => handleAnswerManual(session.id)}
-                          className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 transition-colors"
+                          className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
                         >
                           {t("answerManual")}
                         </button>
@@ -174,12 +180,12 @@ export function ChatHistorySection() {
           {paginatedSessions.map((session) => (
             <div
               key={session.id}
-              className="bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-md"
+              className="bg-white dark:bg-[#0a1929] p-5 sm:p-6 rounded-lg border border-gray-200 dark:border-[#1e3a5f] shadow-md"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-start gap-3 flex-1">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#0066cc] dark:text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                     </svg>
                   </div>
@@ -187,7 +193,7 @@ export function ChatHistorySection() {
                     <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-0.5">
                       #{session.id}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-slate-400 flex items-center gap-1">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                       {session.userId}
                     </p>
@@ -195,10 +201,10 @@ export function ChatHistorySection() {
                 </div>
                 <span
                   className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${session.status === "active"
-                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800"
+                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
                     : session.status === "pending"
-                      ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800"
-                      : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600"
+                      ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                      : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
                     }`}
                 >
                   {t(session.status)}
@@ -206,26 +212,26 @@ export function ChatHistorySection() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-5 text-sm">
-                <div className="bg-gray-50 dark:bg-slate-700/30 p-3 rounded-lg border border-gray-100 dark:border-slate-700">
-                  <p className="text-gray-500 dark:text-slate-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("startTime")}</p>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("startTime")}</p>
                   <p className="text-gray-900 dark:text-white font-semibold">
                     {new Date(session.startTime).toLocaleDateString()}
                   </p>
                 </div>
-                <div className="bg-gray-50 dark:bg-slate-700/30 p-3 rounded-lg border border-gray-100 dark:border-slate-700">
-                  <p className="text-gray-500 dark:text-slate-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("duration")}</p>
+                <div>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("duration")}</p>
                   <p className="text-gray-900 dark:text-white font-semibold">{session.duration}</p>
                 </div>
-                <div className="bg-gray-50 dark:bg-slate-700/30 p-3 rounded-lg border border-gray-100 dark:border-slate-700 col-span-2">
-                  <p className="text-gray-500 dark:text-slate-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("messagesCount")}</p>
+                <div className="col-span-2">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs mb-1 font-medium uppercase tracking-wider">{t("messagesCount")}</p>
                   <p className="text-gray-900 dark:text-white font-semibold">{session.messagesCount} {t("messages")}</p>
                 </div>
               </div>
 
-              <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-slate-700">
+              <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-[#1e3a5f]">
                 <button
                   onClick={() => handleViewSession(session.id)}
-                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                  className="flex-1 py-3 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white rounded-lg text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
                 >
                   {t("viewDetails")}
                 </button>
@@ -244,15 +250,15 @@ export function ChatHistorySection() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-4 border-t border-gray-100 dark:border-slate-700">
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 order-2 sm:order-1">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-4 border-t border-gray-100 dark:border-[#1e3a5f]">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 order-2 sm:order-1">
               {t("showing")} <span className="font-medium text-gray-900 dark:text-white">{startIndex + 1}</span> {t("to")} <span className="font-medium text-gray-900 dark:text-white">{Math.min(endIndex, sessions.length)}</span> {t("of")} <span className="font-medium text-gray-900 dark:text-white">{sessions.length}</span> {t("sessions")}
             </p>
             <div className="flex items-center space-x-1 sm:space-x-2 order-1 sm:order-2">
               <button
                 onClick={() => setPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className="p-2 text-sm bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 rounded-lg border border-gray-200 dark:border-slate-700 disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+                className="p-2 text-sm bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-[#1e3a5f] disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-[#1a2f45] transition-colors"
               >
                 <span className="sr-only">Previous</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
@@ -265,8 +271,8 @@ export function ChatHistorySection() {
                       key={page}
                       onClick={() => setPage(page)}
                       className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${page === currentPage
-                        ? "bg-blue-600 text-white shadow-md shadow-blue-200 dark:shadow-none"
-                        : "bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700"
+                        ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-md"
+                        : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
                         }`}
                     >
                       {page}
@@ -278,7 +284,7 @@ export function ChatHistorySection() {
               <button
                 onClick={() => setPage(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className="p-2 text-sm bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-300 rounded-lg border border-gray-200 dark:border-slate-700 disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+                className="p-2 text-sm bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-[#1e3a5f] disabled:opacity-50 hover:bg-gray-50 dark:hover:bg-[#1a2f45] transition-colors"
               >
                 <span className="sr-only">Next</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
