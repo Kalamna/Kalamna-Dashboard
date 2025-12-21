@@ -131,11 +131,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               type="text"
               value={formData.fullName}
               onChange={(e) => handleChange("fullName", e.target.value)}
-              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.fullName
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
+              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${errors.fullName
+                ? "border-red-500"
+                : "border-gray-300 dark:border-gray-600"
+                } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-slate-500`}
               placeholder={t("fullNamePlaceholder") || "John Doe"}
               disabled={isSubmitting}
             />
@@ -162,11 +161,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               type="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
-              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500`}
+              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${errors.email
+                ? "border-red-500"
+                : "border-gray-300 dark:border-gray-600"
+                } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-slate-500`}
               placeholder={t("emailPlaceholder") || "john@company.com"}
               disabled={isSubmitting}
             />
@@ -194,11 +192,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               onChange={(e) =>
                 handleChange("role", e.target.value as "owner" | "staff")
               }
-              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${
-                errors.role
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer`}
+              className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-3 border ${errors.role
+                ? "border-red-500"
+                : "border-gray-300 dark:border-gray-600"
+                } rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer`}
               disabled={isSubmitting}
             >
               <option value="staff">{t("staff") || "Staff"}</option>

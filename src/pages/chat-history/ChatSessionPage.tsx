@@ -66,20 +66,27 @@ export const ChatSessionPage = () => {
 
   return (
     <div className="p-6 max-w-full overflow-x-hidden">
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-        <h1 className="text-2xl font-bold text-text-color-specific dark:text-white">
-          {t("sessionDetails")}
-        </h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div className="space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+            {t("sessionDetails")}
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            {t("sessionDetailsSubtitle", {
+              defaultValue: "View full conversation transcript and session metadata.",
+            })}
+          </p>
+        </div>
         <button
           onClick={handleBack}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-sm hover:shadow-md active:scale-95 text-sm sm:text-base whitespace-nowrap border border-gray-200 dark:border-slate-700"
         >
           {t("backToChatHistory")}
         </button>
       </div>
 
       {/* Session Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -92,13 +99,12 @@ export const ChatSessionPage = () => {
               {t("sessionStatus")}
             </label>
             <span
-              className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                session.status === "active"
-                  ? "bg-green-100 text-green-800"
-                  : session.status === "pending"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-gray-100 text-gray-800"
-              }`}
+              className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${session.status === "active"
+                ? "bg-green-100 text-green-800"
+                : session.status === "pending"
+                  ? "bg-yellow-100 text-yellow-800"
+                  : "bg-gray-100 text-gray-800"
+                }`}
             >
               {t(session.status)}
             </span>
@@ -131,7 +137,7 @@ export const ChatSessionPage = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6 overflow-hidden">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6 mb-6 overflow-hidden">
         <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
           {t("messageContent")}
         </h2>
@@ -142,13 +148,12 @@ export const ChatSessionPage = () => {
               className={`flex ${message.senderType === "user" ? "justify-end" : "justify-start"} w-full`}
             >
               <div
-                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg break-words ${
-                  message.senderType === "user"
-                    ? "bg-blue-500 text-white"
-                    : message.senderType === "ai"
-                      ? "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
-                      : "bg-green-500 text-white"
-                }`}
+                className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg break-words ${message.senderType === "user"
+                  ? "bg-blue-500 text-white"
+                  : message.senderType === "ai"
+                    ? "bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white"
+                    : "bg-green-500 text-white"
+                  }`}
               >
                 <div className="text-xs opacity-75 mb-1">
                   {t(message.senderType)} •{" "}
@@ -168,12 +173,12 @@ export const ChatSessionPage = () => {
 
       {/* Send Message (only for active/pending) */}
       {(session.status === "active" || session.status === "pending") && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-6 overflow-hidden">
           <div className="flex space-x-4 flex-wrap gap-4">
             <input
               type="text"
               placeholder={t("messagePlaceholder")}
-              className="flex-1 min-w-0 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              className="flex-1 min-w-0 px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white"
             />
             <button
               onClick={handleSendMessage}

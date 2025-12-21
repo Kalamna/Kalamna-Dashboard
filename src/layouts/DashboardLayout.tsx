@@ -40,7 +40,7 @@ export const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors overflow-x-hidden">
       {/* Mobile Overlay - Removed as requested */}
       {/* {sidebarOpen && (
         <div
@@ -58,15 +58,14 @@ export const MainLayout = () => {
       />
 
       <main
-        className={`transition-all duration-300 ${
-          isRTL
+        className={`transition-all duration-300 ${isRTL
             ? sidebarOpen
               ? "lg:mr-64"
               : "lg:mr-20"
             : sidebarOpen
               ? "lg:ml-64"
               : "lg:ml-20"
-        } overflow-x-hidden overflow-y-auto min-h-screen`}
+          } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
         <Header
           darkMode={darkMode}

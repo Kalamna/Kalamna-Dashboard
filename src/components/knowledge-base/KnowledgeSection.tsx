@@ -58,59 +58,60 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="bg-white dark:bg-slate-800 p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
       {/* Top-level flex container: left + right */}
-      <div className="flex justify-between items-start gap-4 flex-wrap">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         {/* Left: Icon + Title + Info */}
-        <div className="flex items-start space-x-4">
+        <div className="flex items-start space-x-3 sm:space-x-4 w-full">
           {/* Document icon */}
-          <div className="w-6 h-6 text-blue-600 dark:text-[#3b82f6] mt-1">
-            {type === "text" ? <FileText /> : <Folder />}
+          <div className="w-6 h-6 text-blue-600 dark:text-[#3b82f6] mt-1 flex-shrink-0">
+            {type === "text" ? <FileText className="w-5 h-5 sm:w-6 sm:h-6" /> : <Folder className="w-5 h-5 sm:w-6 sm:h-6" />}
           </div>
 
           {/* Title and info */}
-          <div>
-            <h2 className="font-medium mb-2 text-gray-900 dark:text-white break-words">
+          <div className="flex-1 min-w-0">
+            <h2 className="font-semibold mb-1 sm:mb-2 text-gray-900 dark:text-white break-words text-sm sm:text-base">
               {title}
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 break-words">
-              <span>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              <span className="whitespace-nowrap">
                 {t("updated")}: {updatedAt}
-              </span>{" "}
-              &nbsp; | &nbsp;
-              <span>
+              </span>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+              <span className="whitespace-nowrap">
                 {t("chunks")}: {chunksCount}{" "}
                 {type === "text" ? "chunks" : "files"}
-              </span>{" "}
-              &nbsp; | &nbsp;
+              </span>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
               <span
-                className={`text-xs mb-1 px-2 py-1 rounded-full border ${
-                  status === "active"
-                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700"
-                    : "bg-red-100 text-red-700 border-red-200 dark:bg-red-900 dark:text-red-200 dark:border-red-700"
-                }`}
+                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${status === "active"
+                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800"
+                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800"
+                  }`}
               >
                 {t(status)}
               </span>
-            </p>
+            </div>
           </div>
         </div>
 
         {/* Right: Action icons */}
-        <div className="flex items-center space-x-2 text-gray-500 dark:text-gray-300">
+        <div className="flex items-center space-x-3 sm:space-x-4 text-gray-500 dark:text-gray-300 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t sm:border-t-0 border-gray-100 dark:border-slate-700">
           <button
             onClick={onView}
             title="View"
-            className="text-blue-600 hover:text-blue-700 dark:text-[#3b82f6] dark:hover:text-blue-300 transition-colors"
+            className="flex items-center gap-1.5 text-blue-600 hover:text-blue-700 dark:text-[#3b82f6] dark:hover:text-blue-300 transition-colors text-xs sm:text-sm font-medium"
           >
-            <Eye className="w-5 h-5" />
+            <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="sm:hidden">{t("view")}</span>
           </button>
           <button
             onClick={onDelete}
             title="Delete"
-            className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+            className="flex items-center gap-1.5 text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 transition-colors text-xs sm:text-sm font-medium"
           >
-            <Trash2 className="w-5 h-5" />
+            <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="sm:hidden">{t("delete")}</span>
           </button>
         </div>
       </div>
@@ -150,28 +151,33 @@ export const KnowledgeList: React.FC = () => {
   return (
     <div className="space-y-4 overflow-x-hidden">
       {/* Search + Filter */}
-      <div className="flex space-x-4 items-center flex-wrap gap-4">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
         {/* Search input */}
-        <input
-          type="text"
-          placeholder={t("search")}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="app-header__search px-4 py-2 rounded-lg w-full flex-1 min-w-0 focus:outline-none text-left text-gray-900 dark:text-white"
-        />
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder={t("search")}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="app-header__search px-4 py-2.5 rounded-lg w-full focus:outline-none text-left text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm"
+          />
+        </div>
 
         {/* Type filter */}
-        <select
-          value={filterType}
-          onChange={(e) =>
-            setFilterType(e.target.value as "all" | "text" | "file")
-          }
-          className="app-header__search px-3 py-2 rounded-lg w-64 max-w-full text-left text-gray-900 dark:text-white focus:outline-none disabled:opacity-50"
-        >
-          <option value="all">{t("all")}</option>
-          <option value="text">{t("text")}</option>
-          <option value="file">{t("file")}</option>
-        </select>
+        <div className="relative w-full sm:w-48">
+          <select
+            value={filterType}
+            onChange={(e) =>
+              setFilterType(e.target.value as "all" | "text" | "file")
+            }
+            className="app-header__search px-3 py-2.5 rounded-lg w-full text-left text-gray-900 dark:text-white focus:outline-none disabled:opacity-50 border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm appearance-none"
+          >
+            <option value="all">{t("all")}</option>
+            <option value="text">{t("text")}</option>
+            <option value="file">{t("file")}</option>
+          </select>
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">▾</span>
+        </div>
       </div>
 
       {/* Knowledge cards */}
@@ -209,11 +215,10 @@ export const KnowledgeList: React.FC = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${
-                  currentPage === page
-                    ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
-                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-[#e5e7eb] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                }`}
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${currentPage === page
+                  ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
+                  : "bg-white dark:bg-slate-800 text-gray-700 dark:text-slate-200 border-[#e5e7eb] dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700"
+                  }`}
               >
                 {page}
               </button>
@@ -292,7 +297,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       if (!isAllowed) {
         setError(
           t("fileTypeNotAllowed") ||
-            "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed."
+          "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed."
         );
         return;
       }
@@ -311,14 +316,14 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-slate-700 my-8">
-        <div className="flex flex-wrap justify-between items-center gap-3 px-6 pt-6 border-b border-gray-200 dark:border-slate-700 pb-4">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-none sm:rounded-lg shadow-xl max-w-2xl w-full min-h-screen sm:min-h-0 sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-gray-200 dark:border-slate-700">
+        <div className="sticky top-0 bg-white dark:bg-slate-800 z-10 flex justify-between items-center gap-3 px-4 sm:px-6 py-4 border-b border-gray-200 dark:border-slate-700">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               {t("addKnowledge")}
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-0.5 sm:mt-1">
               {t("addKnowledgeSubtitle", {
                 defaultValue: "Add training materials to enhance AI learning",
               })}
@@ -326,28 +331,26 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-[#0a1929] active:scale-95"
+            className="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 active:scale-95"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
           {error && (
             <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
-              <AlertCircle className="w-4 h-4 mt-0.5" />
+              <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Title */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {t("title")}
-                <span className="text-red-500 dark:text-red-400 ml-1">*</span>
-              </label>
-            </div>
+          <div className="space-y-1.5 sm:space-y-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              {t("title")}
+              <span className="text-red-500 dark:text-red-400 ml-1">*</span>
+            </label>
             <div className="relative">
               <FileText className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -357,11 +360,11 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   setTitle(e.target.value);
                   setError("");
                 }}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
                 placeholder={t("title")}
               />
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
               {t("titleHelper", {
                 defaultValue: "Keep it short and clear, e.g. 'Return Policy' or 'FAQ'.",
               })}
@@ -369,7 +372,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
 
           {/* Type switch */}
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2">
             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
               {t("type")}
             </label>
@@ -381,7 +384,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   setType(e.target.value as "text" | "file");
                   setError("");
                 }}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none"
+                className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
               >
                 <option value="text">{t("text")}</option>
                 <option value="file">{t("file")}</option>
@@ -392,7 +395,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
           {/* Conditional content */}
           {type === "text" ? (
-            <div className="space-y-2">
+            <div className="space-y-1.5 sm:space-y-2">
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 {t("textContent")}
                 <span className="text-red-500 dark:text-red-400 ml-1">*</span>
@@ -405,24 +408,24 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     setContent(e.target.value);
                     setError("");
                   }}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm"
+                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
                   rows={4}
                   placeholder={t("textContent")}
                 />
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("textContentHelper", {
                   defaultValue: "Add a concise summary; bullets or short paragraphs work best.",
                 })}
               </p>
             </div>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-1.5 sm:space-y-2">
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 {t("uploadFile")}
                 <span className="text-red-500 dark:text-red-400 ml-1">*</span>
               </label>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <input
                   id="kb-file-upload"
                   type="file"
@@ -435,18 +438,18 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                 />
                 <label
                   htmlFor="kb-file-upload"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-slate-700 dark:text-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600 cursor-pointer shadow-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-slate-700 dark:text-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600 cursor-pointer shadow-sm w-full sm:w-auto justify-center"
                 >
                   <Upload className="w-4 h-4" />
                   {t("chooseFile") || "Choose file"}
                 </label>
                 {file && (
-                  <span className="text-sm text-gray-700 dark:text-white truncate">
+                  <span className="text-xs sm:text-sm text-gray-700 dark:text-white truncate max-w-full">
                     {file.name}
                   </span>
                 )}
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("fileTypeHint", {
                   defaultValue: "Allowed: PDF, DOC/DOCX, XLS/XLSX, CSV, PNG, JPG, JPEG, GIF, WEBP.",
                 })}
@@ -455,12 +458,12 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           )}
 
           {/* Actions */}
-          <div className="flex justify-end pt-4">
+          <div className="flex justify-end pt-4 sticky bottom-0 bg-white dark:bg-slate-800 pb-2 sm:pb-0">
             <button
               onClick={handleSubmit}
-              className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg text-base font-semibold transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white shadow-lg hover:shadow-xl w-full"
+              className="flex items-center justify-center gap-2 px-7 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold transition-all duration-200 whitespace-nowrap active:scale-95 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white shadow-lg hover:shadow-xl w-full"
             >
-              <Plus className="w-6 h-6" />
+              <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
               {t("add")}
             </button>
           </div>
