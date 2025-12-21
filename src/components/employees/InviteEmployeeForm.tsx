@@ -103,7 +103,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
         </h2>
         <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
           {t("inviteEmployeeSubtitle", {
-            defaultValue: "Send an invitation to a new team member to join your dashboard.",
+            defaultValue:
+              "Send an invitation to a new team member to join your dashboard.",
           })}
         </p>
       </div>
@@ -140,10 +141,11 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => handleChange("fullName", e.target.value)}
-                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${errors.fullName
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-[#1e3a5f]"
-                  } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
+                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${
+                  errors.fullName
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-[#1e3a5f]"
+                } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
                 placeholder={t("fullNamePlaceholder") || "John Doe"}
                 disabled={isSubmitting}
               />
@@ -170,10 +172,11 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
-                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${errors.email
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-[#1e3a5f]"
-                  } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
+                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${
+                  errors.email
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-[#1e3a5f]"
+                } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
                 placeholder={t("emailPlaceholder") || "john@company.com"}
                 disabled={isSubmitting}
               />
@@ -201,10 +204,11 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 onChange={(e) =>
                   handleChange("role", e.target.value as "owner" | "staff")
                 }
-                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${errors.role
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-[#1e3a5f]"
-                  } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer shadow-sm text-sm sm:text-base`}
+                className={`w-full ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2.5 sm:py-3 border ${
+                  errors.role
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-[#1e3a5f]"
+                } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors appearance-none cursor-pointer shadow-sm text-sm sm:text-base`}
                 disabled={isSubmitting}
               >
                 <option value="staff">{t("staff") || "Staff"}</option>

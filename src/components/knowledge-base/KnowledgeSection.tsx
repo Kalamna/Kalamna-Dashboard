@@ -28,7 +28,8 @@ export function KnowledgeSection() {
           </h2>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             {t("knowledgeBaseSubtitle", {
-              defaultValue: "Organize FAQs, policies, and reference files for your team and widget.",
+              defaultValue:
+                "Organize FAQs, policies, and reference files for your team and widget.",
             })}
           </p>
         </div>
@@ -65,7 +66,11 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
         <div className="flex items-start space-x-3 sm:space-x-4 w-full">
           {/* Document icon */}
           <div className="w-6 h-6 text-[#0066cc] dark:text-[#3b82f6] mt-1 flex-shrink-0">
-            {type === "text" ? <FileText className="w-5 h-5 sm:w-6 sm:h-6" /> : <Folder className="w-5 h-5 sm:w-6 sm:h-6" />}
+            {type === "text" ? (
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
+            ) : (
+              <Folder className="w-5 h-5 sm:w-6 sm:h-6" />
+            )}
           </div>
 
           {/* Title and info */}
@@ -77,17 +82,22 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
               <span className="whitespace-nowrap">
                 {t("updated")}: {updatedAt}
               </span>
-              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">
+                |
+              </span>
               <span className="whitespace-nowrap">
                 {t("chunks")}: {chunksCount}{" "}
                 {type === "text" ? "chunks" : "files"}
               </span>
-              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">
+                |
+              </span>
               <span
-                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${status === "active"
-                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
-                  }`}
+                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${
+                  status === "active"
+                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                    : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
+                }`}
               >
                 {t(status)}
               </span>
@@ -176,7 +186,9 @@ export const KnowledgeList: React.FC = () => {
             <option value="text">{t("text")}</option>
             <option value="file">{t("file")}</option>
           </select>
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">▾</span>
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+            ▾
+          </span>
         </div>
       </div>
 
@@ -215,10 +227,11 @@ export const KnowledgeList: React.FC = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${currentPage === page
-                  ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
-                  : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
-                  }`}
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${
+                  currentPage === page
+                    ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
+                    : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
+                }`}
               >
                 {page}
               </button>
@@ -297,14 +310,13 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       if (!isAllowed) {
         setError(
           t("fileTypeNotAllowed") ||
-          "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed."
+            "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
         );
         return;
       }
     }
 
-    const successMessage =
-      t("Knowledge added successfully.");
+    const successMessage = t("Knowledge added successfully.");
     onSuccess?.(successMessage);
     setTitle("");
     setContent("");
@@ -366,7 +378,8 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
             </div>
             <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
               {t("titleHelper", {
-                defaultValue: "Keep it short and clear, e.g. 'Return Policy' or 'FAQ'.",
+                defaultValue:
+                  "Keep it short and clear, e.g. 'Return Policy' or 'FAQ'.",
               })}
             </p>
           </div>
@@ -389,7 +402,9 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                 <option value="text">{t("text")}</option>
                 <option value="file">{t("file")}</option>
               </select>
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">▾</span>
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                ▾
+              </span>
             </div>
           </div>
 
@@ -415,7 +430,8 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
               </div>
               <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("textContentHelper", {
-                  defaultValue: "Add a concise summary; bullets or short paragraphs work best.",
+                  defaultValue:
+                    "Add a concise summary; bullets or short paragraphs work best.",
                 })}
               </p>
             </div>
@@ -451,7 +467,8 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
               </div>
               <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("fileTypeHint", {
-                  defaultValue: "Allowed: PDF, DOC/DOCX, XLS/XLSX, CSV, PNG, JPG, JPEG, GIF, WEBP.",
+                  defaultValue:
+                    "Allowed: PDF, DOC/DOCX, XLS/XLSX, CSV, PNG, JPG, JPEG, GIF, WEBP.",
                 })}
               </p>
             </div>

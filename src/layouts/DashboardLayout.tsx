@@ -58,14 +58,15 @@ export const MainLayout = () => {
       />
 
       <main
-        className={`transition-all duration-300 ${isRTL
+        className={`transition-all duration-300 ${
+          isRTL
             ? sidebarOpen
               ? "lg:mr-64"
               : "lg:mr-20"
             : sidebarOpen
               ? "lg:ml-64"
               : "lg:ml-20"
-          } overflow-x-hidden overflow-y-auto min-h-screen`}
+        } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
         <Header
           darkMode={darkMode}

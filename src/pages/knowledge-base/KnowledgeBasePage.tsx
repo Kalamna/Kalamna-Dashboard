@@ -26,7 +26,8 @@ export const KnowledgeBasePage = () => {
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("knowledgeBaseSubtitle", {
-              defaultValue: "Upload and manage training data for your AI assistant",
+              defaultValue:
+                "Upload and manage training data for your AI assistant",
             })}
           </p>
         </div>

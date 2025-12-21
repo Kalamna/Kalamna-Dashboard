@@ -63,7 +63,8 @@ export default function FeedbackPage({
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("feedbackSubtitle", {
-              defaultValue: "Monitor and analyze customer satisfaction and feedback",
+              defaultValue:
+                "Monitor and analyze customer satisfaction and feedback",
             })}
           </p>
         </div>
@@ -109,7 +110,10 @@ export default function FeedbackPage({
               <div>
                 <StarRating rating={feedback.rating} />
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                  {t("session", "Session")}: <span className="font-medium text-[#0066cc] dark:text-[#3b82f6]">{feedback.sessionId}</span>
+                  {t("session", "Session")}:{" "}
+                  <span className="font-medium text-[#0066cc] dark:text-[#3b82f6]">
+                    {feedback.sessionId}
+                  </span>
                 </p>
               </div>
               <span className="text-sm text-gray-500 dark:text-gray-400 font-medium bg-gray-100 dark:bg-[#0a1929] px-3 py-1 rounded-full border border-gray-200 dark:border-[#1e3a5f]">
@@ -143,7 +147,9 @@ function StatCard({
 }) {
   return (
     <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] hover:shadow-2xl transition-all duration-300">
-      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">{title}</p>
+      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-wider">
+        {title}
+      </p>
       <div className="flex items-center gap-3">
         <p className="text-3xl font-bold text-gray-900 dark:text-white">
           {value}
@@ -160,10 +166,11 @@ function StarRating({ rating }: { rating: number }) {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`w-5 h-5 ${i < rating
-            ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
-            : "text-gray-300 dark:text-gray-600"
-            }`}
+          className={`w-5 h-5 ${
+            i < rating
+              ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
+              : "text-gray-300 dark:text-gray-600"
+          }`}
         />
       ))}
     </div>

@@ -73,7 +73,8 @@ export const ChatSessionPage = () => {
           </h1>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("sessionDetailsSubtitle", {
-              defaultValue: "View full conversation transcript and session metadata.",
+              defaultValue:
+                "View full conversation transcript and session metadata.",
             })}
           </p>
         </div>
@@ -92,19 +93,22 @@ export const ChatSessionPage = () => {
             <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
               {t("sessionId")}
             </label>
-            <p className="text-gray-900 dark:text-white font-bold">{session.id}</p>
+            <p className="text-gray-900 dark:text-white font-bold">
+              {session.id}
+            </p>
           </div>
           <div>
             <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
               {t("sessionStatus")}
             </label>
             <span
-              className={`inline-flex px-3 py-1 text-xs font-bold rounded-full border ${session.status === "active"
-                ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                : session.status === "pending"
-                  ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
-                  : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
-                }`}
+              className={`inline-flex px-3 py-1 text-xs font-bold rounded-full border ${
+                session.status === "active"
+                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                  : session.status === "pending"
+                    ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                    : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+              }`}
             >
               {t(session.status)}
             </span>
@@ -121,7 +125,9 @@ export const ChatSessionPage = () => {
             <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
               {t("userId")}
             </label>
-            <p className="text-gray-900 dark:text-white font-medium">{session.userId}</p>
+            <p className="text-gray-900 dark:text-white font-medium">
+              {session.userId}
+            </p>
           </div>
           {session.endTime && (
             <div>
@@ -137,7 +143,9 @@ export const ChatSessionPage = () => {
             <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
               {t("duration")}
             </label>
-            <p className="text-gray-900 dark:text-white font-medium">{session.duration}</p>
+            <p className="text-gray-900 dark:text-white font-medium">
+              {session.duration}
+            </p>
           </div>
         </div>
       </div>
@@ -155,20 +163,27 @@ export const ChatSessionPage = () => {
               className={`flex ${message.senderType === "user" ? "justify-end" : "justify-start"} w-full`}
             >
               <div
-                className={`max-w-xs lg:max-w-md px-5 py-3 rounded-2xl shadow-md break-words ${message.senderType === "user"
-                  ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white rounded-tr-none"
-                  : message.senderType === "ai"
-                    ? "bg-gray-100 dark:bg-[#0a1929] text-gray-900 dark:text-white border border-gray-200 dark:border-[#1e3a5f] rounded-tl-none"
-                    : "bg-green-600 dark:bg-green-500/20 text-white dark:text-green-400 border-0 dark:border dark:border-green-500/30 rounded-tl-none"
-                  }`}
+                className={`max-w-xs lg:max-w-md px-5 py-3 rounded-2xl shadow-md break-words ${
+                  message.senderType === "user"
+                    ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white rounded-tr-none"
+                    : message.senderType === "ai"
+                      ? "bg-gray-100 dark:bg-[#0a1929] text-gray-900 dark:text-white border border-gray-200 dark:border-[#1e3a5f] rounded-tl-none"
+                      : "bg-green-600 dark:bg-green-500/20 text-white dark:text-green-400 border-0 dark:border dark:border-green-500/30 rounded-tl-none"
+                }`}
               >
-                <div className={`text-[10px] font-bold uppercase tracking-widest mb-1 opacity-70 ${message.senderType === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"}`}>
+                <div
+                  className={`text-[10px] font-bold uppercase tracking-widest mb-1 opacity-70 ${message.senderType === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"}`}
+                >
                   {t(message.senderType)} •{" "}
                   {new Date(message.timestamp).toLocaleTimeString()}
                 </div>
-                <div className="text-sm sm:text-base leading-relaxed">{message.content}</div>
+                <div className="text-sm sm:text-base leading-relaxed">
+                  {message.content}
+                </div>
                 {message.emotion && (
-                  <div className={`text-[10px] font-medium mt-2 px-2 py-0.5 rounded-full inline-block ${message.senderType === "user" ? "bg-white/20 text-white" : "bg-gray-200 dark:bg-[#1a2f45] text-gray-700 dark:text-gray-300"}`}>
+                  <div
+                    className={`text-[10px] font-medium mt-2 px-2 py-0.5 rounded-full inline-block ${message.senderType === "user" ? "bg-white/20 text-white" : "bg-gray-200 dark:bg-[#1a2f45] text-gray-700 dark:text-gray-300"}`}
+                  >
                     {t("detectedEmotion")}: {message.emotion}
                   </div>
                 )}

@@ -12,7 +12,8 @@ export function WidgetPreviewSection() {
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("widgetSubtitle", {
-              defaultValue: "Customize and preview how your AI assistant appears to your customers.",
+              defaultValue:
+                "Customize and preview how your AI assistant appears to your customers.",
             })}
           </p>
         </div>

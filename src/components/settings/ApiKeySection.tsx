@@ -12,7 +12,8 @@ export function ApiKeySection() {
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("apiKeySubtitle", {
-              defaultValue: "Securely manage your API keys and access credentials.",
+              defaultValue:
+                "Securely manage your API keys and access credentials.",
             })}
           </p>
         </div>

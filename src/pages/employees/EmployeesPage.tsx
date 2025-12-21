@@ -273,7 +273,8 @@ const EmployeesPage: React.FC = () => {
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("employeeSubtitle", {
-              defaultValue: "Manage your team members, their roles, and invitations.",
+              defaultValue:
+                "Manage your team members, their roles, and invitations.",
             })}
           </p>
         </div>
@@ -282,20 +283,22 @@ const EmployeesPage: React.FC = () => {
         <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-700 p-1 rounded-lg border border-gray-300 dark:border-slate-600">
           <button
             onClick={() => setDemoRole("owner")}
-            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${demoRole === "owner"
+            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${
+              demoRole === "owner"
                 ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-              }`}
+            }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
             <span>Owner View</span>
           </button>
           <button
             onClick={() => setDemoRole("staff")}
-            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${demoRole === "staff"
+            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${
+              demoRole === "staff"
                 ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white dark:text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-              }`}
+            }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
             <span>Staff View</span>

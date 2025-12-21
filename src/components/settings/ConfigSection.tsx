@@ -12,7 +12,8 @@ export function ConfigSection() {
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             {t("configurationSubtitle", {
-              defaultValue: "Manage your AI assistant's core settings and behavior.",
+              defaultValue:
+                "Manage your AI assistant's core settings and behavior.",
             })}
           </p>
         </div>

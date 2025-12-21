@@ -94,10 +94,11 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
               {currentEmployees.map((employee, index) => (
                 <tr
                   key={employee.id}
-                  className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${index % 2 === 0
+                  className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${
+                    index % 2 === 0
                       ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
                       : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
-                    }`}
+                  }`}
                 >
                   <td className="px-6 py-4 text-center text-gray-900 dark:text-white font-medium">
                     {employee.fullName}
@@ -107,10 +108,11 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${employee.role === "owner"
+                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
+                        employee.role === "owner"
                           ? "bg-cyan-100 dark:bg-[#3b82f6]/20 text-cyan-700 dark:text-[#3b82f6] border-cyan-300 dark:border-[#3b82f6]/30"
                           : "bg-gray-200 dark:bg-gray-500/20 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-500/30"
-                        }`}
+                      }`}
                     >
                       {employee.role === "owner"
                         ? t("owner") || "Owner"
@@ -119,12 +121,13 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span
-                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${employee.status === "active"
+                      className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
+                        employee.status === "active"
                           ? "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-500/30"
                           : employee.status === "inactive"
                             ? "bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400 border-red-300 dark:border-red-500/30"
                             : "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-500/30"
-                        }`}
+                      }`}
                     >
                       {employee.status}
                     </span>
@@ -191,10 +194,11 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                 </div>
               </div>
               <span
-                className={`px-3 py-1 rounded-full text-xs font-medium border flex-shrink-0 ${employee.role === "owner"
+                className={`px-3 py-1 rounded-full text-xs font-medium border flex-shrink-0 ${
+                  employee.role === "owner"
                     ? "bg-cyan-100 dark:bg-[#3b82f6]/20 text-cyan-700 dark:text-[#3b82f6] border-cyan-300 dark:border-[#3b82f6]/30"
                     : "bg-gray-200 dark:bg-gray-500/20 text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-500/30"
-                  }`}
+                }`}
               >
                 {employee.role === "owner"
                   ? t("owner") || "Owner"
@@ -209,12 +213,13 @@ const AllEmployeesTable: React.FC<AllEmployeesTableProps> = ({
                   {t("status") || "Status"}
                 </p>
                 <span
-                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${employee.status === "active"
+                  className={`inline-block px-3 py-1 rounded-full text-xs font-medium border ${
+                    employee.status === "active"
                       ? "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-500/30"
                       : employee.status === "inactive"
                         ? "bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400 border-red-300 dark:border-red-500/30"
                         : "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 border-yellow-300 dark:border-yellow-500/30"
-                    }`}
+                  }`}
                 >
                   {employee.status}
                 </span>
