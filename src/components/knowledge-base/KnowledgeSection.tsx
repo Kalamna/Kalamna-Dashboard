@@ -93,10 +93,11 @@ export const KnowledgeCard: React.FC<KnowledgeCardProps> = ({
                 |
               </span>
               <span
-                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${status === "active"
-                  ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                  : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
-                  }`}
+                className={`px-2 py-0.5 rounded-full border text-[10px] sm:text-xs font-medium ${
+                  status === "active"
+                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                    : "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-400 dark:border-red-500/30"
+                }`}
               >
                 {t(status)}
               </span>
@@ -226,10 +227,11 @@ export const KnowledgeList: React.FC = () => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${currentPage === page
-                  ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
-                  : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
-                  }`}
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 shadow-sm border ${
+                  currentPage === page
+                    ? "bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white border-transparent"
+                    : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border-[#e5e7eb] dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
+                }`}
               >
                 {page}
               </button>
@@ -308,7 +310,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       if (!isAllowed) {
         setError(
           t("fileTypeNotAllowed") ||
-          "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
+            "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
         );
         return;
       }

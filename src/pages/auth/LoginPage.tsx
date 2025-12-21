@@ -4,6 +4,7 @@ import { BsMoon } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { useAuth } from "../../context/AuthContext";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
@@ -20,6 +21,7 @@ const LoginPage = () => {
   const { t, i18n } = useTranslation();
   const { language, changeLanguage } = useLanguage();
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const { login } = useAuth();
 
   useEffect(() => {
     i18n.changeLanguage(language);
@@ -32,6 +34,8 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     if (email && password) {
+      // Set a dummy token to authenticate the user
+      login("dummy-auth-token");
       navigate("/dashboard");
     }
   };

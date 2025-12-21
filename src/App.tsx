@@ -13,24 +13,30 @@ import { ConfigurationPage } from "./pages/settings/ConfigurationPage";
 import { ApiKeyPage } from "./pages/settings/ApiKeyPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route element={<MainLayout />}>
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/employees" element={<EmployeesPage />} />
-        <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
-        <Route path="/chat-history" element={<ChatHistoryPage />} />
-        <Route path="/chat-history/session/:id" element={<ChatSessionPage />} />
-        <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/analytics" element={<AnalyticsPage />} />
-        <Route path="/widget" element={<WidgetPage />} />
-        <Route path="/configuration" element={<ConfigurationPage />} />
-        <Route path="/api-key" element={<ApiKeyPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<MainLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/employees" element={<EmployeesPage />} />
+          <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+          <Route path="/chat-history" element={<ChatHistoryPage />} />
+          <Route
+            path="/chat-history/session/:id"
+            element={<ChatSessionPage />}
+          />
+          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
+          <Route path="/widget" element={<WidgetPage />} />
+          <Route path="/configuration" element={<ConfigurationPage />} />
+          <Route path="/api-key" element={<ApiKeyPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
       </Route>
     </Routes>
   );
