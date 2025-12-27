@@ -1,6 +1,6 @@
 // src/utils/authUtils.ts
 
-import Cookies from "js-cookie";
+import * as Cookies from "js-cookie";
 
 export interface User {
   email: string;
