@@ -14,6 +14,7 @@ import {
   Info,
   Book,
   ThumbsUp,
+  BarChart,
 } from "lucide-react";
 
 export function OverviewSection() {
@@ -31,7 +32,7 @@ export function OverviewSection() {
       title: "avgSessionsPerDay",
       value: "45",
       change: "+8%",
-      icon: Users,
+      icon: BarChart,
       positive: true,
     },
     {
@@ -161,12 +162,11 @@ export function OverviewSection() {
       </div>
 
       {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] overflow-hidden"
-          >
+            className="bg-white dark:bg-[#0a1929] p-6 rounded-xl border border-gray-200 dark:border-[#1e3a5f] shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer overflow-hidden">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -177,22 +177,23 @@ export function OverviewSection() {
                 </p>
                 <div className="flex items-center mt-1">
                   {card.positive ? (
-                    <TrendingUp className="text-green-500" size={16} />
+                    <TrendingUp className="text-[#0F766E]" size={16} />
                   ) : (
-                    <TrendingDown className="text-red-500" size={16} />
+                    <TrendingDown className="text-[#B45309]" size={16} />
                   )}
                   <p
                     className={`text-sm ml-1 ${
-                      card.positive ? "text-green-600" : "text-red-600"
-                    }`}
-                  >
+                    card.positive
+                      ? "text-[#115E59]"
+                      : "text-[#92400E]"
+                  }`} >
                     {card.change} {t("thisWeek")}
                   </p>
                 </div>
               </div>
               <card.icon
-                className="text-[#0066cc] dark:text-[#3b82f6]"
-                size={24}
+                className="text-[#0666cc] dark:text-[#3b82f6] opacity-20"
+                size={45}
               />
             </div>
           </div>
