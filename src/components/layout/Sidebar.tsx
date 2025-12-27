@@ -57,12 +57,16 @@ export function Sidebar({
       label: t("configuration"),
       route: "/configuration",
     },
-    ...(userData?.role === "owner" ? [{
-      id: "apikey" as TabType,
-      icon: Key,
-      label: t("apiKey"),
-      route: "/api-key",
-    }] : []),
+    ...(userData?.role === "owner"
+      ? [
+          {
+            id: "apikey" as TabType,
+            icon: Key,
+            label: t("apiKey"),
+            route: "/api-key",
+          },
+        ]
+      : []),
     {
       id: "knowledge" as TabType,
       icon: Book,
