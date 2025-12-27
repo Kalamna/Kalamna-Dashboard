@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (token: string) => void;
+  login: (_token: string) => void;
   logout: () => void;
   loading: boolean;
 }
@@ -23,8 +23,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(false);
   }, []);
 
-  const login = (token: string) => {
-    localStorage.setItem("token", token);
+  const login = (_token: string) => {
+    localStorage.setItem("token", _token);
     setIsAuthenticated(true);
   };
 

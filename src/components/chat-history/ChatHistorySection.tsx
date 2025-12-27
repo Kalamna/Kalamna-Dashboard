@@ -74,7 +74,7 @@ export function ChatHistorySection() {
     title: string,
     showAnswerManual: boolean,
     currentPage: number,
-    setPage: (page: number) => void,
+    setPage: (_page: number) => void,
   ) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;

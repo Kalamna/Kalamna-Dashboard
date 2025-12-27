@@ -256,7 +256,7 @@ export const KnowledgeList: React.FC = () => {
 interface KnowledgeModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess?: (message: string) => void;
+  onSuccess?: (_message: string) => void;
 }
 
 export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({

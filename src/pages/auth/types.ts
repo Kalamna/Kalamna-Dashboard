@@ -19,7 +19,7 @@ export interface CommonProps {
 export interface Step1Props extends CommonProps {
   formData: FormData;
   handleChange: (
-    e: React.ChangeEvent<
+    _e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => void;
@@ -29,11 +29,11 @@ export interface Step1Props extends CommonProps {
 export interface Step2Props extends CommonProps {
   formData: FormData;
   handleChange: (
-    e: React.ChangeEvent<
+    _e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => void;
-  setStep: (step: number) => void;
+  setStep: (_step: number) => void;
   loading: boolean;
   darkMode: boolean;
 }
