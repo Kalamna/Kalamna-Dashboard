@@ -155,6 +155,9 @@ export function OverviewSection() {
             })}
           </p>
         </div>
+        <button className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base whitespace-nowrap">
+          {t("downloadReport", { defaultValue: "Download Report" })}
+        </button>
       </div>
 
       {/* Overview Cards */}
