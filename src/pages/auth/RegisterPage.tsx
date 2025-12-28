@@ -55,6 +55,11 @@ function Register({
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [domainUrlError, setDomainUrlError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
   const t = translations[language as keyof typeof translations];
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -96,13 +101,17 @@ function Register({
     setError("");
   };
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/; 
+  const domainUrlRegex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
+
   const validateStep1 = () => {
     if (!formData.organizationName || !formData.email || !formData.industry) {
       setError("Please fill in all required fields");
       return false;
     }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError("Please enter a valid email address");
+    if (!emailRegex.test(formData.email)) {
+      setEmailError("Please enter a valid email address");
       return false;
     }
     return true;
@@ -117,12 +126,16 @@ function Register({
       setError("Please fill in all required fields");
       return false;
     }
-    if (formData.password.length < 8) {
-      setError("Password must be at least 8 characters long");
+    if (!passwordRegex.test(formData.password)) {
+      setPasswordError("Password must be at least 8 characters long");
       return false;
     }
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setConfirmPasswordError("Passwords do not match");
+      return false;
+    }
+    if(!domainUrlRegex.test(formData.domainUrl)){
+      setDomainUrlError("Please enter a valid domain URL");
       return false;
     }
     return true;
@@ -415,6 +428,7 @@ function Register({
                       placeholder={t.organizationEmailPlaceholder}
                       required
                     />
+                    {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
                   </div>
                 </div>
 
@@ -482,6 +496,7 @@ function Register({
                       }}
                       placeholder={t.websiteDomainPlaceholder}
                     />
+                    {domainUrlError && <p style={{ color: "#B45309" }}>{domainUrlError}</p>}
                   </div>
                 </div>
 
@@ -606,6 +621,7 @@ function Register({
                       required
                       minLength={8}
                     />
+                    {passwordError && <p style={{ color: "#B45309" }}>{passwordError}</p>}
                     <button
                       type="button"
                       onMouseDown={handlePasswordToggle}
@@ -659,6 +675,7 @@ function Register({
                       placeholder={t.confirmPasswordPlaceholder}
                       required
                     />
+                    {confirmPasswordError && <p style={{ color: "#B45309" }}>{confirmPasswordError}</p>}
                     <button
                       type="button"
                       onMouseDown={handleConfirmPasswordToggle}
