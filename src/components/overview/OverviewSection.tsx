@@ -149,7 +149,7 @@ export function OverviewSection() {
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             {t("dashboardOverview")}
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-200">
             {t("overviewSubtitle", {
               defaultValue:
                 "Monitor your AI assistant's performance and recent activity at a glance.",
@@ -178,21 +178,21 @@ export function OverviewSection() {
                 </p>
                 <div className="flex items-center mt-1">
                   {card.positive ? (
-                    <TrendingUp className="text-[#115E59]" size={16} />
+                    <TrendingUp className="text-[#115E59] dark:text-green-600" size={16} />
                   ) : (
-                    <TrendingDown className="text-[#B45309]" size={16} />
+                    <TrendingDown className="text-[#B45309] dark:text-red-600" size={16} />
                   )}
                   <p
                     className={`text-sm ml-1 ${
-                      card.positive ? "text-[#115E59]" : "text-[#B45309]"
-                    }`}
+                      card.positive ? "text-[#115E59] dark:text-green-600" : "text-[#B45309] dark:text-red-600"
+                    } `}
                   >
                     {card.change} {t("thisWeek")}
                   </p>
                 </div>
               </div>
               <card.icon
-                className="text-[#0666cc] dark:text-[#3b82f6] opacity-20"
+                className="text-[#0666cc] dark:text-[#3b82f6] opacity-20 dark:opacity-50"
                 size={45}
               />
             </div>
