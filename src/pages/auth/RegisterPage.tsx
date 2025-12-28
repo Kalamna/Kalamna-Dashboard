@@ -59,6 +59,7 @@ function Register({
   const [passwordError, setPasswordError] = useState("");
   const [domainUrlError, setDomainUrlError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [ownerFullNameError, setOwnerFullNameEroor] = useState("");
 
   const t = translations[language as keyof typeof translations];
 
@@ -104,6 +105,7 @@ function Register({
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/; 
   const domainUrlRegex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
+  const ownerFullNameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
 
   const validateStep1 = () => {
     if (!formData.organizationName || !formData.email || !formData.industry) {
@@ -136,6 +138,10 @@ function Register({
     }
     if(!domainUrlRegex.test(formData.domainUrl)){
       setDomainUrlError("Please enter a valid domain URL");
+      return false;
+    }
+    if (!ownerFullNameRegex.test(formData.ownerFullName)){
+      setOwnerFullNameEroor("Please enter a valid full name");
       return false;
     }
     return true;
@@ -586,6 +592,7 @@ function Register({
                       placeholder={t.fullNamePlaceholder}
                       required
                     />
+                    {ownerFullNameError && <p style={{ color: "#B45309" }}>{ownerFullNameError}</p>}
                   </div>
                 </div>
 

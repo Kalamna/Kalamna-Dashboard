@@ -40,7 +40,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
+  const nameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateForm = (): boolean => {
