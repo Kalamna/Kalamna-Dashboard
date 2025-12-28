@@ -103,8 +103,10 @@ function Register({
   };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/; 
-  const domainUrlRegex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/;
+  const domainUrlRegex =
+    /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
   const ownerFullNameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
 
   const validateStep1 = () => {
@@ -136,11 +138,11 @@ function Register({
       setConfirmPasswordError("Passwords do not match");
       return false;
     }
-    if(!domainUrlRegex.test(formData.domainUrl)){
+    if (!domainUrlRegex.test(formData.domainUrl)) {
       setDomainUrlError("Please enter a valid domain URL");
       return false;
     }
-    if (!ownerFullNameRegex.test(formData.ownerFullName)){
+    if (!ownerFullNameRegex.test(formData.ownerFullName)) {
       setOwnerFullNameEroor("Please enter a valid full name");
       return false;
     }
@@ -434,7 +436,9 @@ function Register({
                       placeholder={t.organizationEmailPlaceholder}
                       required
                     />
-                    {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
+                    {emailError && (
+                      <p style={{ color: "#B45309" }}>{emailError}</p>
+                    )}
                   </div>
                 </div>
 
@@ -502,7 +506,9 @@ function Register({
                       }}
                       placeholder={t.websiteDomainPlaceholder}
                     />
-                    {domainUrlError && <p style={{ color: "#B45309" }}>{domainUrlError}</p>}
+                    {domainUrlError && (
+                      <p style={{ color: "#B45309" }}>{domainUrlError}</p>
+                    )}
                   </div>
                 </div>
 
@@ -592,7 +598,9 @@ function Register({
                       placeholder={t.fullNamePlaceholder}
                       required
                     />
-                    {ownerFullNameError && <p style={{ color: "#B45309" }}>{ownerFullNameError}</p>}
+                    {ownerFullNameError && (
+                      <p style={{ color: "#B45309" }}>{ownerFullNameError}</p>
+                    )}
                   </div>
                 </div>
 
@@ -628,7 +636,9 @@ function Register({
                       required
                       minLength={8}
                     />
-                    {passwordError && <p style={{ color: "#B45309" }}>{passwordError}</p>}
+                    {passwordError && (
+                      <p style={{ color: "#B45309" }}>{passwordError}</p>
+                    )}
                     <button
                       type="button"
                       onMouseDown={handlePasswordToggle}
@@ -682,7 +692,9 @@ function Register({
                       placeholder={t.confirmPasswordPlaceholder}
                       required
                     />
-                    {confirmPasswordError && <p style={{ color: "#B45309" }}>{confirmPasswordError}</p>}
+                    {confirmPasswordError && (
+                      <p style={{ color: "#B45309" }}>{confirmPasswordError}</p>
+                    )}
                     <button
                       type="button"
                       onMouseDown={handleConfirmPasswordToggle}

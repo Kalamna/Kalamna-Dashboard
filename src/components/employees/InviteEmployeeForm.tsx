@@ -167,7 +167,9 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 placeholder={t("fullNamePlaceholder") || "John Doe"}
                 disabled={isSubmitting}
               />
-              {fullNameError && <p style={{ color: "#B45309" }}>{fullNameError}</p>}
+              {fullNameError && (
+                <p style={{ color: "#B45309" }}>{fullNameError}</p>
+              )}
             </div>
           </div>
 

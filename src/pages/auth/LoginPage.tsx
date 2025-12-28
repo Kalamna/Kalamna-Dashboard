@@ -35,7 +35,8 @@ const LoginPage = () => {
   };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/;
 
   const handleLogin = () => {
     if (email && password) {
@@ -54,7 +55,7 @@ const LoginPage = () => {
     // Password validation
     if (!passwordRegex.test(password)) {
       setPasswordError(
-        "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character"
+        "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character",
       );
       isValid = false;
     } else {
@@ -65,7 +66,6 @@ const LoginPage = () => {
 
     // ✅ Both email & password are valid
     console.log("Succuss login");
-
   };
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLDivElement>) => {

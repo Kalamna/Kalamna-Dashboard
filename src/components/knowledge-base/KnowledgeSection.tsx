@@ -378,7 +378,6 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
                   placeholder={t("title")}
                 />
-
               </div>
               <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("titleHelper", {
