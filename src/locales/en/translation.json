@@ -212,5 +212,6 @@
   "industryRetail": "Retail",
   "industryTechnology": "Technology",
   "industryOther": "Other",
-  "organizationNamePlaceholder": "Your Company Name"
+  "organizationNamePlaceholder": "Your Company Name",
+  "overviewSubtitle": "Monitor your AI assistant's performance and recent activity at a glance."
 }

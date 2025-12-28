@@ -212,5 +212,6 @@
   "industryRetail": "التجزئة",
   "industryTechnology": "التكنولوجيا",
   "industryOther": "أخرى",
-  "organizationNamePlaceholder": "اسم شركتك"
+  "organizationNamePlaceholder": "اسم شركتك",
+  "overviewSubtitle": "راقب أداء مساعدك الذكي ونشاطه الأخير بنظرة سريعة."
 }
