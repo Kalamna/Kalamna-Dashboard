@@ -117,20 +117,16 @@ const LoginPage = () => {
           alt="Kalamna"
           className="mb-7 mx-auto"
         />
-
         <h2 className="text-center text-xl font-semibold mt-2 mb-3">
           {t("welcome")}
         </h2>
-
         <p className="text-center text-gray-500 mb-6">{t("subtitle")}</p>
-
         {/* Email Label */}
         <label
           className={`text-sm font-medium ${language === "ar" ? "text-right block" : ""}`}
         >
           {t("email")}
         </label>
-
         {/* Email Input */}
         <div
           className="input-wrapper"
@@ -149,16 +145,14 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
         </div>
-
+        {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
         {/* Password Label */}
         <label
           className={`text-sm font-medium ${language === "ar" ? "text-right block" : ""}`}
         >
           {t("password")}
         </label>
-
         {/* Password Input */}
         <div
           className="input-wrapper"
@@ -179,7 +173,6 @@ const LoginPage = () => {
             autoComplete="current-password"
             required
           />
-          {passwordError && <p style={{ color: "#B45309" }}>{passwordError}</p>}
           <div
             onClick={handlePasswordToggle}
             style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
@@ -187,7 +180,8 @@ const LoginPage = () => {
             {showPassword ? <FiEye /> : <FiEyeOff />}
           </div>
         </div>
-
+        {passwordError && <p style={{ color: "#B45309" }}>{passwordError}</p>}{" "}
+        <br />
         {/* Remember Me */}
         <div className="flex items-center gap-2 mb-4">
           <input type="checkbox" id="remember" />
@@ -195,7 +189,6 @@ const LoginPage = () => {
             {t("rememberMe")}
           </label>
         </div>
-
         {/* Sign In Button */}
         <button
           onClick={handleLogin}
@@ -203,7 +196,6 @@ const LoginPage = () => {
         >
           {t("signIn")}
         </button>
-
         {/* Create Account */}
         <p className="text-center text-sm mt-4">
           {t("dontHaveAccount")}{" "}
