@@ -178,13 +178,21 @@ export function OverviewSection() {
                 </p>
                 <div className="flex items-center mt-1">
                   {card.positive ? (
-                    <TrendingUp className="text-[#115E59] dark:text-green-600" size={16} />
+                    <TrendingUp
+                      className="text-[#115E59] dark:text-green-600"
+                      size={16}
+                    />
                   ) : (
-                    <TrendingDown className="text-[#B45309] dark:text-red-600" size={16} />
+                    <TrendingDown
+                      className="text-[#B45309] dark:text-red-600"
+                      size={16}
+                    />
                   )}
                   <p
                     className={`text-sm ml-1 ${
-                      card.positive ? "text-[#115E59] dark:text-green-600" : "text-[#B45309] dark:text-red-600"
+                      card.positive
+                        ? "text-[#115E59] dark:text-green-600"
+                        : "text-[#B45309] dark:text-red-600"
                     } `}
                   >
                     {card.change} {t("thisWeek")}
