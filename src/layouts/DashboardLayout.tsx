@@ -5,8 +5,11 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useLanguage } from "../context/LanguageContext";
+import { useAuth } from "../context/AuthContext";
+
 
 export const MainLayout = () => {
+  const { role, setRole } = useAuth();
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { changeLanguage } = useLanguage();
@@ -32,6 +35,11 @@ export const MainLayout = () => {
     const newLang = isRTL ? "en" : "ar";
     changeLanguage(newLang);
   };
+
+  const toggleRole = () => {
+  setRole((prev) => (prev === "owner" ? "staff" : "owner"));
+};
+
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -68,6 +76,19 @@ export const MainLayout = () => {
               : "lg:ml-20"
         } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
+
+        <div className="flex justify-end px-4 pt-4">
+  <button
+    onClick={toggleRole}
+    className="px-4 py-2 rounded-md text-sm font-medium
+               bg-blue-600 text-white hover:bg-blue-700
+               dark:bg-blue-500 dark:hover:bg-blue-600 transition"
+  >
+    {role === "owner" ? "Owner View" : "Staff View"}
+  </button>
+</div>
+
+
         <Header
           darkMode={darkMode}
           toggleLanguage={toggleLanguage}
