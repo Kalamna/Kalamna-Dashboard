@@ -35,7 +35,13 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
     role?: string;
   }>({});
 
+  const [fullNameError, setFullNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const nameRegex = /^[a-zA-Z\s'-]{2,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateForm = (): boolean => {
     const newErrors: {
@@ -44,20 +50,12 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
       role?: string;
     } = {};
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = t("fullNameRequired") || "Full name is required";
-    } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName =
-        t("fullNameTooShort") || "Full name must be at least 2 characters";
+    if (!nameRegex.test(formData.fullName.trim())) {
+      setFullNameError("Please enter a valid full name");
     }
-
-    if (!formData.email.trim()) {
-      newErrors.email = t("emailRequired") || "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email =
-        t("emailInvalid") || "Please enter a valid email address";
+    if (!emailRegex.test(formData.email.trim())) {
+      setEmailError("Please enter a valid email address");
     }
-
     if (!formData.role) {
       newErrors.role = t("roleRequired") || "Please select a role";
     }
@@ -169,15 +167,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 placeholder={t("fullNamePlaceholder") || "John Doe"}
                 disabled={isSubmitting}
               />
+              {fullNameError && <p style={{ color: "#B45309" }}>{fullNameError}</p>}
             </div>
-            {errors.fullName && (
-              <p
-                className={`mt-1 text-sm text-red-500 dark:text-red-400 flex items-center ${isRTL ? "flex-row-reverse" : ""}`}
-              >
-                <AlertCircle className={`w-4 h-4 ${isRTL ? "ml-1" : "mr-1"}`} />
-                {errors.fullName}
-              </p>
-            )}
           </div>
 
           {/* Email */}
@@ -204,15 +195,8 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 placeholder={t("emailPlaceholder") || "john@company.com"}
                 disabled={isSubmitting}
               />
+              {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
             </div>
-            {errors.email && (
-              <p
-                className={`mt-1 text-sm text-red-500 dark:text-red-400 flex items-center ${isRTL ? "flex-row-reverse" : ""}`}
-              >
-                <AlertCircle className={`w-4 h-4 ${isRTL ? "ml-1" : "mr-1"}`} />
-                {errors.email}
-              </p>
-            )}
           </div>
 
           {/* Role - Segmented Control (Slider-like) */}
