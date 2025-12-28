@@ -14,7 +14,9 @@ import "../../styles.css";
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -32,12 +34,38 @@ const LoginPage = () => {
     changeLanguage(newLang);
   };
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/;
+
   const handleLogin = () => {
     if (email && password) {
       // Set a dummy token to authenticate the user
       login("dummy-auth-token");
       navigate("/dashboard");
     }
+    let isValid = true;
+    // Email validation
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+    // Password validation
+    if (!passwordRegex.test(password)) {
+      setPasswordError(
+        "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character"
+      );
+      isValid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!isValid) return;
+
+    // ✅ Both email & password are valid
+    console.log("Succuss login");
+
   };
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -119,7 +147,9 @@ const LoginPage = () => {
             style={{ color: darkMode ? "white" : "black" }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
+          {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
         </div>
 
         {/* Password Label */}
@@ -147,8 +177,9 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
+            required
           />
-
+          {passwordError && <p style={{ color: "#B45309" }}>{passwordError}</p>}
           <div
             onClick={handlePasswordToggle}
             style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
