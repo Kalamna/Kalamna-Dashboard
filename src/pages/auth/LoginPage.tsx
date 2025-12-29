@@ -61,10 +61,8 @@ const LoginPage = () => {
 
     if (!isValid) return;
 
-    // TODO: Integrate with real Auth API using authApi.login({ email, password })
-    // For now, we simulate a successful login to avoid breaking local testing
-    // if the backend is not ready, while removing hardcoded credentials.
-
+    // TODO: Integrate with real Auth API 
+    // For now, we allow demo credentials only in development mode to avoid hardcoding constants
     const isDevelopment = import.meta.env.DEV;
 
     if (isDevelopment && email === "demo@kalamna.com" && password === "GP@2026") {
@@ -72,15 +70,15 @@ const LoginPage = () => {
       login("dummy-auth-token");
       navigate("/dashboard");
     } else {
-      // This is where real API call would go
-      // authApi.login({ email, password }).then(...)
       setGeneralError("Invalid email or password");
     }
   };
 
-  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
+    setTimeout(() => {
+      passwordInputRef.current?.focus();
+    }, 0);
   };
 
   return (
@@ -203,23 +201,17 @@ const LoginPage = () => {
               autoComplete="current-password"
               required
             />
-            <button
-              type="button"
-              onMouseDown={handlePasswordToggle}
+            <div
+              onClick={handlePasswordToggle}
               style={{
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                background: "none",
-                border: "none",
-                padding: "8px",
-                margin: "-8px",
               }}
-              className="text-gray-500 hover:text-gray-700 transition-colors"
-              tabIndex={-1}
+              className="text-gray-500"
             >
-              {showPassword ? <FiEyeOff /> : <FiEye />}
-            </button>
+              {showPassword ? <FiEye /> : <FiEyeOff />}
+            </div>
           </div>
           {passwordError && (
             <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
