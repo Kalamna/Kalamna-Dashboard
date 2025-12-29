@@ -96,8 +96,9 @@ const LoginPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${language === "ar" ? "rtl" : ""
-        } ${darkMode ? "dark-mode" : ""}`}
+      className={`min-h-screen flex items-center justify-center relative ${
+        language === "ar" ? "rtl" : ""
+      } ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
