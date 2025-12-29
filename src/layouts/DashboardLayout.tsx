@@ -5,11 +5,24 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useLanguage } from "../context/LanguageContext";
+// import { useAuth } from "../context/AuthContext";
 
 export const MainLayout = () => {
+  /**
+   * NOTE:
+   * Auth role handling is intentionally disabled for now.
+   * It will be re-enabled later for permission-based UI (Owner / Staff).
+   *
+   * Example (future use):
+   * const { role, setRole } = useAuth();
+   */
+
+  // const { role, setRole } = useAuth();
+
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { changeLanguage } = useLanguage();
+
   const [sidebarOpen, setSidebarOpen] = useState(
     () => window.innerWidth >= 1024,
   );
@@ -17,7 +30,7 @@ export const MainLayout = () => {
   const language = i18n.language as "en" | "ar";
   const isRTL = language === "ar";
 
-  // Apply RTL/LTR and language
+  // Apply RTL / LTR and language
   useEffect(() => {
     if (isRTL) {
       document.documentElement.setAttribute("dir", "rtl");
@@ -41,7 +54,7 @@ export const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors overflow-x-hidden">
-      {/* Mobile Overlay - Removed as requested */}
+      {/* Mobile Overlay (disabled intentionally) */}
       {/* {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
