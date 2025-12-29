@@ -121,10 +121,11 @@ export function ChatHistorySection() {
                 {paginatedSessions.map((session, index) => (
                   <tr
                     key={session.id}
-                    className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${index % 2 === 0
-                      ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
-                      : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
-                      }`}
+                    className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${
+                      index % 2 === 0
+                        ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
+                        : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
+                    }`}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                       #{session.id}
@@ -133,7 +134,12 @@ export function ChatHistorySection() {
                       {session.userId}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
-                      {new Date(session.startTime).toLocaleDateString([], { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })}
+                      {new Date(session.startTime).toLocaleDateString([], {
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                       {session.duration}
@@ -143,12 +149,13 @@ export function ChatHistorySection() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border ${session.status === "active"
-                          ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                          : session.status === "pending"
-                            ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
-                            : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
-                          }`}
+                        className={`inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border ${
+                          session.status === "active"
+                            ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                            : session.status === "pending"
+                              ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                              : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+                        }`}
                       >
                         {t(session.status)}
                       </span>
@@ -224,12 +231,13 @@ export function ChatHistorySection() {
                   </div>
                 </div>
                 <span
-                  className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${session.status === "active"
-                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                    : session.status === "pending"
-                      ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
-                      : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
-                    }`}
+                  className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${
+                    session.status === "active"
+                      ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                      : session.status === "pending"
+                        ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                        : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+                  }`}
                 >
                   {t(session.status)}
                 </span>
@@ -329,10 +337,11 @@ export function ChatHistorySection() {
                     <button
                       key={page}
                       onClick={() => setPage(page)}
-                      className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${page === currentPage
-                        ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-md"
-                        : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
-                        }`}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${
+                        page === currentPage
+                          ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-md"
+                          : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
+                      }`}
                     >
                       {page}
                     </button>

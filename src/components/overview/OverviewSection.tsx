@@ -187,10 +187,11 @@ export function OverviewSection() {
                     />
                   )}
                   <p
-                    className={`text-sm ml-1 ${card.positive
+                    className={`text-sm ml-1 ${
+                      card.positive
                         ? "text-[#115E59] dark:text-green-600"
                         : "text-[#B45309] dark:text-red-600"
-                      }`}
+                    }`}
                   >
                     {card.change} {t("thisWeek")}
                   </p>

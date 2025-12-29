@@ -77,17 +77,11 @@ export default function FeedbackPage({
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard
-          title={t("averageRating")}
-          value={averageRating.toFixed(1)}
-        >
+        <StatCard title={t("averageRating")} value={averageRating.toFixed(1)}>
           <StarRating rating={Math.round(averageRating)} />
         </StatCard>
 
-        <StatCard
-          title={t("totalFeedback")}
-          value={feedbacks.length}
-        />
+        <StatCard title={t("totalFeedback")} value={feedbacks.length} />
 
         <StatCard
           title={t("positiveRate")}
@@ -163,10 +157,11 @@ function StarRating({ rating }: { rating: number }) {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`w-5 h-5 ${i < rating
+          className={`w-5 h-5 ${
+            i < rating
               ? "text-yellow-400 fill-yellow-400 dark:text-yellow-500 dark:fill-yellow-500"
               : "text-gray-300 dark:text-gray-600"
-            }`}
+          }`}
         />
       ))}
     </div>

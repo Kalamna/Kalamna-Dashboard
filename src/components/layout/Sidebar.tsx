@@ -104,13 +104,13 @@ export function Sidebar({
     // API Key — Owner only
     ...(viewMode === "owner"
       ? [
-        {
-          id: "apikey" as TabType,
-          icon: Key,
-          label: t("apiKeyMenu"), // ✅ التعديل الوحيد هنا
-          route: "/api-key",
-        },
-      ]
+          {
+            id: "apikey" as TabType,
+            icon: Key,
+            label: t("apiKeyMenu"), // ✅ التعديل الوحيد هنا
+            route: "/api-key",
+          },
+        ]
       : []),
   ];
 
@@ -165,9 +165,10 @@ export function Sidebar({
                 onClick={() => navigate(item.route)}
                 className={`w-full flex items-center py-3 rounded-lg transition-all
                   ${sidebarOpen ? (isRTL ? "pr-4" : "px-4") : "justify-center"}
-                  ${isActive
-                    ? "bg-[#3b82f6] text-white shadow-[0_0_20px_5px_rgba(59,130,246,0.4)]"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                  ${
+                    isActive
+                      ? "bg-[#3b82f6] text-white shadow-[0_0_20px_5px_rgba(59,130,246,0.4)]"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-800"
                   }
                 `}
               >
@@ -192,9 +193,10 @@ export function Sidebar({
             <button
               onClick={() => setViewMode("owner")}
               className={`flex-1 py-2 rounded-md text-sm font-medium transition
-                ${viewMode === "owner"
-                  ? "bg-[#3b82f6] text-white"
-                  : "bg-gray-100 dark:bg-gray-800"
+                ${
+                  viewMode === "owner"
+                    ? "bg-[#3b82f6] text-white"
+                    : "bg-gray-100 dark:bg-gray-800"
                 }
               `}
             >
@@ -207,9 +209,10 @@ export function Sidebar({
                 navigate("/dashboard");
               }}
               className={`flex-1 py-2 rounded-md text-sm font-medium transition
-                ${viewMode === "staff"
-                  ? "bg-[#3b82f6] text-white"
-                  : "bg-gray-100 dark:bg-gray-800"
+                ${
+                  viewMode === "staff"
+                    ? "bg-[#3b82f6] text-white"
+                    : "bg-gray-100 dark:bg-gray-800"
                 }
               `}
             >
