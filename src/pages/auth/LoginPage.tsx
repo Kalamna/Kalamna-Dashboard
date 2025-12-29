@@ -61,11 +61,15 @@ const LoginPage = () => {
 
     if (!isValid) return;
 
-    // TODO: Integrate with real Auth API 
+    // TODO: Integrate with real Auth API
     // For now, we allow demo credentials only in development mode to avoid hardcoding constants
     const isDevelopment = import.meta.env.DEV;
 
-    if (isDevelopment && email === "demo@kalamna.com" && password === "GP@2026") {
+    if (
+      isDevelopment &&
+      email === "demo@kalamna.com" &&
+      password === "GP@2026"
+    ) {
       console.log("Success login (Demo Mode)");
       login("dummy-auth-token");
       navigate("/dashboard");
@@ -83,8 +87,9 @@ const LoginPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${language === "ar" ? "rtl" : ""
-        } ${darkMode ? "dark-mode" : ""}`}
+      className={`min-h-screen flex items-center justify-center relative ${
+        language === "ar" ? "rtl" : ""
+      } ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}

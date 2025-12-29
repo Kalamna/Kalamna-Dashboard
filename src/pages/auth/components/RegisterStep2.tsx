@@ -105,7 +105,11 @@ const RegisterStep2: React.FC<Step2Props> = ({
             onClick={handlePasswordToggle}
             className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
-            {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+            {showPassword ? (
+              <Eye className="w-5 h-5" />
+            ) : (
+              <EyeOff className="w-5 h-5" />
+            )}
           </div>
         </div>
         <p
@@ -150,7 +154,11 @@ const RegisterStep2: React.FC<Step2Props> = ({
             onClick={handleConfirmPasswordToggle}
             className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
-            {showConfirmPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+            {showConfirmPassword ? (
+              <Eye className="w-5 h-5" />
+            ) : (
+              <EyeOff className="w-5 h-5" />
+            )}
           </div>
         </div>
       </div>
