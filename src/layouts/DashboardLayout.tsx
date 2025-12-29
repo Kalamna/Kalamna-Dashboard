@@ -7,7 +7,6 @@ import { useDarkMode } from "../context/DarkModeContext";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 
-
 export const MainLayout = () => {
   const { role, setRole } = useAuth();
   const { i18n } = useTranslation();
@@ -36,10 +35,13 @@ export const MainLayout = () => {
     changeLanguage(newLang);
   };
 
+  // NOTE:
+  // This function is intentionally kept.
+  // It might be used elsewhere or needed later.
+  // Owner / Staff switch UI was moved to Sidebar.
   const toggleRole = () => {
-  setRole((prev) => (prev === "owner" ? "staff" : "owner"));
-};
-
+    setRole((prev) => (prev === "owner" ? "staff" : "owner"));
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -49,7 +51,7 @@ export const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors overflow-x-hidden">
-      {/* Mobile Overlay - Removed as requested */}
+      {/* Mobile Overlay - intentionally disabled for now */}
       {/* {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
@@ -76,18 +78,7 @@ export const MainLayout = () => {
               : "lg:ml-20"
         } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
-
-        <div className="flex justify-end px-4 pt-4">
-  <button
-    onClick={toggleRole}
-    className="px-4 py-2 rounded-md text-sm font-medium
-               bg-blue-600 text-white hover:bg-blue-700
-               dark:bg-blue-500 dark:hover:bg-blue-600 transition"
-  >
-    {role === "owner" ? "Owner View" : "Staff View"}
-  </button>
-</div>
-
+        {/* Owner / Staff switch was moved to Sidebar */}
 
         <Header
           darkMode={darkMode}

@@ -26,7 +26,7 @@ export function ApiKeySection() {
 
   const codeBlocks = [
     {
-      title: "Web Widget Integration",
+      title: t("apiKey.webWidgetIntegration"),
       code: `<script src="https://cdn.kalamna.ai/widget.js"></script>
 <script>
   KalamnaWidget.init({
@@ -37,12 +37,12 @@ export function ApiKeySection() {
       id: "widget",
     },
     {
-      title: "API Endpoint",
+      title: t("apiKey.apiEndpoint"),
       code: `POST https://api.kalamna.ai/v1/chat/sessions/`,
       id: "endpoint",
     },
     {
-      title: "Authentication Header",
+      title: t("apiKey.authHeader"),
       code: `X-API-Key: your_api_key_here`,
       id: "header",
     },
@@ -50,27 +50,25 @@ export function ApiKeySection() {
 
   const stats = [
     {
-      title: "Requests Today",
+      title: t("apiKey.requestsToday"),
       value: "1,234",
     },
     {
-      title: "Requests This Month",
+      title: t("apiKey.requestsThisMonth"),
       value: "45,678",
     },
   ];
 
   return (
     <div className="max-w-full overflow-x-hidden">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="space-y-2">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-            {t("apiKeyManagement")}
+            {t("apiKey.title")}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("apiKeySubtitle", {
-              defaultValue:
-                "Securely manage your API keys and access credentials.",
-            })}
+            {t("apiKey.subtitle")}
           </p>
         </div>
       </div>
@@ -78,8 +76,9 @@ export function ApiKeySection() {
       {/* API Key Section */}
       <div className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] mb-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          API Key
+          {t("apiKey.apiKey")}
         </h3>
+
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <div className="flex-1 relative">
             <input
@@ -88,10 +87,11 @@ export function ApiKeySection() {
               readOnly
               className="w-full px-4 py-3 pr-12 bg-gray-50 dark:bg-[#0d1f2d] border border-gray-300 dark:border-[#1e3a5f] rounded-lg text-gray-900 dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+
             <button
               onClick={() => copyToClipboard(apiKey, "key")}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
-              title="Copy API Key"
+              title={t("apiKey.copyKey")}
             >
               {copiedKey ? (
                 <CheckCircle className="w-5 h-5 text-green-500" />
@@ -100,9 +100,10 @@ export function ApiKeySection() {
               )}
             </button>
           </div>
+
           <button className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white px-4 py-3 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 whitespace-nowrap">
             <RefreshCw className="w-4 h-4" />
-            Regenerate Key
+            {t("apiKey.regenerate")}
           </button>
         </div>
       </div>
@@ -110,22 +111,25 @@ export function ApiKeySection() {
       {/* Integration Instructions */}
       <div className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] mb-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
-          Integration Instructions
+          {t("apiKey.integrationInstructions")}
         </h3>
+
         <div className="space-y-6">
           {codeBlocks.map((block) => (
             <div key={block.id}>
               <h4 className="text-md font-medium text-gray-900 dark:text-white mb-3">
                 {block.title}
               </h4>
+
               <div className="relative">
                 <pre className="bg-gray-50 dark:bg-[#0d1f2d] border border-gray-300 dark:border-[#1e3a5f] rounded-lg p-4 overflow-x-auto text-sm font-mono text-gray-900 dark:text-white">
                   {block.code}
                 </pre>
+
                 <button
                   onClick={() => copyToClipboard(block.code, block.id)}
                   className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
-                  title="Copy code"
+                  title={t("apiKey.copyCode")}
                 >
                   {copiedCode === block.id ? (
                     <CheckCircle className="w-5 h-5 text-green-500" />
@@ -142,24 +146,21 @@ export function ApiKeySection() {
       {/* API Usage Statistics */}
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
-          API Usage Statistics
+          {t("apiKey.usageStats")}
         </h3>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {stats.map((stat, index) => (
             <div
               key={index}
               className="bg-white dark:bg-[#0a1929] p-6 rounded-lg shadow-sm border border-gray-200 dark:border-[#1e3a5f] overflow-hidden"
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {stat.title}
-                  </p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {stat.value}
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {stat.title}
+              </p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                {stat.value}
+              </p>
             </div>
           ))}
         </div>
