@@ -270,9 +270,7 @@ export function OverviewSection() {
             >
               {getAlertIcon(alert.type)}
               <div>
-                <p className="text-gray-900 dark:text-white">
-                  {alert.message}
-                </p>
+                <p className="text-gray-900 dark:text-white">{alert.message}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {alert.timestamp}
                 </p>
