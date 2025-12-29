@@ -32,7 +32,6 @@ export function Sidebar({
   setSidebarOpen,
   darkMode,
   onLogout,
-  userData,
 }: SidebarProps) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
