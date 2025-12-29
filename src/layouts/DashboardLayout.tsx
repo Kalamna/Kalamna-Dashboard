@@ -8,10 +8,16 @@ import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 
 export const MainLayout = () => {
-  const { role, setRole } = useAuth();
+  // NOTE:
+  // role is intentionally commented for now
+  // Will be used later for permission-based UI
+  // const { role, setRole } = useAuth();
+
+  const { setRole } = useAuth();
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { changeLanguage } = useLanguage();
+
   const [sidebarOpen, setSidebarOpen] = useState(
     () => window.innerWidth >= 1024,
   );
@@ -19,7 +25,7 @@ export const MainLayout = () => {
   const language = i18n.language as "en" | "ar";
   const isRTL = language === "ar";
 
-  // Apply RTL/LTR and language
+  // Apply RTL / LTR and language
   useEffect(() => {
     if (isRTL) {
       document.documentElement.setAttribute("dir", "rtl");
@@ -36,12 +42,13 @@ export const MainLayout = () => {
   };
 
   // NOTE:
-  // This function is intentionally kept.
-  // It might be used elsewhere or needed later.
-  // Owner / Staff switch UI was moved to Sidebar.
+  // This function is intentionally kept for future use
+  // Owner / Staff switch UI was moved to Sidebar
+  /*
   const toggleRole = () => {
     setRole((prev) => (prev === "owner" ? "staff" : "owner"));
   };
+  */
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -51,7 +58,7 @@ export const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors overflow-x-hidden">
-      {/* Mobile Overlay - intentionally disabled for now */}
+      {/* Mobile Overlay - intentionally disabled */}
       {/* {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
@@ -78,8 +85,6 @@ export const MainLayout = () => {
               : "lg:ml-20"
         } overflow-x-hidden overflow-y-auto min-h-screen`}
       >
-        {/* Owner / Staff switch was moved to Sidebar */}
-
         <Header
           darkMode={darkMode}
           toggleLanguage={toggleLanguage}

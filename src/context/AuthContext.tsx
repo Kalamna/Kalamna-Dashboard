@@ -20,7 +20,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const savedRole = localStorage.getItem("role") as "owner" | "staff" | null;
+
+    // NOTE: Will be used later for restoring role from storage
+    // const savedRole = localStorage.getItem("role") as
+    //   | "owner"
+    //   | "staff"
+    //   | null;
+
     if (token) {
       setIsAuthenticated(true);
     }

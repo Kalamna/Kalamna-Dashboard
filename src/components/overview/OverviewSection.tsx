@@ -17,13 +17,13 @@ import {
   Activity,
   TrendingUp,
   TrendingDown,
-  Star,
+  // Star,        // TODO: reserved for future feedback UI
   AlertCircle,
   CheckCircle,
   XCircle,
   Info,
   Book,
-  ThumbsUp,
+  // ThumbsUp,   // TODO: reserved for future feedback UI
   BarChart,
 } from "lucide-react";
 
@@ -83,24 +83,24 @@ export function OverviewSection() {
     { id: "12347", messages: 15, duration: "7m 45s", status: "completed" },
   ];
 
-  // Recent user feedback
-  const recentFeedback = [
-    {
-      rating: 5,
-      date: "2023-12-01",
-      comment: "Great service and quick response!",
-    },
-    {
-      rating: 4,
-      date: "2023-11-30",
-      comment: "Very helpful, but could be faster.",
-    },
-    {
-      rating: 3,
-      date: "2023-11-29",
-      comment: "Average experience.",
-    },
-  ];
+  // TODO: Will be used when feedback widget is enabled
+  // const recentFeedback = [
+  //   {
+  //     rating: 5,
+  //     date: "2023-12-01",
+  //     comment: "Great service and quick response!",
+  //   },
+  //   {
+  //     rating: 4,
+  //     date: "2023-11-30",
+  //     comment: "Very helpful, but could be faster.",
+  //   },
+  //   {
+  //     rating: 3,
+  //     date: "2023-11-29",
+  //     comment: "Average experience.",
+  //   },
+  // ];
 
   // System alerts / notifications
   const alerts = [
@@ -162,7 +162,7 @@ export function OverviewSection() {
         </button>
       </div>
 
-      {/* Overview Cards (responsive grid) */}
+      {/* Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {cards.map((card, index) => (
           <div
@@ -194,7 +194,7 @@ export function OverviewSection() {
                       card.positive
                         ? "text-[#115E59] dark:text-green-600"
                         : "text-[#B45309] dark:text-red-600"
-                    } `}
+                    }`}
                   >
                     {card.change} {t("thisWeek")}
                   </p>
@@ -209,7 +209,7 @@ export function OverviewSection() {
         ))}
       </div>
 
-      {/* Analytics Chart (responsive height) */}
+      {/* Analytics */}
       <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] mb-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
           {t("conversationAnalytics")}
@@ -221,7 +221,6 @@ export function OverviewSection() {
 
       {/* Recent Conversations */}
       <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f] mb-8">
-        {/* Responsive header: stacked on mobile */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {t("recentConversations")}
@@ -257,25 +256,23 @@ export function OverviewSection() {
         </div>
       </div>
 
-      {/* Alerts Section */}
+      {/* Alerts */}
       <div className="bg-white dark:bg-[#0d1f2d] p-6 rounded-lg shadow-xl border border-gray-200 dark:border-[#1e3a5f]">
-        {/* Responsive header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {t("notifications")}
-          </h3>
-        </div>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          {t("notifications")}
+        </h3>
 
         <div className="space-y-4">
           {alerts.map((alert, index) => (
-            // Responsive layout: stacked on mobile, row on desktop
             <div
               key={index}
               className="flex flex-col sm:flex-row items-start gap-3 p-4 rounded-lg bg-gray-50 dark:bg-transparent border border-gray-100 dark:border-[#1e3a5f]"
             >
               {getAlertIcon(alert.type)}
               <div>
-                <p className="text-gray-900 dark:text-white">{alert.message}</p>
+                <p className="text-gray-900 dark:text-white">
+                  {alert.message}
+                </p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {alert.timestamp}
                 </p>
