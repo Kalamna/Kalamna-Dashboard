@@ -108,10 +108,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             {t("inviteNewEmployee") || "Invite New Employee"}
           </h2>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
-            {t("inviteEmployeeSubtitle", {
-              defaultValue:
-                "Send an invitation to a new team member to join your dashboard.",
-            })}
+            {t("inviteEmployeeSubtitle")}
           </p>
         </div>
         {onClose && (
@@ -135,8 +132,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               {t("ownerOnlyAction") || "Owner-Only Action"}
             </p>
             <p className="text-xs text-gray-700 dark:text-gray-400 mt-1">
-              {t("ownerOnlyDescription") ||
-                "Only organization owners can invite new employees."}
+              {t("ownerOnlyDescription")}
             </p>
           </div>
         </div>
@@ -243,8 +239,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             <p
               className={`mt-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 ${isRTL ? "text-right" : "text-left"}`}
             >
-              {t("roleDescription") ||
-                "Staff can view data. Owners have full access to manage employees and settings."}
+              {t("roleDescription")}
             </p>
           </div>
 

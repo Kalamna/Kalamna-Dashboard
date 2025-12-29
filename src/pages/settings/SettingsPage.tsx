@@ -14,10 +14,7 @@ export const SettingsPage = () => {
             {t("settings")}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("settingsSubtitle", {
-              defaultValue:
-                "Configure your organization settings, API keys, and platform preferences.",
-            })}
+            {t("settingsSubtitle")}
           </p>
         </div>
       </div>

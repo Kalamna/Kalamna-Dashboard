@@ -11,10 +11,7 @@ export function AnalyticsSection() {
             {t("analytics")}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("analyticsSubtitle", {
-              defaultValue:
-                "Deep dive into conversation trends, user engagement, and performance metrics.",
-            })}
+            {t("analyticsSubtitle")}
           </p>
         </div>
       </div>

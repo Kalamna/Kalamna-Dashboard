@@ -41,12 +41,11 @@ export const ConfigurationPage = () => {
     const newErrors: Record<string, string> = {};
 
     if (!config.organizationName.trim()) {
-      newErrors.organizationName =
-        t("organization Name is Required") || "Organization name is required";
+      newErrors.organizationName = t("organizationNameRequired");
     }
 
     if (!config.botName.trim()) {
-      newErrors.botName = t("bot Name is Required") || "Bot name is required";
+      newErrors.botName = t("botNameRequired");
     }
 
     // Add more validation as needed
@@ -58,7 +57,7 @@ export const ConfigurationPage = () => {
 
     setErrors({});
     console.log("Saving configuration:", config);
-    alert(t("save Configuration"));
+    alert(t("saveConfigurationSuccess"));
   };
 
   const industryOptions = [
@@ -166,7 +165,7 @@ export const ConfigurationPage = () => {
                     ? "bg-gray-100 dark:bg-[#1a2332] text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] text-gray-900 dark:text-white"
                 }`}
-                placeholder={t("organizationNamePlaceholder")}
+                placeholder={t("botNamePlaceholder")}
               />
               {errors.organizationName && (
                 <p style={{ color: "#f83737ff" }} className="text-xs mt-1">

@@ -32,7 +32,6 @@ export function Sidebar({
   setSidebarOpen,
   darkMode,
   onLogout,
-  userData,
 }: SidebarProps) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -167,7 +166,7 @@ export function Sidebar({
                   ${sidebarOpen ? (isRTL ? "pr-4" : "px-4") : "justify-center"}
                   ${
                     isActive
-                      ? "bg-blue-600 text-white shadow-lg"
+                      ? "bg-[#3b82f6] text-white shadow-[0_0_20px_5px_rgba(59,130,246,0.4)]"
                       : "hover:bg-gray-100 dark:hover:bg-gray-800"
                   }
                 `}
@@ -195,7 +194,7 @@ export function Sidebar({
               className={`flex-1 py-2 rounded-md text-sm font-medium transition
                 ${
                   viewMode === "owner"
-                    ? "bg-blue-600 text-white"
+                    ? "bg-[#3b82f6] text-white"
                     : "bg-gray-100 dark:bg-gray-800"
                 }
               `}
@@ -211,7 +210,7 @@ export function Sidebar({
               className={`flex-1 py-2 rounded-md text-sm font-medium transition
                 ${
                   viewMode === "staff"
-                    ? "bg-blue-600 text-white"
+                    ? "bg-[#3b82f6] text-white"
                     : "bg-gray-100 dark:bg-gray-800"
                 }
               `}
