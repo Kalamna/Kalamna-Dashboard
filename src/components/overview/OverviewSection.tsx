@@ -215,9 +215,7 @@ export function OverviewSection() {
           {t("conversationAnalytics")}
         </h3>
         <div className="h-48 sm:h-64 bg-gray-100 dark:bg-[#0a1929] rounded border border-gray-200 dark:border-[#1e3a5f] flex items-center justify-center">
-          <p className="text-gray-500 dark:text-gray-400">
-            Chart Placeholder
-          </p>
+          <p className="text-gray-500 dark:text-gray-400">Chart Placeholder</p>
         </div>
       </div>
 
@@ -277,9 +275,7 @@ export function OverviewSection() {
             >
               {getAlertIcon(alert.type)}
               <div>
-                <p className="text-gray-900 dark:text-white">
-                  {alert.message}
-                </p>
+                <p className="text-gray-900 dark:text-white">{alert.message}</p>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {alert.timestamp}
                 </p>

@@ -5,7 +5,7 @@ interface AuthContextType {
   login: (_token: string) => void;
   logout: () => void;
   loading: boolean;
-   role: "owner" | "staff";
+  role: "owner" | "staff";
   setRole: React.Dispatch<React.SetStateAction<"owner" | "staff">>;
 }
 
@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [role, setRole] = useState<"owner" | "staff">("owner");
 
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     const savedRole = localStorage.getItem("role") as "owner" | "staff" | null;
@@ -29,9 +28,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-  localStorage.setItem("role", role);
-}, [role]);
-
+    localStorage.setItem("role", role);
+  }, [role]);
 
   const login = (_token: string) => {
     localStorage.setItem("token", _token);
@@ -44,14 +42,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, loading, role, setRole }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, loading, role, setRole }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);    
+  const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }

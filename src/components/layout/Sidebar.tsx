@@ -126,7 +126,9 @@ export function Sidebar({
       <div className="p-4 flex-1 overflow-y-auto overflow-x-hidden">
         {/* Logo */}
         <div className="flex items-center justify-between mb-8">
-          <div className={`flex items-center ${!sidebarOpen && "justify-center"}`}>
+          <div
+            className={`flex items-center ${!sidebarOpen && "justify-center"}`}
+          >
             <img
               src={darkMode ? logoDark : logoLight}
               alt="Kalamna Logo"
@@ -172,9 +174,7 @@ export function Sidebar({
               >
                 <Icon className="w-5 h-5" />
                 {sidebarOpen && (
-                  <span className={isRTL ? "mr-3" : "ml-3"}>
-                    {item.label}
-                  </span>
+                  <span className={isRTL ? "mr-3" : "ml-3"}>{item.label}</span>
                 )}
               </button>
             );
@@ -232,9 +232,7 @@ export function Sidebar({
         >
           <LogOut className="w-5 h-5" />
           {sidebarOpen && (
-            <span className={isRTL ? "mr-3" : "ml-3"}>
-              {t("logout")}
-            </span>
+            <span className={isRTL ? "mr-3" : "ml-3"}>{t("logout")}</span>
           )}
         </button>
       </div>
