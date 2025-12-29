@@ -375,10 +375,7 @@ export function ChatHistorySection() {
             {t("chatHistory")}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("chatHistorySubtitle", {
-              defaultValue:
-                "Review and analyze past conversations between users and your AI assistant.",
-            })}
+            {t("chatHistorySubtitle")}
           </p>
         </div>
       </div>

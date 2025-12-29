@@ -42,11 +42,11 @@ export const ConfigurationPage = () => {
 
     if (!config.organizationName.trim()) {
       newErrors.organizationName =
-        t("organization Name is Required") || "Organization name is required";
+        t("organizationNameRequired");
     }
 
     if (!config.botName.trim()) {
-      newErrors.botName = t("bot Name is Required") || "Bot name is required";
+      newErrors.botName = t("botNameRequired");
     }
 
     // Add more validation as needed
@@ -58,7 +58,7 @@ export const ConfigurationPage = () => {
 
     setErrors({});
     console.log("Saving configuration:", config);
-    alert(t("save Configuration"));
+    alert(t("saveConfigurationSuccess"));
   };
 
   const industryOptions = [
@@ -109,22 +109,20 @@ export const ConfigurationPage = () => {
         <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-700 p-1 rounded-lg border border-gray-300 dark:border-slate-600">
           <button
             onClick={() => setIsOwner(true)}
-            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${
-              isOwner
+            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${isOwner
                 ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-            }`}
+              }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
             <span>{t("ownerView")}</span>
           </button>
           <button
             onClick={() => setIsOwner(false)}
-            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${
-              !isOwner
+            className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap active:scale-95 ${!isOwner
                 ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                 : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-            }`}
+              }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
             <span>{t("staffView")}</span>
@@ -157,16 +155,14 @@ export const ConfigurationPage = () => {
                   }
                 }}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  errors.organizationName
+                className={`w-full px-4 py-2 rounded-lg border ${errors.organizationName
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600"
-                } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] text-gray-900 dark:text-white"
-                }`}
-                placeholder={t("organizationNamePlaceholder")}
+                  }`}
+                placeholder={t("botNamePlaceholder")}
               />
               {errors.organizationName && (
                 <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
@@ -183,11 +179,10 @@ export const ConfigurationPage = () => {
                 value={config.industry}
                 onChange={(e) => handleChange("industry", e.target.value)}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
               >
                 {industryOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -208,11 +203,10 @@ export const ConfigurationPage = () => {
                 }
                 disabled={!isOwner}
                 rows={4}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
                 placeholder={t("businessDescriptionPlaceholder")}
               />
             </div>
@@ -242,15 +236,13 @@ export const ConfigurationPage = () => {
                   }
                 }}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border ${
-                  errors.botName
+                className={`w-full px-4 py-2 rounded-lg border ${errors.botName
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600"
-                } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] text-gray-900 dark:text-white"
-                }`}
+                  }`}
                 placeholder="Cleo"
               />
               {errors.botName && (
@@ -268,11 +260,10 @@ export const ConfigurationPage = () => {
                 value={config.tone}
                 onChange={(e) => handleChange("tone", e.target.value)}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
               >
                 {toneOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -290,11 +281,10 @@ export const ConfigurationPage = () => {
                 value={config.responseStyle}
                 onChange={(e) => handleChange("responseStyle", e.target.value)}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
               >
                 {responseStyleOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -315,11 +305,10 @@ export const ConfigurationPage = () => {
                 }
                 disabled={!isOwner}
                 rows={3}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
                 placeholder={t("additionalNotesPlaceholder")}
               />
               <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
@@ -335,11 +324,10 @@ export const ConfigurationPage = () => {
                 value={config.language}
                 onChange={(e) => handleChange("language", e.target.value)}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                  !isOwner
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                     ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                }`}
+                  }`}
               >
                 {languageOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -368,15 +356,13 @@ export const ConfigurationPage = () => {
                   isOwner && handleChange("is24_7", !config.is24_7)
                 }
                 disabled={!isOwner}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  !isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-                } ${config.is24_7 ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${!isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                  } ${config.is24_7 ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
                 style={{ direction: "ltr" }}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    config.is24_7 ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${config.is24_7 ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </button>
             </div>
@@ -392,11 +378,10 @@ export const ConfigurationPage = () => {
                     value={config.startTime}
                     onChange={(e) => handleChange("startTime", e.target.value)}
                     disabled={!isOwner}
-                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                      !isOwner
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                         ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                         : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                    }`}
+                      }`}
                   />
                 </div>
 
@@ -409,11 +394,10 @@ export const ConfigurationPage = () => {
                     value={config.endTime}
                     onChange={(e) => handleChange("endTime", e.target.value)}
                     disabled={!isOwner}
-                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
-                      !isOwner
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${!isOwner
                         ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                         : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                    }`}
+                      }`}
                   />
                 </div>
 
@@ -428,11 +412,10 @@ export const ConfigurationPage = () => {
                     }
                     disabled={!isOwner}
                     rows={3}
-                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${
-                      !isOwner
+                    className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 resize-none ${!isOwner
                         ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                         : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-                    }`}
+                      }`}
                     placeholder={t("closedHoursResponsePlaceholder")}
                   />
                   <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
@@ -462,15 +445,13 @@ export const ConfigurationPage = () => {
                   handleChange("emotionDetection", !config.emotionDetection)
                 }
                 disabled={!isOwner}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  !isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-                } ${config.emotionDetection ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${!isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                  } ${config.emotionDetection ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
                 style={{ direction: "ltr" }}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    config.emotionDetection ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${config.emotionDetection ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </button>
             </div>
@@ -485,15 +466,13 @@ export const ConfigurationPage = () => {
                   isOwner && handleChange("voiceSupport", !config.voiceSupport)
                 }
                 disabled={!isOwner}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  !isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-                } ${config.voiceSupport ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${!isOwner ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                  } ${config.voiceSupport ? "bg-blue-600" : "bg-gray-300 dark:bg-gray-600"}`}
                 style={{ direction: "ltr" }}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    config.voiceSupport ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${config.voiceSupport ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </button>
             </div>

@@ -72,10 +72,7 @@ export const ChatSessionPage = () => {
             {t("sessionDetails")}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("sessionDetailsSubtitle", {
-              defaultValue:
-                "View full conversation transcript and session metadata.",
-            })}
+            {t("sessionDetailsSubtitle")}
           </p>
         </div>
         <button
@@ -116,13 +113,12 @@ export const ChatSessionPage = () => {
             </label>
             <div>
               <span
-                className={`inline-flex px-3 py-1 text-[10px] font-bold rounded-full border ${
-                  session.status === "active"
+                className={`inline-flex px-3 py-1 text-[10px] font-bold rounded-full border ${session.status === "active"
                     ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20"
                     : session.status === "pending"
                       ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20"
                       : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/10 dark:text-gray-400 dark:border-gray-500/20"
-                }`}
+                  }`}
               >
                 {t(session.status)}
               </span>
@@ -178,24 +174,22 @@ export const ChatSessionPage = () => {
                   className={`flex flex-col ${isUser ? "items-end" : "items-start"} max-w-[85%] sm:max-w-[70%]`}
                 >
                   <div
-                    className={`px-5 py-3.5 rounded-2xl break-words relative transition-all ${
-                      isUser
+                    className={`px-5 py-3.5 rounded-2xl break-words relative transition-all ${isUser
                         ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white rounded-tr-none shadow-blue-500/10"
                         : isAI
                           ? "bg-gray-100 dark:bg-[#1a2f45] text-gray-900 dark:text-white border border-gray-200 dark:border-[#1e3a5f] rounded-tl-none"
                           : "bg-green-600 dark:bg-green-500/20 text-white dark:text-green-400 rounded-tl-none"
-                    }`}
+                      }`}
                   >
                     <div className="text-sm sm:text-base leading-relaxed font-medium">
                       {message.content}
                     </div>
                     {message.emotion && (
                       <div
-                        className={`mt-2.5 px-2 py-0.5 rounded-full inline-flex items-center gap-1.5 text-[10px] font-bold ${
-                          isUser
+                        className={`mt-2.5 px-2 py-0.5 rounded-full inline-flex items-center gap-1.5 text-[10px] font-bold ${isUser
                             ? "bg-white/20 text-white"
                             : "bg-gray-200 dark:bg-[#0d1f2d] text-gray-700 dark:text-gray-300"
-                        }`}
+                          }`}
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                         {t("detectedEmotion")}: {message.emotion}

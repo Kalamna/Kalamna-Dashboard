@@ -10,26 +10,24 @@
   "dontHaveAccount": "ليس لديك حساب؟",
   "createAccount": "إنشاء حساب",
   "langBtn": "تغيير اللغة",
-
   "overview": "نظرة عامة",
   "employees": "الموظفين",
-  "configuration": "الإعدادات",
-  "apiKey": "مفتاح API",
+  "configuration": "إعدادات",
   "apiKeyMenu": "مفتاح API",
   "knowledgeBase": "قاعدة المعرفة",
   "chatHistory": "سجل المحادثات",
   "feedback": "التقييمات",
   "analytics": "التحليلات",
+  "analyticsSubtitle": "تعمق في اتجاهات المحادثة ومشاركة المستخدم ومقاييس الأداء.",
   "widgetPreview": "معاينة الويدجت",
+  "widgetSubtitle": "قم بتخصيص ومعاينة كيفية ظهور مساعد الذكاء الاصطناعي لعملائك.",
   "logout": "تسجيل الخروج",
   "search": "بحث...",
   "darkMode": "الوضع الداكن",
   "language": "اللغة",
-
   "dashboardOverview": "نظرة عامة على لوحة التحكم",
   "overviewSubtitle": "راقب أداء مساعدك الذكي ونشاطه الأخير بنظرة سريعة.",
   "downloadReport": "تحميل التقرير",
-
   "totalConversations": "إجمالي المحادثات",
   "avgResponseTime": "متوسط وقت الاستجابة",
   "satisfactionRate": "معدل الرضا",
@@ -37,7 +35,6 @@
   "thisWeek": "هذا الأسبوع",
   "improvement": "تحسن",
   "thisMonth": "هذا الشهر",
-
   "realTimeMonitoring": "المراقبة في الوقت الفعلي",
   "conversationAnalytics": "تحليلات المحادثات",
   "recentConversations": "المحادثات الأخيرة",
@@ -45,8 +42,9 @@
   "messages": "رسائل",
   "active": "نشط",
   "completed": "مكتمل",
-
   "employeeManagement": "إدارة الموظفين",
+  "employeeSubtitle": "إدارة أعضاء فريقك وأدوارهم ودعواتهم.",
+  "inviteEmployeeSubtitle": "أرسل دعوة إلى عضو فريق جديد للانضمام إلى لوحة التحكم الخاصة بك.",
   "inviteEmployee": "دعوة موظف",
   "name": "الاسم",
   "role": "الدور",
@@ -56,7 +54,6 @@
   "owner": "مالك",
   "staff": "موظف",
   "pending": "قيد الانتظار",
-
   "botConfiguration": "إعدادات البوت",
   "generalSettings": "الإعدادات العامة",
   "organizationName": "اسم المؤسسة",
@@ -76,18 +73,18 @@
   "voiceSupport": "دعم الصوت",
   "multiIntentHandling": "معالجة النوايا المتعددة",
   "saveConfiguration": "حفظ الإعدادات",
-
   "apiKeyManagement": "إدارة مفتاح API",
   "yourApiKey": "مفتاح API الخاص بك",
   "regenerateKey": "إعادة توليد المفتاح",
-
   "addKnowledge": "إضافة معرفة",
+  "knowledgeBaseSubtitle": "تحميل وإدارة بيانات التدريب لمساعد الذكاء الاصطناعي الخاص بك.",
   "customerFeedback": "تقييمات العملاء",
+  "feedbackSubtitle": "مراقبة وتحليل رضا العملاء والتقييمات.",
   "averageRating": "متوسط التقييم",
   "totalFeedback": "إجمالي التقييمات",
   "positiveRate": "معدل الإيجابية",
-
   "activePendingSessions": "الجلسات النشطة / المعلقة",
+  "chatHistorySubtitle": "مراجعة وتحليل المحادثات السابقة بين المستخدمين ومساعد الذكاء الاصطناعي الخاص بك.",
   "completedSessions": "الجلسات المكتملة",
   "sessionId": "معرف الجلسة",
   "userId": "معرف المستخدم",
@@ -99,6 +96,7 @@
   "viewSession": "عرض الجلسة",
   "backToChatHistory": "العودة إلى سجل المحادثات",
   "sessionDetails": "تفاصيل الجلسة",
+  "sessionDetailsSubtitle": "عرض نسخة المحادثة الكاملة وبيانات الجلسة.",
   "senderType": "المرسل",
   "messageContent": "الرسالة",
   "timestamp": "الوقت",
@@ -107,11 +105,10 @@
   "messagePlaceholder": "اكتب رسالتك...",
   "user": "المستخدم",
   "ai": "الذكاء الاصطناعي",
-
   "avgSessionsPerDay": "متوسط الجلسات يومياً",
   "viewAll": "عرض الكل",
+  "goToChatSession": "عرض جلسات الدردشة",
   "notifications": "الإشعارات",
-
   "rating": "التقييم",
   "comment": "التعليق",
   "inactive": "غير نشط",
@@ -120,7 +117,6 @@
   "file": "ملف",
   "updated": "تم التحديث",
   "chunks": "القطع",
-
   "titleRequired": "العنوان مطلوب",
   "textRequired": "المحتوى النصي مطلوب",
   "fileRequired": "الملف مطلوب",
@@ -132,28 +128,23 @@
   "uploadFile": "تحميل ملف",
   "prev": "سابق",
   "next": "التالي",
-
   "pendingInvitations": "الدعوات المعلقة",
   "allEmployees": "جميع الموظفين",
   "inviteNewEmployee": "دعوة موظف جديد",
   "ownerOnlyAction": "إجراء خاص بالمالك",
   "ownerOnlyDescription": "يمكن فقط لمالكي المنظمة دعوة موظفين جدد.",
-
   "fullName": "الاسم الكامل",
   "fullNameRequired": "الاسم الكامل مطلوب",
   "fullNameTooShort": "يجب أن يحتوي الاسم الكامل على حرفين على الأقل",
   "fullNamePlaceholder": "محمد أحمد",
   "emailRequired": "البريد الإلكتروني مطلوب",
   "emailInvalid": "يرجى إدخال بريد إلكتروني صالح",
-
   "roleRequired": "يرجى اختيار الدور",
   "roleDescription": "يمكن للموظفين الاطلاع على البيانات. بينما يملك المالك صلاحيات كاملة لإدارة الموظفين والإعدادات.",
-
   "sendInvitation": "إرسال الدعوة",
   "sendingInvitation": "جاري إرسال الدعوة...",
   "invitationSentSuccess": "تم إرسال الدعوة بنجاح!",
   "invitationFailed": "فشل في إرسال الدعوة. يرجى المحاولة مرة أخرى.",
-
   "expires": "ينتهي في",
   "resendInvitation": "إعادة إرسال الدعوة",
   "deleteInvitation": "حذف الدعوة",
@@ -165,7 +156,6 @@
   "to": "إلى",
   "of": "من أصل",
   "invitations": "دعوات",
-
   "edit": "تعديل",
   "joined": "انضم",
   "deleteEmployee": "حذف الموظف",
@@ -177,32 +167,30 @@
   "errorResendingInvitation": "حدث خطأ أثناء إعادة إرسال الدعوة",
   "errorDeletingInvitation": "حدث خطأ أثناء حذف الدعوة",
   "errorDeletingEmployee": "حدث خطأ أثناء حذف الموظف",
-
   "botName": "اسم البوت",
+  "botNamePlaceholder": "أدخل اسم البوت",
+  "botNameRequired": "اسم البوت مطلوب",
+  "organizationNameRequired": "اسم المؤسسة مطلوب",
+  "saveConfigurationSuccess": "تم حفظ الإعدادات بنجاح!",
   "additionalNotes": "ملاحظات إضافية",
   "closedHoursResponse": "قواعد الرد خارج أوقات العمل",
   "configurationSubtitle": "تخصيص إعدادات وسلوك البوت الخاص بك",
-
   "ownerView": "عرض المالك",
   "staffView": "عرض الموظف",
-
   "businessDescriptionPlaceholder": "وصف النشاط التجاري...",
   "additionalNotesPlaceholder": "هذه الملاحظات ستؤثر على طريقة استجابة الذكاء الاصطناعي",
   "additionalNotesHelper": "هذه الملاحظات ستؤثر على طريقة استجابة الذكاء الاصطناعي",
   "closedHoursResponsePlaceholder": "حدد كيفية استجابة البوت خارج ساعات العمل",
   "closedHoursResponseHelper": "حدد كيفية استجابة البوت خارج ساعات العمل",
-
   "formal": "رسمي",
   "casual": "عادي",
   "friendly": "ودي",
   "concise": "موجز",
   "detailed": "مفصل",
   "balanced": "متوازن",
-
   "egyptianArabic": "عربي مصري",
   "francoEgyptian": "فرانكو مصري",
   "english": "إنجليزي",
-
   "industryEcommerce": "التجارة الإلكترونية",
   "industryHealthcare": "الرعاية الصحية",
   "industryEducation": "التعليم",
@@ -210,7 +198,6 @@
   "industryRetail": "التجزئة",
   "industryTechnology": "التكنولوجيا",
   "industryOther": "أخرى",
-
   "apiKey": {
     "title": "إدارة مفاتيح API",
     "subtitle": "إدارة مفاتيح API وبيانات الوصول الخاصة بك بأمان.",
@@ -225,5 +212,7 @@
     "usageStats": "إحصائيات استخدام الـ API",
     "requestsToday": "طلبات اليوم",
     "requestsThisMonth": "طلبات هذا الشهر"
-  }
+  },
+  "settings": "الإعدادات",
+  "settingsSubtitle": "تكوين إعدادات مؤسستك ومفاتيح API وتفضيلات النظام الأساسي."
 }

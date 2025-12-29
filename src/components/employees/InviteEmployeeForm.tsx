@@ -108,10 +108,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             {t("inviteNewEmployee") || "Invite New Employee"}
           </h2>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
-            {t("inviteEmployeeSubtitle", {
-              defaultValue:
-                "Send an invitation to a new team member to join your dashboard.",
-            })}
+            {t("inviteEmployeeSubtitle")}
           </p>
         </div>
         {onClose && (
@@ -135,8 +132,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               {t("ownerOnlyAction") || "Owner-Only Action"}
             </p>
             <p className="text-xs text-gray-700 dark:text-gray-400 mt-1">
-              {t("ownerOnlyDescription") ||
-                "Only organization owners can invite new employees."}
+              {t("ownerOnlyDescription")}
             </p>
           </div>
         </div>
@@ -158,11 +154,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => handleChange("fullName", e.target.value)}
-                className={`w-full ${isRTL ? "pr-10 pl-4 text-right" : "pl-10 pr-4 text-left"} py-2.5 sm:py-3 border ${
-                  errors.fullName
+                className={`w-full ${isRTL ? "pr-10 pl-4 text-right" : "pl-10 pr-4 text-left"} py-2.5 sm:py-3 border ${errors.fullName
                     ? "border-red-500"
                     : "border-gray-300 dark:border-[#1e3a5f]"
-                } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
+                  } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
                 placeholder={t("fullNamePlaceholder") || "John Doe"}
                 disabled={isSubmitting}
               />
@@ -190,11 +185,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
-                className={`w-full ${isRTL ? "pr-10 pl-4 text-right" : "pl-10 pr-4 text-left"} py-2.5 sm:py-3 border ${
-                  errors.email
+                className={`w-full ${isRTL ? "pr-10 pl-4 text-right" : "pl-10 pr-4 text-left"} py-2.5 sm:py-3 border ${errors.email
                     ? "border-red-500"
                     : "border-gray-300 dark:border-[#1e3a5f]"
-                } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
+                  } rounded-lg focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white transition-colors placeholder-gray-400 dark:placeholder-gray-500 shadow-sm text-sm sm:text-base`}
                 placeholder={t("emailPlaceholder") || "john@company.com"}
                 disabled={isSubmitting}
               />
@@ -218,11 +212,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               <button
                 type="button"
                 onClick={() => handleChange("role", "staff")}
-                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 active:scale-95 ${
-                  formData.role === "staff"
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 active:scale-95 ${formData.role === "staff"
                     ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                     : "text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-                }`}
+                  }`}
               >
                 <Shield className="w-4 h-4" />
                 <span>{t("staff") || "Staff"}</span>
@@ -230,11 +223,10 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               <button
                 type="button"
                 onClick={() => handleChange("role", "owner")}
-                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 active:scale-95 ${
-                  formData.role === "owner"
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 active:scale-95 ${formData.role === "owner"
                     ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-sm"
                     : "text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#1a2f45]"
-                }`}
+                  }`}
               >
                 <Shield className="w-4 h-4" />
                 <span>{t("owner") || "Owner"}</span>
@@ -243,8 +235,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             <p
               className={`mt-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 ${isRTL ? "text-right" : "text-left"}`}
             >
-              {t("roleDescription") ||
-                "Staff can view data. Owners have full access to manage employees and settings."}
+              {t("roleDescription")}
             </p>
           </div>
 
