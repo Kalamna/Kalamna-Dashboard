@@ -16,16 +16,18 @@ const RegisterStep2: React.FC<Step2Props> = ({
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 
-  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
+    setTimeout(() => {
+      passwordInputRef.current?.focus();
+    }, 0);
   };
 
-  const handleConfirmPasswordToggle = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    e.preventDefault();
+  const handleConfirmPasswordToggle = () => {
     setShowConfirmPassword(!showConfirmPassword);
+    setTimeout(() => {
+      confirmPasswordInputRef.current?.focus();
+    }, 0);
   };
   return (
     <div className="space-y-4 sm:space-y-6">
@@ -99,18 +101,12 @@ const RegisterStep2: React.FC<Step2Props> = ({
             required
             minLength={8}
           />
-          <button
-            type="button"
-            onMouseDown={handlePasswordToggle}
-            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-2 -m-2`}
-            tabIndex={-1}
+          <div
+            onClick={handlePasswordToggle}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
-            {showPassword ? (
-              <EyeOff className="w-5 h-5" />
-            ) : (
-              <Eye className="w-5 h-5" />
-            )}
-          </button>
+            {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+          </div>
         </div>
         <p
           className="text-xs mt-1"
@@ -150,18 +146,12 @@ const RegisterStep2: React.FC<Step2Props> = ({
             placeholder={t.confirmPasswordPlaceholder}
             required
           />
-          <button
-            type="button"
-            onMouseDown={handleConfirmPasswordToggle}
-            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-2 -m-2`}
-            tabIndex={-1}
+          <div
+            onClick={handleConfirmPasswordToggle}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
-            {showConfirmPassword ? (
-              <EyeOff className="w-5 h-5" />
-            ) : (
-              <Eye className="w-5 h-5" />
-            )}
-          </button>
+            {showConfirmPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+          </div>
         </div>
       </div>
 
