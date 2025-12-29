@@ -35,9 +35,6 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
     role?: string;
   }>({});
 
-  const [fullNameError, setFullNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const nameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
@@ -51,10 +48,12 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
     } = {};
 
     if (!nameRegex.test(formData.fullName.trim())) {
-      setFullNameError("Please enter a valid full name");
+      newErrors.fullName =
+        t("fullNameRequired") || "Please enter a valid full name";
     }
     if (!emailRegex.test(formData.email.trim())) {
-      setEmailError("Please enter a valid email address");
+      newErrors.email =
+        t("emailRequired") || "Please enter a valid email address";
     }
     if (!formData.role) {
       newErrors.role = t("roleRequired") || "Please select a role";
@@ -167,10 +166,12 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 placeholder={t("fullNamePlaceholder") || "John Doe"}
                 disabled={isSubmitting}
               />
-              {fullNameError && (
-                <p style={{ color: "#B45309" }}>{fullNameError}</p>
-              )}
             </div>
+            {errors.fullName && (
+              <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                {errors.fullName}
+              </p>
+            )}
           </div>
 
           {/* Email */}
@@ -197,8 +198,12 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
                 placeholder={t("emailPlaceholder") || "john@company.com"}
                 disabled={isSubmitting}
               />
-              {emailError && <p style={{ color: "#B45309" }}>{emailError}</p>}
             </div>
+            {errors.email && (
+              <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                {errors.email}
+              </p>
+            )}
           </div>
 
           {/* Role - Segmented Control (Slider-like) */}
