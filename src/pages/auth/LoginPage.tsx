@@ -76,22 +76,15 @@ const LoginPage = () => {
     navigate("/dashboard");
   };
 
-  const handlePasswordToggle = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowPassword(!showPassword);
-    // Ensure focus stays on input after toggle
-    setTimeout(() => {
-      if (passwordInputRef.current) {
-        passwordInputRef.current.focus();
-      }
-    }, 0);
   };
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${
-        language === "ar" ? "rtl" : ""
-      } ${darkMode ? "dark-mode" : ""}`}
+      className={`min-h-screen flex items-center justify-center relative ${language === "ar" ? "rtl" : ""
+        } ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
@@ -208,17 +201,23 @@ const LoginPage = () => {
               autoComplete="current-password"
               required
             />
-            <div
-              onClick={handlePasswordToggle}
+            <button
+              type="button"
+              onMouseDown={handlePasswordToggle}
               style={{
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
+                background: "none",
+                border: "none",
+                padding: "8px",
+                margin: "-8px",
               }}
               className="text-gray-500 hover:text-gray-700 transition-colors"
+              tabIndex={-1}
             >
-              {showPassword ? <FiEye /> : <FiEyeOff />}
-            </div>
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
           </div>
           {passwordError && (
             <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
