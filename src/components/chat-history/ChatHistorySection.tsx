@@ -112,7 +112,7 @@ export function ChatHistorySection() {
                   <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                     {t("sessionStatus")}
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                  <th className="px-4 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">
                     {t("actions")}
                   </th>
                 </tr>
@@ -121,11 +121,10 @@ export function ChatHistorySection() {
                 {paginatedSessions.map((session, index) => (
                   <tr
                     key={session.id}
-                    className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${
-                      index % 2 === 0
-                        ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
-                        : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
-                    }`}
+                    className={`border-b border-gray-200 dark:border-[#1e3a5f] transition-colors ${index % 2 === 0
+                      ? "bg-white dark:bg-[#0a1929] hover:bg-gray-100 dark:hover:bg-[#15304a]"
+                      : "bg-gray-50 dark:bg-[#0d2943] hover:bg-gray-100 dark:hover:bg-[#1a3f5f]"
+                      }`}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                       #{session.id}
@@ -134,7 +133,7 @@ export function ChatHistorySection() {
                       {session.userId}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
-                      {new Date(session.startTime).toLocaleString()}
+                      {new Date(session.startTime).toLocaleDateString([], { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
                       {session.duration}
@@ -144,34 +143,32 @@ export function ChatHistorySection() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border ${
-                          session.status === "active"
-                            ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                            : session.status === "pending"
-                              ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
-                              : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
-                        }`}
+                        className={`inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full border ${session.status === "active"
+                          ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                          : session.status === "pending"
+                            ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                            : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+                          }`}
                       >
                         {t(session.status)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-3">
+                    <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-center">
+                      {showAnswerManual ? (
+                        <button
+                          onClick={() => handleAnswerManual(session.id)}
+                          className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
+                        >
+                          {t("answerManual")}
+                        </button>
+                      ) : (
                         <button
                           onClick={() => handleViewSession(session.id)}
                           className="text-[#0066cc] hover:text-[#0052a3] dark:text-[#3b82f6] dark:hover:text-[#60a5fa] transition-colors"
                         >
                           {t("view")}
                         </button>
-                        {showAnswerManual && (
-                          <button
-                            onClick={() => handleAnswerManual(session.id)}
-                            className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
-                          >
-                            {t("answerManual")}
-                          </button>
-                        )}
-                      </div>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -227,13 +224,12 @@ export function ChatHistorySection() {
                   </div>
                 </div>
                 <span
-                  className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${
-                    session.status === "active"
-                      ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
-                      : session.status === "pending"
-                        ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
-                        : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
-                  }`}
+                  className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${session.status === "active"
+                    ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-500/20 dark:text-green-400 dark:border-green-500/30"
+                    : session.status === "pending"
+                      ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-400 dark:border-yellow-500/30"
+                      : "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-500/20 dark:text-gray-400 dark:border-gray-500/30"
+                    }`}
                 >
                   {t(session.status)}
                 </span>
@@ -267,18 +263,19 @@ export function ChatHistorySection() {
               </div>
 
               <div className="flex gap-3 pt-4 border-t border-gray-100 dark:border-[#1e3a5f]">
-                <button
-                  onClick={() => handleViewSession(session.id)}
-                  className="flex-1 py-3.5 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white rounded-xl text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-                >
-                  {t("view")}
-                </button>
-                {showAnswerManual && (
+                {showAnswerManual ? (
                   <button
                     onClick={() => handleAnswerManual(session.id)}
-                    className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                    className="flex-1 py-3.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
                   >
                     {t("answerManual")}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleViewSession(session.id)}
+                    className="flex-1 py-3.5 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white rounded-xl text-sm font-bold transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                  >
+                    {t("view")}
                   </button>
                 )}
               </div>
@@ -332,11 +329,10 @@ export function ChatHistorySection() {
                     <button
                       key={page}
                       onClick={() => setPage(page)}
-                      className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${
-                        page === currentPage
-                          ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-md"
-                          : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
-                      }`}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 ${page === currentPage
+                        ? "bg-[#0066cc] dark:bg-[#3b82f6] text-white shadow-md"
+                        : "bg-white dark:bg-[#0a1929] text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-[#1e3a5f] hover:bg-gray-50 dark:hover:bg-[#1a2f45]"
+                        }`}
                     >
                       {page}
                     </button>
