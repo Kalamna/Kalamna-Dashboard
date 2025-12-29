@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { useAuth } from "../../context/AuthContext";
+import { saveUser } from "../../utils/authUtils";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
@@ -62,15 +63,23 @@ const LoginPage = () => {
     if (!isValid) return;
 
     // TODO: Integrate with real Auth API
-    // For now, we allow demo credentials only in development mode to avoid hardcoding constants
-    const isDevelopment = import.meta.env.DEV;
+    const DEMO_EMAIL = import.meta.env.VITE_DEMO_EMAIL;
+    const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD;
 
-    if (
-      isDevelopment &&
-      email === "demo@kalamna.com" &&
-      password === "GP@2026"
-    ) {
+    if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
       console.log("Success login (Demo Mode)");
+
+      // Save user data to cookies for the rest of the app to use
+      saveUser(
+        {
+          email: DEMO_EMAIL || "demo@kalamna.com",
+          name: "Demo User",
+          role: "owner",
+          organization: "Kalamna Demo",
+        },
+        "dummy-auth-token",
+      );
+
       login("dummy-auth-token");
       navigate("/dashboard");
     } else {
@@ -87,9 +96,8 @@ const LoginPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${
-        language === "ar" ? "rtl" : ""
-      } ${darkMode ? "dark-mode" : ""}`}
+      className={`min-h-screen flex items-center justify-center relative ${language === "ar" ? "rtl" : ""
+        } ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
