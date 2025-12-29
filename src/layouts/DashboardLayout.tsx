@@ -5,15 +5,20 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useLanguage } from "../context/LanguageContext";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 
 export const MainLayout = () => {
-  // NOTE:
-  // role is intentionally commented for now
-  // Will be used later for permission-based UI
+  /**
+   * NOTE:
+   * Auth role handling is intentionally disabled for now.
+   * It will be re-enabled later for permission-based UI (Owner / Staff).
+   *
+   * Example (future use):
+   * const { role, setRole } = useAuth();
+   */
+
   // const { role, setRole } = useAuth();
 
-  const { setRole } = useAuth();
   const { i18n } = useTranslation();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { changeLanguage } = useLanguage();
@@ -41,15 +46,6 @@ export const MainLayout = () => {
     changeLanguage(newLang);
   };
 
-  // NOTE:
-  // This function is intentionally kept for future use
-  // Owner / Staff switch UI was moved to Sidebar
-  /*
-  const toggleRole = () => {
-    setRole((prev) => (prev === "owner" ? "staff" : "owner"));
-  };
-  */
-
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("current_user");
@@ -58,7 +54,7 @@ export const MainLayout = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors overflow-x-hidden">
-      {/* Mobile Overlay - intentionally disabled */}
+      {/* Mobile Overlay (disabled intentionally) */}
       {/* {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
