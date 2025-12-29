@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { FiMail, FiLock, FiEye, FiEyeOff, FiGlobe } from "react-icons/fi";
+import {
+  FiMail,
+  FiLock,
+  FiEye,
+  FiEyeOff,
+  FiGlobe,
+  FiAlertCircle,
+} from "react-icons/fi";
 import { BsMoon } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext";
@@ -125,8 +132,8 @@ const LoginPage = () => {
 
         {/* General Error Message */}
         {generalError && (
-          <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 flex items-center gap-2 text-sm text-[#f83737ff]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#f83737ff] flex-shrink-0" />
+          <div className="mb-6 p-3 rounded-lg bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 flex items-center gap-2 text-sm text-red-700 dark:text-red-400">
+            <FiAlertCircle className="w-4 h-4 flex-shrink-0" />
             {generalError}
           </div>
         )}
