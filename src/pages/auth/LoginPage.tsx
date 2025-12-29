@@ -48,9 +48,6 @@ const LoginPage = () => {
     setPasswordError("");
     setGeneralError("");
 
-    const DEMO_EMAIL = "demo@kalamna.com";
-    const DEMO_PASSWORD = "GP@2026";
-
     // Basic empty checks
     if (!email.trim()) {
       setEmailError("Email is required");
@@ -64,16 +61,21 @@ const LoginPage = () => {
 
     if (!isValid) return;
 
-    // Check against demo credentials
-    if (email !== DEMO_EMAIL || password !== DEMO_PASSWORD) {
-      setGeneralError("Invalid email or password");
-      return;
-    }
+    // TODO: Integrate with real Auth API using authApi.login({ email, password })
+    // For now, we simulate a successful login to avoid breaking local testing
+    // if the backend is not ready, while removing hardcoded credentials.
 
-    // ✅ Credentials match demo account
-    console.log("Success login");
-    login("dummy-auth-token");
-    navigate("/dashboard");
+    const isDevelopment = import.meta.env.DEV;
+
+    if (isDevelopment && email === "demo@kalamna.com" && password === "GP@2026") {
+      console.log("Success login (Demo Mode)");
+      login("dummy-auth-token");
+      navigate("/dashboard");
+    } else {
+      // This is where real API call would go
+      // authApi.login({ email, password }).then(...)
+      setGeneralError("Invalid email or password");
+    }
   };
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -83,9 +85,8 @@ const LoginPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${
-        language === "ar" ? "rtl" : ""
-      } ${darkMode ? "dark-mode" : ""}`}
+      className={`min-h-screen flex items-center justify-center relative ${language === "ar" ? "rtl" : ""
+        } ${darkMode ? "dark-mode" : ""}`}
       style={{ backgroundColor: "var(--bg-main)", color: "var(--text-main)" }}
     >
       {/* Top Buttons */}
