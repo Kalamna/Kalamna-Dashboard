@@ -283,37 +283,41 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   const [type, setType] = useState<"text" | "file">("text");
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const titleregix = /^[A-Za-z\u0600-\u06FF]{2,}$/;
 
   /* -----------------------------
    * Validation (UI ONLY)
    * ----------------------------- */
   const handleSubmit = () => {
-    if (!title.trim()) {
-      setError(t("titleRequired"));
-      return;
+    const newErrors: Record<string, string> = {};
+
+    if (!titleregix.test(title.trim())) {
+      newErrors.title = t("titleRequired") || "Please enter a valid title";
     }
 
     if (type === "text" && !content.trim()) {
-      setError(t("textRequired"));
-      return;
+      newErrors.content = t("textRequired") || "Text content is required";
     }
 
     if (type === "file" && !file) {
-      setError(t("fileRequired"));
-      return;
+      newErrors.file = t("fileRequired") || "Please choose a file";
     }
 
     if (type === "file" && file) {
       const extension = file.name.split(".").pop()?.toLowerCase();
       const isAllowed = extension && allowedFileTypes.includes(extension);
       if (!isAllowed) {
-        setError(
+        newErrors.file =
           t("fileTypeNotAllowed") ||
-            "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.",
-        );
-        return;
+          "Only PDF, DOC/DOCX, XLS/XLSX, CSV, or image files are allowed.";
       }
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
 
     const successMessage = t("Knowledge added successfully.");
@@ -321,7 +325,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
     setTitle("");
     setContent("");
     setFile(null);
-    setError("");
+    setErrors({});
     onClose();
   };
 
@@ -351,10 +355,13 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
 
           <div className="p-4 sm:p-6 space-y-5 sm:space-y-6">
-            {error && (
+            {Object.keys(errors).length > 0 && (
               <div className="flex items-start gap-2 rounded-lg bg-red-50 dark:bg-red-500/20 border border-red-200 dark:border-red-500/30 px-3 py-2 text-sm text-red-700 dark:text-red-300">
                 <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>{error}</span>
+                <span>
+                  {t("Please enter all required fields.") ||
+                    "Please correct the errors below."}
+                </span>
               </div>
             )}
 
@@ -371,12 +378,25 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   value={title}
                   onChange={(e) => {
                     setTitle(e.target.value);
-                    setError("");
+                    if (errors.title) {
+                      const newErrors = { ...errors };
+                      delete newErrors.title;
+                      setErrors(newErrors);
+                    }
                   }}
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
+                  className={`w-full pl-10 pr-4 py-2.5 sm:py-3 border ${
+                    errors.title
+                      ? "border-red-500"
+                      : "border-gray-300 dark:border-[#1e3a5f]"
+                  } rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base`}
                   placeholder={t("title")}
                 />
               </div>
+              {errors.title && (
+                <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                  {errors.title}
+                </p>
+              )}
               <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                 {t("titleHelper", {
                   defaultValue:
@@ -396,7 +416,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   value={type}
                   onChange={(e) => {
                     setType(e.target.value as "text" | "file");
-                    setError("");
+                    setErrors({});
                   }}
                   className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm appearance-none text-sm sm:text-base"
                 >
@@ -422,13 +442,26 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     value={content}
                     onChange={(e) => {
                       setContent(e.target.value);
-                      setError("");
+                      if (errors.content) {
+                        const newErrors = { ...errors };
+                        delete newErrors.content;
+                        setErrors(newErrors);
+                      }
                     }}
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 border border-gray-300 dark:border-[#1e3a5f] rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base"
+                    className={`w-full pl-10 pr-4 py-2.5 sm:py-3 border ${
+                      errors.content
+                        ? "border-red-500"
+                        : "border-gray-300 dark:border-[#1e3a5f]"
+                    } rounded-lg bg-white dark:bg-[#0a1929] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0066cc] dark:focus:ring-[#3b82f6] focus:border-transparent shadow-sm text-sm sm:text-base`}
                     rows={4}
                     placeholder={t("textContent")}
                   />
                 </div>
+                {errors.content && (
+                  <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                    {errors.content}
+                  </p>
+                )}
                 <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                   {t("textContentHelper", {
                     defaultValue:
@@ -450,12 +483,20 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     className="hidden"
                     onChange={(e) => {
                       setFile(e.target.files?.[0] || null);
-                      setError("");
+                      if (errors.file) {
+                        const newErrors = { ...errors };
+                        delete newErrors.file;
+                        setErrors(newErrors);
+                      }
                     }}
                   />
                   <label
                     htmlFor="kb-file-upload"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#1a2f45] border border-gray-200 dark:border-[#1e3a5f] cursor-pointer shadow-sm w-full sm:w-auto justify-center"
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 ${
+                      errors.file
+                        ? "bg-red-50 text-red-700 border-red-500"
+                        : "bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-[#0a1929] dark:text-gray-100 dark:hover:bg-[#1a2f45] border border-gray-200 dark:border-[#1e3a5f]"
+                    } border cursor-pointer shadow-sm w-full sm:w-auto justify-center`}
                   >
                     <Upload className="w-4 h-4" />
                     {t("chooseFile") || "Choose file"}
@@ -466,6 +507,11 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     </span>
                   )}
                 </div>
+                {errors.file && (
+                  <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                    {errors.file}
+                  </p>
+                )}
                 <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                   {t("fileTypeHint", {
                     defaultValue:

@@ -55,6 +55,14 @@ function Register({
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [domainUrlError, setDomainUrlError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [ownerFullNameError, setOwnerFullNameError] = useState("");
+  const [organizationNameError, setOrganizationNameError] = useState("");
+  const [industryError, setIndustryError] = useState("");
+
   const t = translations[language as keyof typeof translations];
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -96,33 +104,81 @@ function Register({
     setError("");
   };
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_+=\-{}[\]:;"'<>,./\\|]).{8,}$/;
+  const domainUrlRegex =
+    /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
+  const ownerFullNameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
+
   const validateStep1 = () => {
-    if (!formData.organizationName || !formData.email || !formData.industry) {
-      setError("Please fill in all required fields");
-      return false;
+    let isValid = true;
+    if (!formData.organizationName) {
+      setOrganizationNameError("Organization name is required");
+      isValid = false;
+    } else {
+      setOrganizationNameError("");
     }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError("Please enter a valid email address");
+
+    if (!formData.email) {
+      setEmailError("Email is required");
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      setEmailError("Please enter a valid email address");
+      isValid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (!formData.industry) {
+      setIndustryError("Please select an industry");
+      isValid = false;
+    } else {
+      setIndustryError("");
+    }
+
+    if (formData.domainUrl && !domainUrlRegex.test(formData.domainUrl)) {
+      setDomainUrlError("Please enter a valid domain URL");
+      isValid = false;
+    } else {
+      setDomainUrlError("");
+    }
+
+    if (!isValid) {
+      setError("Please fill in all required fields correctly");
       return false;
     }
     return true;
   };
 
   const validateStep2 = () => {
-    if (
-      !formData.ownerFullName ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      setError("Please fill in all required fields");
-      return false;
+    let isValid = true;
+
+    if (!ownerFullNameRegex.test(formData.ownerFullName)) {
+      setOwnerFullNameError("Please enter a valid full name");
+      isValid = false;
+    } else {
+      setOwnerFullNameError("");
     }
-    if (formData.password.length < 8) {
-      setError("Password must be at least 8 characters long");
-      return false;
+
+    if (!passwordRegex.test(formData.password)) {
+      setPasswordError(
+        "Password must be at least 8 characters long, include 1 uppercase letter, 1 number, and 1 special character",
+      );
+      isValid = false;
+    } else {
+      setPasswordError("");
     }
+
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setConfirmPasswordError("Passwords do not match");
+      isValid = false;
+    } else {
+      setConfirmPasswordError("");
+    }
+
+    if (!isValid) {
+      setError("Please fill in all required fields correctly");
       return false;
     }
     return true;
@@ -371,10 +427,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="organization"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border ${organizationNameError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: organizationNameError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -383,6 +441,11 @@ function Register({
                       required
                     />
                   </div>
+                  {organizationNameError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {organizationNameError}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -404,10 +467,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="email"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border ${emailError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: emailError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -416,6 +481,11 @@ function Register({
                       required
                     />
                   </div>
+                  {emailError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {emailError}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -431,10 +501,12 @@ function Register({
                     value={formData.industry}
                     onChange={handleChange}
                     dir={language === "ar" ? "rtl" : "ltr"}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border ${industryError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                     style={{
                       backgroundColor: "var(--input-bg)",
-                      borderColor: "var(--input-border)",
+                      borderColor: industryError
+                        ? "#ef4444"
+                        : "var(--input-border)",
                       color: "var(--text-main)",
                       textAlign: language === "ar" ? "right" : "left",
                       boxSizing: "border-box",
@@ -452,6 +524,11 @@ function Register({
                     <option value="Retail">Retail</option>
                     <option value="Other">Other</option>
                   </select>
+                  {industryError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {industryError}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -472,10 +549,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="url"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border ${domainUrlError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: domainUrlError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -483,6 +562,11 @@ function Register({
                       placeholder={t.websiteDomainPlaceholder}
                     />
                   </div>
+                  {domainUrlError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {domainUrlError}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -560,10 +644,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="name"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-3 sm:pr-4"} py-2.5 sm:py-3 text-sm sm:text-base border ${ownerFullNameError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: ownerFullNameError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -572,6 +658,11 @@ function Register({
                       required
                     />
                   </div>
+                  {ownerFullNameError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {ownerFullNameError}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -594,10 +685,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="new-password"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border ${passwordError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: passwordError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -620,6 +713,11 @@ function Register({
                       )}
                     </button>
                   </div>
+                  {passwordError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {passwordError}
+                    </p>
+                  )}
                   <p
                     className="text-xs mt-1"
                     style={{ color: "var(--text-main)", opacity: 0.7 }}
@@ -648,10 +746,12 @@ function Register({
                       onChange={handleChange}
                       dir={language === "ar" ? "rtl" : "ltr"}
                       autoComplete="new-password"
-                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+                      className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-10 sm:pl-11" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border ${confirmPasswordError ? "border-red-500" : ""} rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
                       style={{
                         backgroundColor: "var(--input-bg)",
-                        borderColor: "var(--input-border)",
+                        borderColor: confirmPasswordError
+                          ? "#ef4444"
+                          : "var(--input-border)",
                         color: "var(--text-main)",
                         textAlign: language === "ar" ? "right" : "left",
                         boxSizing: "border-box",
@@ -673,6 +773,11 @@ function Register({
                       )}
                     </button>
                   </div>
+                  {confirmPasswordError && (
+                    <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                      {confirmPasswordError}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex space-x-3 sm:space-x-4 rtl:space-x-reverse">
