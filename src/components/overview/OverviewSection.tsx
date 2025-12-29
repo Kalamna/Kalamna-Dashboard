@@ -24,6 +24,7 @@ import {
   Info,
   Book,
   ThumbsUp,
+  BarChart,
 } from "lucide-react";
 
 export function OverviewSection() {
@@ -42,7 +43,7 @@ export function OverviewSection() {
       title: "avgSessionsPerDay",
       value: "45",
       change: "+8%",
-      icon: Users,
+      icon: BarChart,
       positive: true,
     },
     {
@@ -149,13 +150,16 @@ export function OverviewSection() {
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             {t("dashboardOverview")}
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-200">
             {t("overviewSubtitle", {
               defaultValue:
                 "Monitor your AI assistant's performance and recent activity at a glance.",
             })}
           </p>
         </div>
+        <button className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base whitespace-nowrap">
+          {t("downloadReport", { defaultValue: "Download Report" })}
+        </button>
       </div>
 
       {/* Overview Cards (responsive grid) */}
@@ -175,22 +179,30 @@ export function OverviewSection() {
                 </p>
                 <div className="flex items-center mt-1">
                   {card.positive ? (
-                    <TrendingUp className="text-green-500" size={16} />
+                    <TrendingUp
+                      className="text-[#115E59] dark:text-green-600"
+                      size={16}
+                    />
                   ) : (
-                    <TrendingDown className="text-red-500" size={16} />
+                    <TrendingDown
+                      className="text-[#B45309] dark:text-red-600"
+                      size={16}
+                    />
                   )}
                   <p
                     className={`text-sm ml-1 ${
-                      card.positive ? "text-green-600" : "text-red-600"
-                    }`}
+                      card.positive
+                        ? "text-[#115E59] dark:text-green-600"
+                        : "text-[#B45309] dark:text-red-600"
+                    } `}
                   >
                     {card.change} {t("thisWeek")}
                   </p>
                 </div>
               </div>
               <card.icon
-                className="text-[#0066cc] dark:text-[#3b82f6]"
-                size={24}
+                className="text-[#0666cc] dark:text-[#3b82f6] opacity-20 dark:opacity-50"
+                size={45}
               />
             </div>
           </div>

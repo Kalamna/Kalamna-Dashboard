@@ -25,8 +25,11 @@
   "search": "Search...",
   "darkMode": "Dark Mode",
   "language": "Language",
+
   "dashboardOverview": "Dashboard Overview",
+  "overviewSubtitle": "Monitor your AI assistant's performance and recent activity at a glance.",
   "downloadReport": "Download Report",
+
   "totalConversations": "Total Conversations",
   "avgResponseTime": "Avg Response Time",
   "satisfactionRate": "Satisfaction Rate",
@@ -34,6 +37,7 @@
   "thisWeek": "this week",
   "improvement": "improvement",
   "thisMonth": "this month",
+
   "realTimeMonitoring": "Real-time monitoring",
   "conversationAnalytics": "Conversation Analytics",
   "recentConversations": "Recent Conversations",
@@ -56,6 +60,7 @@
   "botConfiguration": "Bot Configuration",
   "generalSettings": "General Settings",
   "organizationName": "Organization Name",
+  "organizationNamePlaceholder": "Your Company Name",
   "industry": "Industry",
   "businessDescription": "Business Description",
   "botPersonality": "Bot Personality",
@@ -102,6 +107,7 @@
   "messagePlaceholder": "Type your message...",
   "user": "User",
   "ai": "AI",
+
   "avgSessionsPerDay": "Avg Sessions per Day",
   "viewAll": "View All",
   "notifications": "Notifications",
@@ -206,8 +212,6 @@
   "industryRetail": "Retail",
   "industryTechnology": "Technology",
   "industryOther": "Other",
-
-  "organizationNamePlaceholder": "Your Company Name",
 
   "apiKey": {
     "title": "API Key Management",

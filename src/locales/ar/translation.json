@@ -27,7 +27,9 @@
   "language": "اللغة",
 
   "dashboardOverview": "نظرة عامة على لوحة التحكم",
+  "overviewSubtitle": "راقب أداء مساعدك الذكي ونشاطه الأخير بنظرة سريعة.",
   "downloadReport": "تحميل التقرير",
+
   "totalConversations": "إجمالي المحادثات",
   "avgResponseTime": "متوسط وقت الاستجابة",
   "satisfactionRate": "معدل الرضا",
@@ -35,6 +37,7 @@
   "thisWeek": "هذا الأسبوع",
   "improvement": "تحسن",
   "thisMonth": "هذا الشهر",
+
   "realTimeMonitoring": "المراقبة في الوقت الفعلي",
   "conversationAnalytics": "تحليلات المحادثات",
   "recentConversations": "المحادثات الأخيرة",
@@ -57,6 +60,7 @@
   "botConfiguration": "إعدادات البوت",
   "generalSettings": "الإعدادات العامة",
   "organizationName": "اسم المؤسسة",
+  "organizationNamePlaceholder": "اسم شركتك",
   "industry": "المجال",
   "businessDescription": "وصف النشاط التجاري",
   "botPersonality": "شخصية البوت",
@@ -107,11 +111,9 @@
   "avgSessionsPerDay": "متوسط الجلسات يومياً",
   "viewAll": "عرض الكل",
   "notifications": "الإشعارات",
-  "messageCount": "عدد الرسائل",
+
   "rating": "التقييم",
   "comment": "التعليق",
-  "alertType": "النوع",
-  "alertMessage": "الرسالة",
   "inactive": "غير نشط",
   "all": "الكل",
   "text": "نص",
@@ -208,8 +210,6 @@
   "industryRetail": "التجزئة",
   "industryTechnology": "التكنولوجيا",
   "industryOther": "أخرى",
-
-  "organizationNamePlaceholder": "اسم شركتك",
 
   "apiKey": {
     "title": "إدارة مفاتيح API",
