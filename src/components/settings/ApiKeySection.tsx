@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Copy, RefreshCw, CheckCircle } from "lucide-react";
+import { config as appConfig } from "../../config";
 
 export function ApiKeySection() {
   const { t } = useTranslation();
   const [copiedKey, setCopiedKey] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  const apiKey = "kalamna_live_sk_xxxxxxxxxxxxxxxxx";
+  const apiKey = appConfig.dummyApiKey;
 
   const copyToClipboard = async (text: string, type: string) => {
     try {
@@ -27,7 +28,7 @@ export function ApiKeySection() {
   const codeBlocks = [
     {
       title: t("apiKey.webWidgetIntegration"),
-      code: `<script src="https://cdn.kalamna.ai/widget.js"></script>
+      code: `<script src="${appConfig.widgetUrl}"></script>
 <script>
   KalamnaWidget.init({
     apiKey: "your_api_key_here",
@@ -38,7 +39,7 @@ export function ApiKeySection() {
     },
     {
       title: t("apiKey.apiEndpoint"),
-      code: `POST https://api.kalamna.ai/v1/chat/sessions/`,
+      code: `POST ${appConfig.apiDomain}/v1/chat/sessions/`,
       id: "endpoint",
     },
     {

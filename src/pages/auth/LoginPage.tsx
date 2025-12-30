@@ -13,6 +13,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { useAuth } from "../../context/AuthContext";
 import { saveUser } from "../../utils/authUtils";
+import { config as appConfig } from "../../config";
 import KalamnaLight from "../../assets/images/KalamnaLight.png";
 import KalamnaDark from "../../assets/images/KalamnaDark.png";
 import "./Login.css";
@@ -63,8 +64,8 @@ const LoginPage = () => {
     if (!isValid) return;
 
     // TODO: Integrate with real Auth API
-    const DEMO_EMAIL = import.meta.env.VITE_DEMO_EMAIL;
-    const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD;
+    const DEMO_EMAIL = appConfig.demoEmail;
+    const DEMO_PASSWORD = appConfig.demoPassword;
 
     if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
       console.log("Success login (Demo Mode)");
