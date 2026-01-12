@@ -11,6 +11,8 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles.css";
 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -34,7 +36,6 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     if (email && password) {
-      // Set a dummy token to authenticate the user
       login("dummy-auth-token");
       navigate("/dashboard");
     }
@@ -42,13 +43,14 @@ const LoginPage = () => {
 
   const handlePasswordToggle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setShowPassword(!showPassword);
-    // Ensure focus stays on input after toggle
-    setTimeout(() => {
-      if (passwordInputRef.current) {
-        passwordInputRef.current.focus();
-      }
-    }, 0);
+    setShowPassword((prev) => !prev);
+
+    // iOS Safari fix: restore focus after toggling input type
+    if (isIOS) {
+      requestAnimationFrame(() => {
+        passwordInputRef.current?.focus();
+      });
+    }
   };
 
   return (
@@ -98,7 +100,9 @@ const LoginPage = () => {
 
         {/* Email Label */}
         <label
-          className={`text-sm font-medium ${language === "ar" ? "text-right block" : ""}`}
+          className={`text-sm font-medium ${
+            language === "ar" ? "text-right block" : ""
+          }`}
         >
           {t("email")}
         </label>
@@ -124,7 +128,9 @@ const LoginPage = () => {
 
         {/* Password Label */}
         <label
-          className={`text-sm font-medium ${language === "ar" ? "text-right block" : ""}`}
+          className={`text-sm font-medium ${
+            language === "ar" ? "text-right block" : ""
+          }`}
         >
           {t("password")}
         </label>
