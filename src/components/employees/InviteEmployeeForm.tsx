@@ -37,6 +37,9 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const nameRegex = /^[A-Za-z\u0600-\u06FF]{2,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const validateForm = (): boolean => {
     const newErrors: {
       fullName?: string;
@@ -44,20 +47,14 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
       role?: string;
     } = {};
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = t("fullNameRequired") || "Full name is required";
-    } else if (formData.fullName.trim().length < 2) {
+    if (!nameRegex.test(formData.fullName.trim())) {
       newErrors.fullName =
-        t("fullNameTooShort") || "Full name must be at least 2 characters";
+        t("fullNameRequired") || "Please enter a valid full name";
     }
-
-    if (!formData.email.trim()) {
-      newErrors.email = t("emailRequired") || "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    if (!emailRegex.test(formData.email.trim())) {
       newErrors.email =
-        t("emailInvalid") || "Please enter a valid email address";
+        t("emailRequired") || "Please enter a valid email address";
     }
-
     if (!formData.role) {
       newErrors.role = t("roleRequired") || "Please select a role";
     }
@@ -111,10 +108,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             {t("inviteNewEmployee") || "Invite New Employee"}
           </h2>
           <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-0.5 sm:mt-1">
-            {t("inviteEmployeeSubtitle", {
-              defaultValue:
-                "Send an invitation to a new team member to join your dashboard.",
-            })}
+            {t("inviteEmployeeSubtitle")}
           </p>
         </div>
         {onClose && (
@@ -138,8 +132,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               {t("ownerOnlyAction") || "Owner-Only Action"}
             </p>
             <p className="text-xs text-gray-700 dark:text-gray-400 mt-1">
-              {t("ownerOnlyDescription") ||
-                "Only organization owners can invite new employees."}
+              {t("ownerOnlyDescription")}
             </p>
           </div>
         </div>
@@ -171,10 +164,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               />
             </div>
             {errors.fullName && (
-              <p
-                className={`mt-1 text-sm text-red-500 dark:text-red-400 flex items-center ${isRTL ? "flex-row-reverse" : ""}`}
-              >
-                <AlertCircle className={`w-4 h-4 ${isRTL ? "ml-1" : "mr-1"}`} />
+              <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
                 {errors.fullName}
               </p>
             )}
@@ -206,10 +196,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
               />
             </div>
             {errors.email && (
-              <p
-                className={`mt-1 text-sm text-red-500 dark:text-red-400 flex items-center ${isRTL ? "flex-row-reverse" : ""}`}
-              >
-                <AlertCircle className={`w-4 h-4 ${isRTL ? "ml-1" : "mr-1"}`} />
+              <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
                 {errors.email}
               </p>
             )}
@@ -252,8 +239,7 @@ const InviteEmployeeForm: React.FC<InviteEmployeeFormProps> = ({
             <p
               className={`mt-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 ${isRTL ? "text-right" : "text-left"}`}
             >
-              {t("roleDescription") ||
-                "Staff can view data. Owners have full access to manage employees and settings."}
+              {t("roleDescription")}
             </p>
           </div>
 

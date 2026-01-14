@@ -272,10 +272,7 @@ const EmployeesPage: React.FC = () => {
             {t("employeeManagement") || "Employee Management"}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("employeeSubtitle", {
-              defaultValue:
-                "Manage your team members, their roles, and invitations.",
-            })}
+            {t("employeeSubtitle")}
           </p>
         </div>
 
@@ -290,7 +287,7 @@ const EmployeesPage: React.FC = () => {
             }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
-            <span>Owner View</span>
+            <span>{t("ownerView")}</span>
           </button>
           <button
             onClick={() => setDemoRole("staff")}
@@ -301,7 +298,7 @@ const EmployeesPage: React.FC = () => {
             }`}
           >
             <Shield className="w-4 h-4 flex-shrink-0" />
-            <span>Staff View</span>
+            <span>{t("staffView")}</span>
           </button>
         </div>
       </div>

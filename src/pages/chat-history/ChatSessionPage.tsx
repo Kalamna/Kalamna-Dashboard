@@ -72,10 +72,7 @@ export const ChatSessionPage = () => {
             {t("sessionDetails")}
           </h1>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("sessionDetailsSubtitle", {
-              defaultValue:
-                "View full conversation transcript and session metadata.",
-            })}
+            {t("sessionDetailsSubtitle")}
           </p>
         </div>
         <button

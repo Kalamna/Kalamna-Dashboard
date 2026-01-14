@@ -5,9 +5,11 @@ import type { AxiosInstance } from "axios";
 import type { Employee, PendingInvitation } from "../types/employee";
 import { getToken } from "../utils/authUtils";
 
+import { config as appConfig } from "../config";
+
 // Create axios instance with base configuration
 const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api",
+  baseURL: appConfig.apiBaseUrl,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

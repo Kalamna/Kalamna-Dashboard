@@ -47,3 +47,16 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none !important;
 }
+
+/* iOS Chrome/Arc Password fix */
+input[type="password"] {
+  -webkit-text-security: disc !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  font-family: inherit; /* Fixes potential "blank" issues if custom font fails to load for bullets */
+  -webkit-appearance: none;
+  appearance: none;
+}

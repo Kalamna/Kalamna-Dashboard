@@ -16,25 +16,17 @@ const RegisterStep2: React.FC<Step2Props> = ({
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 
-  const handlePasswordToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
     setTimeout(() => {
-      if (passwordInputRef.current) {
-        passwordInputRef.current.focus();
-      }
+      passwordInputRef.current?.focus();
     }, 0);
   };
 
-  const handleConfirmPasswordToggle = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    e.preventDefault();
+  const handleConfirmPasswordToggle = () => {
     setShowConfirmPassword(!showConfirmPassword);
     setTimeout(() => {
-      if (confirmPasswordInputRef.current) {
-        confirmPasswordInputRef.current.focus();
-      }
+      confirmPasswordInputRef.current?.focus();
     }, 0);
   };
   return (
@@ -97,7 +89,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
             autoComplete="new-password"
-            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            className={`w-full ${language === "ar" ? "pr-10 sm:pr-11 pl-10 sm:pl-11" : "pl-10 sm:pl-11 pr-10 sm:pr-11"} py-3 sm:py-3.5 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
@@ -109,19 +101,16 @@ const RegisterStep2: React.FC<Step2Props> = ({
             required
             minLength={8}
           />
-          <button
-            type="button"
-            onMouseDown={handlePasswordToggle}
-            onClick={(e) => e.preventDefault()}
-            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
-            tabIndex={-1}
+          <div
+            onClick={handlePasswordToggle}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
             {showPassword ? (
-              <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Eye className="w-5 h-5" />
             ) : (
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+              <EyeOff className="w-5 h-5" />
             )}
-          </button>
+          </div>
         </div>
         <p
           className="text-xs mt-1"
@@ -150,7 +139,7 @@ const RegisterStep2: React.FC<Step2Props> = ({
             onChange={handleChange}
             dir={language === "ar" ? "rtl" : "ltr"}
             autoComplete="new-password"
-            className={`w-full ${language === "ar" ? "pr-9 sm:pr-10 pl-3 sm:pl-4" : "pl-9 sm:pl-10 pr-10 sm:pr-11"} py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
+            className={`w-full ${language === "ar" ? "pr-10 sm:pr-11 pl-10 sm:pl-11" : "pl-10 sm:pl-11 pr-10 sm:pr-11"} py-3 sm:py-3.5 text-sm sm:text-base border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent`}
             style={{
               backgroundColor: "var(--input-bg)",
               borderColor: "var(--input-border)",
@@ -161,19 +150,16 @@ const RegisterStep2: React.FC<Step2Props> = ({
             placeholder={t.confirmPasswordPlaceholder}
             required
           />
-          <button
-            type="button"
-            onMouseDown={handleConfirmPasswordToggle}
-            onClick={(e) => e.preventDefault()}
-            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors`}
-            tabIndex={-1}
+          <div
+            onClick={handleConfirmPasswordToggle}
+            className={`absolute ${language === "ar" ? "left-3" : "right-3"} top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer`}
           >
             {showConfirmPassword ? (
-              <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Eye className="w-5 h-5" />
             ) : (
-              <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
+              <EyeOff className="w-5 h-5" />
             )}
-          </button>
+          </div>
         </div>
       </div>
 

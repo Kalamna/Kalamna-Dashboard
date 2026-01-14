@@ -150,15 +150,12 @@ export function OverviewSection() {
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
             {t("dashboardOverview")}
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-200">
-            {t("overviewSubtitle", {
-              defaultValue:
-                "Monitor your AI assistant's performance and recent activity at a glance.",
-            })}
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            {t("overviewSubtitle")}
           </p>
         </div>
         <button className="flex items-center gap-2 bg-[#0066cc] hover:bg-[#0052a3] dark:bg-[#3b82f6] dark:hover:bg-[#2563eb] text-white px-4 sm:px-5 py-2.5 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl active:scale-95 text-sm sm:text-base whitespace-nowrap">
-          {t("downloadReport", { defaultValue: "Download Report" })}
+          {t("downloadReport")}
         </button>
       </div>
 

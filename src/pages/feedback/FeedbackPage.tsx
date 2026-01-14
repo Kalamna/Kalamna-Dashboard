@@ -59,13 +59,10 @@ export default function FeedbackPage({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-2">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-            {t("customerFeedback", "Customer Feedback")}
+            {t("customerFeedback")}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            {t("feedbackSubtitle", {
-              defaultValue:
-                "Monitor and analyze customer satisfaction and feedback",
-            })}
+            {t("feedbackSubtitle")}
           </p>
         </div>
         <button
@@ -74,26 +71,20 @@ export default function FeedbackPage({
           onClick={() => navigate("/chat-history")}
         >
           <MessageSquare className="w-5 h-5 flex-shrink-0" />
-          {t("goToChatSession", "View Chat Sessions")}
+          {t("goToChatSession")}
         </button>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard
-          title={t("averageRating", "Average Rating")}
-          value={averageRating.toFixed(1)}
-        >
+        <StatCard title={t("averageRating")} value={averageRating.toFixed(1)}>
           <StarRating rating={Math.round(averageRating)} />
         </StatCard>
 
-        <StatCard
-          title={t("totalFeedback", "Total Feedback")}
-          value={feedbacks.length}
-        />
+        <StatCard title={t("totalFeedback")} value={feedbacks.length} />
 
         <StatCard
-          title={t("positiveRate", "Positive Rate")}
+          title={t("positiveRate")}
           value={`${positiveRate.toFixed(0)}%`}
         />
       </div>
@@ -110,7 +101,7 @@ export default function FeedbackPage({
               <div>
                 <StarRating rating={feedback.rating} />
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                  {t("session", "Session")}:{" "}
+                  {t("session")}:{" "}
                   <span className="font-medium text-[#0066cc] dark:text-[#3b82f6]">
                     {feedback.sessionId}
                   </span>

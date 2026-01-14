@@ -27,6 +27,8 @@ export const ConfigurationPage = () => {
     voiceSupport: false,
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const handleChange = (field: string, value: any) => {
     if (isOwner) {
       setConfig((prev) => ({ ...prev, [field]: value }));
@@ -34,10 +36,28 @@ export const ConfigurationPage = () => {
   };
 
   const handleSave = () => {
-    if (isOwner) {
-      console.log("Saving configuration:", config);
-      alert(t("saveConfiguration"));
+    if (!isOwner) return;
+
+    const newErrors: Record<string, string> = {};
+
+    if (!config.organizationName.trim()) {
+      newErrors.organizationName = t("organizationNameRequired");
     }
+
+    if (!config.botName.trim()) {
+      newErrors.botName = t("botNameRequired");
+    }
+
+    // Add more validation as needed
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    console.log("Saving configuration:", config);
+    alert(t("saveConfigurationSuccess"));
   };
 
   const industryOptions = [
@@ -127,17 +147,31 @@ export const ConfigurationPage = () => {
               <input
                 type="text"
                 value={config.organizationName}
-                onChange={(e) =>
-                  handleChange("organizationName", e.target.value)
-                }
+                onChange={(e) => {
+                  handleChange("organizationName", e.target.value);
+                  if (errors.organizationName) {
+                    const newErrors = { ...errors };
+                    delete newErrors.organizationName;
+                    setErrors(newErrors);
+                  }
+                }}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  errors.organizationName
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-gray-600"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
                   !isOwner
-                    ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-                    : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
+                    ? "bg-gray-100 dark:bg-[#1a2332] text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                    : "bg-white dark:bg-[#1a2332] text-gray-900 dark:text-white"
                 }`}
-                placeholder={t("organizationNamePlaceholder")}
+                placeholder={t("botNamePlaceholder")}
               />
+              {errors.organizationName && (
+                <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                  {errors.organizationName}
+                </p>
+              )}
             </div>
 
             <div>
@@ -198,15 +232,31 @@ export const ConfigurationPage = () => {
               <input
                 type="text"
                 value={config.botName}
-                onChange={(e) => handleChange("botName", e.target.value)}
+                onChange={(e) => {
+                  handleChange("botName", e.target.value);
+                  if (errors.botName) {
+                    const newErrors = { ...errors };
+                    delete newErrors.botName;
+                    setErrors(newErrors);
+                  }
+                }}
                 disabled={!isOwner}
-                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  errors.botName
+                    ? "border-red-500"
+                    : "border-gray-300 dark:border-gray-600"
+                } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
                   !isOwner
-                    ? "bg-gray-100 dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-                    : "bg-white dark:bg-[#1a2332] border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
+                    ? "bg-gray-100 dark:bg-[#1a2332] text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                    : "bg-white dark:bg-[#1a2332] text-gray-900 dark:text-white"
                 }`}
                 placeholder="Cleo"
               />
+              {errors.botName && (
+                <p style={{ color: "#f83737ff" }} className="text-xs mt-1">
+                  {errors.botName}
+                </p>
+              )}
             </div>
 
             <div>
