@@ -20,6 +20,8 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles.css";
 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
